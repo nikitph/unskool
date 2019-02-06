@@ -2,8 +2,10 @@ import '../Config'
 import DebugConfig from '../Config/DebugConfig'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import ElementStyles from '../Themes/ElementStyles'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
+import { ThemeProvider } from 'react-native-elements'
 
 // create our store
 const store = createStore()
@@ -21,7 +23,9 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <RootContainer />
+        <ThemeProvider theme={ElementStyles}>
+          <RootContainer />
+        </ThemeProvider>
       </Provider>
     )
   }
