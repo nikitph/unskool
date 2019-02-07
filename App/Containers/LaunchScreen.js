@@ -29,6 +29,7 @@ Easily Connect with like-minded families & manage everything homeschool in one p
               <View style={{flex: 0.5}}>
                 <Button
                   type='clear'
+                  onPress={() => this.props.navigation.navigate('LoginScreen')}
                   icon={
                     <Icon
                       name='ios-log-in'
@@ -42,6 +43,7 @@ Easily Connect with like-minded families & manage everything homeschool in one p
 
                 <Button
                   type='clear'
+                  onPress={() => this.props.navigation.navigate('SignUpScreen')}
                   icon={
                     <Icon
                       name='ios-people'
@@ -62,7 +64,7 @@ Easily Connect with like-minded families & manage everything homeschool in one p
               <View style={{flex: 0.5}}>
 
                 <Text style={styles.buttonTitle}>
-                  SIGNUP
+                  SIGN UP
                 </Text>
               </View>
             </View>
