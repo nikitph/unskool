@@ -30,20 +30,21 @@ const ApplicationStyles = {
     sectionText: {
       ...Fonts.style.normal,
       paddingVertical: Metrics.doubleBaseMargin,
-      color: Colors.snow,
+      color: Colors.charcoal,
       marginVertical: Metrics.smallMargin,
       textAlign: 'center'
     },
     subtitle: {
-      color: Colors.snow,
+      color: Colors.charcoal,
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
       marginHorizontal: Metrics.smallMargin
     },
     titleText: {
       ...Fonts.style.h2,
-      fontSize: 14,
-      color: Colors.text
+      paddingTop: Metrics.doubleBaseMargin,
+      fontSize: 22,
+      color: Colors.charcoal
     }
   },
   darkLabelContainer: {

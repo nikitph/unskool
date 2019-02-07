@@ -1,10 +1,14 @@
 const ElementStyles =
   {
     Button: {
+      buttonStyle: {
+        borderColor: 'red',
+        borderRadius: 5
+      },
       titleStyle: {
-        color: 'red'
-      }
-    }
+        color: 'white'
+
+      }}
   }
 
 export default ElementStyles
