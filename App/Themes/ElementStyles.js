@@ -2,8 +2,7 @@ const ElementStyles =
   {
     Button: {
       buttonStyle: {
-        borderColor: 'red',
-        borderRadius: 5
+        borderColor: 'red'
       },
       titleStyle: {
         color: 'white'

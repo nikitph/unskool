@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { Metrics, ApplicationStyles } from '../../Themes/'
+import Colors from '../../Themes/Colors'
+import Fonts from '../../Themes/Fonts'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -20,5 +22,11 @@ export default StyleSheet.create({
   },
   centered: {
     alignItems: 'center'
+  },
+  buttonTitle: {
+    ...Fonts.style.normal,
+    color: Colors.charcoal,
+    fontSize: 12,
+    textAlign: 'center'
   }
 })
