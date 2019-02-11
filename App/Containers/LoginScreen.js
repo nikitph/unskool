@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Image, View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import Icon from 'react-native-vector-icons/Ionicons'
 import DropdownAlert from 'react-native-dropdownalert'
+import * as Animatable from 'react-native-animatable'
 import { Button } from 'react-native-elements'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions from '../Redux/LoginRedux'
@@ -46,7 +47,7 @@ class LoginScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 0.3, justifyContent: 'center', alignItems: 'center'}}>
-          <Image source={Images.launch} style={styles.logo} />
+          <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={styles.logo} />
         </View>
         <View
           style={{flex: 0.4, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
