@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { ScrollView, KeyboardAvoidingView, Image, View, Text, TextInput, PropTypes } from 'react-native'
+import { View, Text, TextInput, PropTypes } from 'react-native'
 import { connect } from 'react-redux'
-import { Images, Metrics } from '../Themes'
+import { Images } from '../Themes'
 import Icon from 'react-native-vector-icons/Ionicons'
 import * as Animatable from 'react-native-animatable'
 import DropdownAlert from 'react-native-dropdownalert'
@@ -149,7 +149,7 @@ class SignUpScreen extends Component {
             </View>
             <View style={{flex: 0.2}}>
               <Button
-                onPress={() => { this.handlePressSignUp() }}
+                onPress={() => { this.handlePressSignUp(this.state) }}
                 type='solid'
                 title='Submit'
                 loading={this.props.fetching}
