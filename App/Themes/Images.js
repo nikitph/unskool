@@ -2,7 +2,7 @@
 const images = {
   logo: require('../Images/ir.png'),
   clearLogo: require('../Images/top_logo.png'),
-  launch: require('../Images/logoblack.png'),
+  launch: require('../Images/unskool.png'),
   family: require('../Images/family.jpg'),
   ready: require('../Images/your-app.png'),
   ignite: require('../Images/ignite_logo.png'),

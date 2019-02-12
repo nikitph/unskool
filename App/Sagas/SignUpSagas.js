@@ -8,7 +8,7 @@ export function * signUp ({email, password, alertfunc, nav}) {
     const response = yield call(dbService.auth.createUserWithEmailAndPassword, email.toString(), password.toString(), function () {})
     const { uid, displayName, photoURL } = response
     yield put(SignUpActions.signUpSuccess({ uid, displayName, photoURL }))
-    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' })], 0)
+    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'CreateGuardianScreen' })], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
     yield put(SignUpActions.signUpFailure(error))
