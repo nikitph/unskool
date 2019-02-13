@@ -4,9 +4,9 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  createGuardianRequest: ['data'],
+  createGuardianRequest: ['gdata', 'alertfunc', 'nav'],
   createGuardianSuccess: ['payload'],
-  createGuardianFailure: null
+  createGuardianFailure: ['payload']
 })
 
 export const CreateGuardianTypes = Types

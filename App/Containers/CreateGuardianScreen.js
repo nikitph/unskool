@@ -3,6 +3,7 @@ import { ScrollView, Text, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import CreateGuardianActions from '../Redux/CreateGuardianRedux'
+import * as Animatable from 'react-native-animatable'
 
 // Styles
 import style from './Styles/CreateGuardianScreenStyle'
@@ -14,10 +15,14 @@ import globalStyles from '../Themes/GlobalStyles'
 import { Button } from 'react-native-elements'
 import CheckBox from '../Components/CheckBox'
 import Toast from 'react-native-easy-toast'
+import { Images } from '../Themes'
 // import { sendEmail } from '../../helpers/email'
 // import BackButton from '../components/BackButton';
 
 class CreateGuardianScreen extends Component {
+  static navigationOptions = {
+    header: null
+  };
   constructor (props) {
     super()
 
@@ -34,6 +39,7 @@ class CreateGuardianScreen extends Component {
       photoURL: props.photoURL,
       email: props.email,
       street: '',
+      state: '',
       city: '',
       zipCode: '',
       children: [' '],
@@ -41,7 +47,8 @@ class CreateGuardianScreen extends Component {
       privacy: 'public',
       sponsored: false,
       specialties: [],
-      languages_spoken: []
+      languages_spoken: [],
+      latlong: null
     }
 
     this.radioButtonChange = this.radioButtonChange.bind(this)
@@ -49,6 +56,7 @@ class CreateGuardianScreen extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.capitalizeWord = this.capitalizeWord.bind(this)
+    this.showAlert = this.showAlert.bind(this)
   }
 
   /**
@@ -65,6 +73,10 @@ class CreateGuardianScreen extends Component {
   capitalizeWord (str) {
     return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
   }
+
+  showAlert (type, title, message) {
+    this.dropdown.alertWithType(type, title, message)
+  };
 
   checkboxChange (checkbox, checkboxOptions, checked) {
     // current array of options
@@ -107,24 +119,9 @@ class CreateGuardianScreen extends Component {
    * @param e
    */
   submitForm () {
-    this.props.attemptCreateGuardian()
-  /*  const props = this.props
-    const { app } = props
-    const data = {...this.state}
-
-    // update the store with the information the user submitted
-    store.dispatch(
-      actions.newAccountCreated(data)
-    )
-
-    // update the database - path, data
-    updateProfile(`guardians/${data.uid}`, data)
-
-    // navigate to the tutorial page
-    app.goToScene('Tutorial', {app})
-
+    this.props.attemptCreateGuardian(this.state, this.showAlert, this.props.navigation)
     // Send welcome email
-    this.sendWelcomeMail(data) */
+    // this.sendWelcomeMail(data)
   }
 
   getEmailBody (data) {
@@ -188,6 +185,9 @@ class CreateGuardianScreen extends Component {
 
     return (
       <ScrollView>
+        <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
+          <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={style.logo} />
+        </View>
         <Text style={[globalStyles.formTitle]}> Help us get to know you... </Text>
         <View style={style.formContainer}>
           <TextInput
@@ -355,13 +355,13 @@ const mapStateToProps = (state) => {
     uid: state.signup.payload.uid || '',
     photoURL: state.signup.payload.photoURL || '',
     email: state.signup.payload.email || '',
-    fetching: false
+    fetching: state.createguardian.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptCreateGuardian: (email, password, alertfunc, nav) => dispatch(CreateGuardianActions.createGuardianRequest(email, password, alertfunc, nav))
+    attemptCreateGuardian: (gdata, alertfunc, nav) => dispatch(CreateGuardianActions.createGuardianRequest(gdata, alertfunc, nav))
   }
 }
 

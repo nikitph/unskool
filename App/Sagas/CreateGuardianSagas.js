@@ -1,32 +1,51 @@
-/* ***********************************************************
-* A short word on how to use this automagically generated file.
-* We're often asked in the ignite gitter channel how to connect
-* to a to a third party api, so we thought we'd demonstrate - but
-* you should know you can use sagas for other flow control too.
-*
-* Other points:
-*  - You'll need to add this saga to sagas/index.js
-*  - This template uses the api declared in sagas/index.js, so
-*    you'll need to define a constant in that file.
-*************************************************************/
-
 import { call, put } from 'redux-saga/effects'
 import CreateGuardianActions from '../Redux/CreateGuardianRedux'
+import { dbService } from '../Services/Firebase'
+import { NavigationActions } from 'react-navigation'
 // import { CreateGuardianSelectors } from '../Redux/CreateGuardianRedux'
 
-export function * createGuardian (api, action) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(CreateGuardianSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.getcreateGuardian, data)
+export function * createGuardian ({gdata, alertfunc, nav}) {
+  const {
+    uid,
+    displayName,
+    greeting,
+    photoURL,
+    email,
+    street,
+    state,
+    city,
+    zipCode,
+    children,
+    gender,
+    privacy,
+    sponsored,
+    specialties,
+    languages_spoken,
+    latlong
+  } = gdata
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CreateGuardianActions.createGuardianSuccess(response.data))
-  } else {
-    yield put(CreateGuardianActions.createGuardianFailure())
+  try {
+    const gKey = yield call(dbService.database.create, 'guardians', { uid,
+      displayName,
+      greeting,
+      photoURL,
+      email,
+      street,
+      state,
+      city,
+      zipCode,
+      children,
+      gender,
+      privacy,
+      sponsored,
+      specialties,
+      languages_spoken,
+      latlong})
+    yield put(CreateGuardianActions.createGuardianSuccess({ gKey }))
+    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' })], 0)
+    yield call(nav.dispatch, resetAction)
+  } catch (error) {
+    yield put(CreateGuardianActions.createGuardianFailure(error))
+    alertfunc('error', 'Error', error.message)
   }
 }
