@@ -1,23 +1,23 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 import Metrics from './Metrics'
 
 // save device dimensions
-const deviceWidth = Metrics.screenWidth;
-const deviceHeight = Metrics.screenHeight;
-const pagePadding = 15;
+const deviceWidth = Metrics.screenWidth
+const deviceHeight = Metrics.screenHeight
+const pagePadding = 15
 
 export const deviceDimensions = {
   deviceWidth,
   deviceHeight
 }
 
-const STYLE = {};
+const STYLE = {}
 
 /* Global styles */
 
 STYLE.fullscreen = {
   flex: 1
-};
+}
 
 STYLE.deviceWidth = {
   width: deviceWidth
@@ -31,22 +31,22 @@ STYLE.loader = {
   flex: 1,
   height: 80,
   position: 'absolute'
-};
+}
 
 STYLE.container = {
   flex: 1,
   // justifyContent: 'space-between',
   padding: 20,
   paddingBottom: 0
-};
+}
 
 STYLE.title = {
   fontSize: 30
-};
+}
 
 STYLE.text = {
   fontSize: 16
-};
+}
 
 STYLE.addItem = {
   display: 'flex',
@@ -67,14 +67,14 @@ STYLE.Button = {
   backgroundColor: 'rgba(255, 255, 255, 0.6)',
   padding: 13,
   borderRadius: 15
-};
+}
 
 STYLE.ButtonText = {
   backgroundColor: 'transparent',
   color: 'white',
   textAlign: 'center',
   fontWeight: '500'
-};
+}
 
 STYLE.Nav = {
   flex: 1,
@@ -85,16 +85,15 @@ STYLE.Nav = {
   height: '100%',
   width: '75%',
   top: 0
-};
+}
 
 STYLE.NavText = {
   color: 'white'
-};
+}
 
 STYLE.NavLink = {
   height: 50
-};
-
+}
 
 // FORM Styles
 //
@@ -129,7 +128,7 @@ STYLE.formImage = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: deviceWidth - (pagePadding * 2 ),
+  width: deviceWidth - (pagePadding * 2),
   height: 320
 }
 
@@ -166,12 +165,14 @@ STYLE.chooseImage = {
 STYLE.textInput = {
   minHeight: 40,
   borderRadius: 3,
-  fontSize: 12,
+  fontSize: 18,
+  fontWeight: '200',
+  fontFamily: 'Avenir',
   padding: 10,
   marginTop: 4,
   marginBottom: 4,
-  color: 'white',
-  backgroundColor: 'rgba(0, 0, 0, 0.3)'
+  color: 'rgba(0, 0, 0, 0.8)',
+  backgroundColor: 'rgba(0, 0, 0, 0.25)'
 }
 
 STYLE.textInputDisabled = {
@@ -224,4 +225,4 @@ STYLE.checkboxSubTitle = {
   fontWeight: '500'
 }
 
-export default StyleSheet.create(STYLE);
+export default StyleSheet.create(STYLE)

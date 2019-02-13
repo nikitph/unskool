@@ -5,7 +5,8 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
 
   formContainer: {
-    flex: 1
+    flex: 1,
+    marginHorizontal: 10
   },
 
   checkboxContainer: {

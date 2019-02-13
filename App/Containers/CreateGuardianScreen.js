@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, Text, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import CreateGuardianActions from '../Redux/CreateGuardianRedux'
 
 // Styles
 import style from './Styles/CreateGuardianScreenStyle'
@@ -11,7 +11,8 @@ import RadioForm from 'react-native-simple-radio-button'
 import colorsVariables from '../Themes/Variables'
 import globalStyles from '../Themes/GlobalStyles'
 
-import { Button, CheckBox } from 'react-native-elements'
+import { Button } from 'react-native-elements'
+import CheckBox from '../Components/CheckBox'
 import Toast from 'react-native-easy-toast'
 // import { sendEmail } from '../../helpers/email'
 // import BackButton from '../components/BackButton';
@@ -26,7 +27,7 @@ class CreateGuardianScreen extends Component {
 
     // pull the formData tree from the DB and grab all of the checkboxes for the guardians
     // setup the state properties
-    let categories = {
+    this.state = {
       uid: props.uid,
       displayName: '',
       greeting: '',
@@ -36,17 +37,11 @@ class CreateGuardianScreen extends Component {
       city: '',
       zipCode: '',
       children: [' '],
-      gender: null,
+      gender: 'male',
       privacy: 'public',
       sponsored: false,
-      }
-
-    this.state = {
-      categories,
-      formData: {
-        specialties: [ 'running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other' ],
-        languages_spoken: [ 'english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali' ]
-      }
+      specialties: [],
+      languages_spoken: []
     }
 
     this.radioButtonChange = this.radioButtonChange.bind(this)
@@ -112,6 +107,7 @@ class CreateGuardianScreen extends Component {
    * @param e
    */
   submitForm () {
+    this.props.attemptCreateGuardian()
   /*  const props = this.props
     const { app } = props
     const data = {...this.state}
@@ -154,7 +150,10 @@ class CreateGuardianScreen extends Component {
    * @returns {XML}
    */
   render () {
-    let formData = this.state.formData || {}
+    let formData = {
+      specialties: [ 'running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other' ],
+      languages_spoken: [ 'english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali' ]
+    }
 
     const outputCheckboxes = () => {
       let checkboxOutput = []
@@ -166,9 +165,9 @@ class CreateGuardianScreen extends Component {
               return (
                 <View key={item}>
                   <CheckBox
-                    title={item}
+                    label={item}
                     key={item}
-                    onPress={(checked) => this.checkboxChange(item, category, checked)}
+                    onChange={(checked) => this.checkboxChange(item, category, checked)}
                   />
                 </View>
               )
@@ -193,7 +192,7 @@ class CreateGuardianScreen extends Component {
         <View style={style.formContainer}>
           <TextInput
             style={globalStyles.textInput}
-            placeholderTextColor='white'
+            placeholderTextColor='rgba(0, 0, 0, 0.5)'
             placeholder='Your Name'
             onChangeText={(value) => this.handleChange(value, 'displayName')}
           />
@@ -202,7 +201,7 @@ class CreateGuardianScreen extends Component {
             style={[globalStyles.textInput, {height: 90}]}
             multiline
             numberOfLines={6}
-            placeholderTextColor='white'
+            placeholderTextColor='rgba(0, 0, 0, 0.5)'
             placeholder='Write a summary about yourself here'
             onChangeText={(value) => this.handleChange(value, 'greeting')}
           />
@@ -332,7 +331,12 @@ class CreateGuardianScreen extends Component {
           {/* <PrivacyForm globalStyle={globalStyles} onChange={this.radioButtonChange} privacy={this.state.privacy} */}
           {/* title={'Default Event Privacy'}/> */}
 
-          <Button text='Submit' extraStyle={style.submit} onPress={() => this.confirmAddress()} />
+          <Button
+            onPress={() => { this.confirmAddress() }}
+            type='solid'
+            title='Submit'
+            loading={this.props.fetching}
+          />
         </View>
         <Toast ref='toast' position='bottom' opacity={0.9} fadeOutDuration={500} textStyle={{
           fontSize: 18,
@@ -350,12 +354,14 @@ const mapStateToProps = (state) => {
   return {
     uid: state.signup.payload.uid || '',
     photoURL: state.signup.payload.photoURL || '',
-    email: state.signup.payload.email || ''
+    email: state.signup.payload.email || '',
+    fetching: false
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptCreateGuardian: (email, password, alertfunc, nav) => dispatch(CreateGuardianActions.createGuardianRequest(email, password, alertfunc, nav))
   }
 }
 
