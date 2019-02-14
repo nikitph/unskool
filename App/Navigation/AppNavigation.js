@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import TutorialScreen from '../Containers/TutorialScreen'
 import CreateGuardianScreen from '../Containers/CreateGuardianScreen'
 import DashboardScreen from '../Containers/DashboardScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
@@ -9,6 +10,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  TutorialScreen: { screen: TutorialScreen },
   CreateGuardianScreen: { screen: CreateGuardianScreen },
   DashboardScreen: { screen: DashboardScreen },
   SignUpScreen: { screen: SignUpScreen },

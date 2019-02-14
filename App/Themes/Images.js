@@ -20,7 +20,13 @@ const images = {
   chevronRight: require('../Images/Icons/chevron-right.png'),
   hamburger: require('../Images/Icons/hamburger.png'),
   backButton: require('../Images/Icons/back-button.png'),
-  closeButton: require('../Images/Icons/close-button.png')
+  closeButton: require('../Images/Icons/close-button.png'),
+  tut0: require('../Images/intro-tut-card-0.png'),
+  tut1: require('../Images/intro-tut-card-1.png'),
+  tut2: require('../Images/intro-tut-card-2.png'),
+  tut3: require('../Images/intro-tut-card-3.png'),
+  tut4: require('../Images/intro-tut-card-4.png')
+
 }
 
 export default images

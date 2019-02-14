@@ -42,7 +42,7 @@ export function * createGuardian ({gdata, alertfunc, nav}) {
       languages_spoken,
       latlong})
     yield put(CreateGuardianActions.createGuardianSuccess({ gKey }))
-    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' })], 0)
+    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'TutorialScreen' })], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
     yield put(CreateGuardianActions.createGuardianFailure(error))
