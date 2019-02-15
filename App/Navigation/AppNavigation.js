@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import FeedbackScreen from '../Containers/FeedbackScreen'
 import TutorialScreen from '../Containers/TutorialScreen'
 import CreateGuardianScreen from '../Containers/CreateGuardianScreen'
 import DashboardScreen from '../Containers/DashboardScreen'
@@ -13,12 +14,13 @@ const PrimaryNav = createStackNavigator({
   TutorialScreen: { screen: TutorialScreen },
   CreateGuardianScreen: { screen: CreateGuardianScreen },
   DashboardScreen: { screen: DashboardScreen },
+  FeedbackScreen: { screen: FeedbackScreen },
   SignUpScreen: { screen: SignUpScreen },
   LoginScreen: { screen: LoginScreen },
   LaunchScreen: { screen: LaunchScreen }
 }, {
   // Default config for all screens
-  headerMode: 'none',
+  headerMode: 'screen',
   initialRouteName: 'LaunchScreen',
   navigationOptions: {
     headerStyle: styles.header

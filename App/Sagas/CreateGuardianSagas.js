@@ -25,7 +25,7 @@ export function * createGuardian ({gdata, alertfunc, nav}) {
   } = gdata
 
   try {
-    const gKey = yield call(dbService.database.create, 'guardians', { uid,
+    const gKey = yield call(dbService.database.update, `guardians/${uid}`, { uid,
       displayName,
       greeting,
       photoURL,

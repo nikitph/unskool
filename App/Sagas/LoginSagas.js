@@ -2,15 +2,22 @@ import { call, put } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
 import { dbService } from '../Services/Firebase'
 import { NavigationActions } from 'react-navigation'
+import FastImage from 'react-native-fast-image'
 
 // attempts to login
 export function * login ({email, password, alertfunc, nav}) {
   try {
     const response = yield call(dbService.auth.signInWithEmailAndPassword, email.toString(), password.toString(), function () {})
-    const {uid, displayName, photoURL} = response
+    const {uid, displayName, photoURL} = response.user
+    const guardian = yield call(dbService.database.read, `guardians/${uid}`)
+
+    FastImage.preload([
+      {
+        uri: guardian.image
+      }])
     // const location = yield call(dbService.database.read, `users/${uid}/location`)
-    yield put(LoginActions.loginSuccess({uid, displayName, photoURL}))
-    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' })], 0)
+    yield put(LoginActions.loginSuccess({uid, displayName, photoURL, ...guardian}))
+    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' },{ ...guardian})], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
     yield put(LoginActions.loginFailure(error))

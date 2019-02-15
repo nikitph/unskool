@@ -93,6 +93,6 @@ export default StyleSheet.create({
     height: Metrics.images.logo,
     width: Metrics.images.logo,
     resizeMode: 'contain',
-    opacity: 0.5
+    opacity: 0.7
   }
 })

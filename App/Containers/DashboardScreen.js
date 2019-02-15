@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { ScrollView, Text, KeyboardAvoidingView, View } from 'react-native'
 import { connect } from 'react-redux'
+import { Images, Metrics } from '../Themes'
+import * as Animatable from 'react-native-animatable'
+import Hero from '../Components/Hero'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -8,12 +11,18 @@ import { connect } from 'react-redux'
 import styles from './Styles/DashboardScreenStyle'
 
 class DashboardScreen extends Component {
+  static navigationOptions = {
+    headerTitle: <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch}       style={{ width: 40, height: 40 }}
+    />
+  };
   render () {
+    console.log(this.props)
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>DashboardScreen</Text>
-        </KeyboardAvoidingView>
+      <ScrollView>
+        <Animatable.View animation="fadeInLeft">
+        <Hero
+          guardian={this.props.guardian} />
+        </Animatable.View>
       </ScrollView>
     )
   }
@@ -21,6 +30,7 @@ class DashboardScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    guardian: state.login.payload
   }
 }
 
