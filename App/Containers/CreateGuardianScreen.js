@@ -206,7 +206,7 @@ class CreateGuardianScreen extends Component {
             onChangeText={(value) => this.handleChange(value, 'greeting')}
           />
 
-          <View>
+          {/* <View>
             <RadioForm
               radio_props={radio_props}
               formHorizontal
@@ -215,7 +215,7 @@ class CreateGuardianScreen extends Component {
               initial={userGender === 'male' ? 0 : 1}
               onPress={(value) => { this.radioButtonChange(value, 'gender') }}
             />
-          </View>
+          </View> */}
 
           <View>
             <Text style={globalStyles.formSubTitle}>Address</Text>

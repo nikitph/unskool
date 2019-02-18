@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Images, Metrics } from '../Themes'
 import * as Animatable from 'react-native-animatable'
 import Hero from '../Components/Hero'
+import FooterNav from '../Components/FooterNav'
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -12,18 +14,19 @@ import styles from './Styles/DashboardScreenStyle'
 
 class DashboardScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch}       style={{ width: 40, height: 40 }}
+    headerTitle: <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
   render () {
     console.log(this.props)
     return (
-      <ScrollView>
-        <Animatable.View animation="fadeInLeft">
-        <Hero
-          guardian={this.props.guardian} />
-        </Animatable.View>
-      </ScrollView>
+      <Animatable.View style={styles.container} animation='fadeIn'>
+          <View >
+            <Hero
+              guardian={this.props.guardian} />
+          </View>
+        <FooterNav navigation={this.props.navigation} />
+      </Animatable.View>
     )
   }
 }
