@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles } from '../../Themes/'
-import Metrics from '../../Themes/Metrics'
 import Colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
@@ -8,5 +7,10 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.transparent
+  },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
   }
 })
