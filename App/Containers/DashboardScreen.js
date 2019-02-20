@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import * as Animatable from 'react-native-animatable'
 import Hero from '../Components/Hero'
+import Summary from '../Components/Summary'
 import FooterNav from '../Components/FooterNav'
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -26,6 +27,9 @@ class DashboardScreen extends Component {
         <View >
           <Hero
             guardian={this.props.guardian} />
+        </View>
+        <View style={{flex: 0.3}}>
+          <Summary guardian={this.props.guardian} />
         </View>
         <FooterNav navigation={this.props.navigation} />
         <ActionButton buttonColor='rgba(231,76,60,1)' offsetY={100}>
