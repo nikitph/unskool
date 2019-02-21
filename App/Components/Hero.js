@@ -13,7 +13,6 @@ import LinearGradient from 'react-native-linear-gradient'
 import FastImage from 'react-native-fast-image'
 import { Images, Metrics } from '../Themes'
 
-
 class Hero extends Component {
   static PropTypes={
     guardian: PropTypes.object

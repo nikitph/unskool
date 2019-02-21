@@ -6,7 +6,7 @@ import {
   LayoutAnimation
 } from 'react-native'// import PropTypes from 'prop-types';
 import style from './Styles/SummaryStyle'
-import { Badge } from 'react-native-elements'
+import { Avatar, Badge } from 'react-native-elements'
 
 export default class Summary extends Component {
   constructor (props) {
@@ -75,6 +75,17 @@ export default class Summary extends Component {
               </View>
             </TouchableHighlight>
           </View>
+        </View>
+        <View style={{padding: 10}}>
+          <Avatar
+            rounded
+            size='medium'
+            source={{
+              uri:
+                'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
+            }}
+            showEditButton
+          />
         </View>
       </View>
     )

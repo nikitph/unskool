@@ -4,7 +4,7 @@ const summary = {}
 
 summary.container = {
   backgroundColor: 'white',
-  height: 200
+  height: 220
 }
 
 summary.raitingsAndComments = {
@@ -41,19 +41,17 @@ summary.summaryBodyCopy = {
 }
 
 summary.tagItem = {
-  backgroundColor: styleVariables.mc2BlueElectric,
-  height: 30,
-  padding: 4,
-  paddingLeft: 10,
-  paddingRight: 10,
-  margin: 4
+  backgroundColor: styleVariables.mc2LightBlue,
+  height: 25,
+  padding: 5,
+  margin: 3
 }
 
 summary.ellipsis = {
   backgroundColor: 'gray',
-  padding: 8,
-  paddingLeft: 15,
-  paddingRight: 15,
+  padding: 5,
+  paddingLeft: 5,
+  paddingRight: 5,
   borderRadius: 16,
   marginRight: 4,
   margin: 4

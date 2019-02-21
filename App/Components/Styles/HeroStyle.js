@@ -6,7 +6,7 @@ const deviceWidth = Metrics.screenWidth
 const hero = {}
 
 hero.container = {
-  position: 'relative'
+  position: 'relative',
 }
 
 hero.mainInfo = {
