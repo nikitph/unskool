@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, View } from 'react-native'
+import { ScrollView, Text, KeyboardAvoidingView, View, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import * as Animatable from 'react-native-animatable'
@@ -8,6 +8,7 @@ import Summary from '../Components/Summary'
 import FooterNav from '../Components/FooterNav'
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
+import PhotoUpload from '../Components/PhotoUpload'
 
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
