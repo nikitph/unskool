@@ -4,7 +4,7 @@ const summary = {};
 
 summary.container = {
   backgroundColor: 'white',
-}
+height: 200}
 
 summary.raitingsAndComments = {
   display: 'flex',
@@ -40,12 +40,11 @@ summary.summaryBodyCopy = {
 }
 
 summary.tagItem = {
-  backgroundColor: styleVariables.mc2medGray,
-  padding: 8,
-  paddingLeft: 15,
-  paddingRight: 15,
-  borderRadius: 16,
-  marginRight: 4,
+  backgroundColor: styleVariables.mc2BlueElectric,
+  height: 30,
+  padding: 4,
+  paddingLeft: 10,
+  paddingRight: 10,
   margin: 4
 }
 
@@ -56,7 +55,7 @@ summary.ellipsis = {
   paddingRight: 15,
   borderRadius: 16,
   marginRight: 4,
-  margin:4
+  margin: 4
 }
 
 summary.tagItemCopy = {

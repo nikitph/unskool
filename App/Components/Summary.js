@@ -6,6 +6,7 @@ import {
   LayoutAnimation
 } from 'react-native'// import PropTypes from 'prop-types';
 import style from './Styles/SummaryStyle'
+import { Badge } from 'react-native-elements'
 
 export default class Summary extends Component {
   constructor (props) {
@@ -47,9 +48,7 @@ export default class Summary extends Component {
         items.map((item, i) => {
           let keyId = `${cat}${item}${i}`
           return (
-            <View style={style.tagItem} key={keyId}>
-              <Text style={style.tagItemCopy}>{item}</Text>
-            </View>
+            <Badge value={item} status='error' key={keyId} badgeStyle={style.tagItem} />
           )
         })
       )
@@ -63,7 +62,7 @@ export default class Summary extends Component {
       <View style={style.container}>
         <View style={style.greetingContainer}>{ greetingCopy }</View>
         <View style={{flexDirection: 'row', flex: 1, marginLeft: 10, marginRight: 10}}>
-          <View style={{flex: 0.8, flexDirection: 'row', flexWrap: wrapState, overflow: 'hidden' }}>
+          <View style={{flex: 0.8, flexDirection: 'row', flexWrap: wrapState, overflow: 'hidden'}}>
             {languageTags}
             {specialtyTags}
           </View>
