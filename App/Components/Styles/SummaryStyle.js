@@ -1,16 +1,17 @@
-import styleVariables from '../../Themes/Variables';
+import styleVariables from '../../Themes/Variables'
 
-const summary = {};
+const summary = {}
 
 summary.container = {
   backgroundColor: 'white',
-height: 200}
+  height: 200
+}
 
 summary.raitingsAndComments = {
   display: 'flex',
   flexDirection: 'row',
   marginBottom: 1,
-  paddingLeft: 16,
+  paddingLeft: 16
 }
 
 summary.raitings = {
@@ -32,7 +33,7 @@ summary.summaryCopy = {
 
 summary.greetingContainer = {
   paddingTop: 10,
-  paddingBottom: 8,
+  paddingBottom: 8
 }
 
 summary.summaryBodyCopy = {
@@ -63,4 +64,4 @@ summary.tagItemCopy = {
   fontWeight: '500'
 }
 
-export default summary;
+export default summary
