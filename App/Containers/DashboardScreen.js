@@ -37,7 +37,7 @@ class DashboardScreen extends Component {
           <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => console.log('notes tapped!')}>
             <Icon name='md-calendar' style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => {}}>
+          <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => this.props.navigation.navigate('CreateChildScreen')}>
             <Icon name='md-person-add' style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>

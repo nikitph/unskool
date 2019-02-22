@@ -8,8 +8,9 @@ import DebugConfig from '../Config/DebugConfig'
 import { StartupTypes } from '../Redux/StartupRedux'
 import { GithubTypes } from '../Redux/GithubRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
-import { SignUpTypes} from '../Redux/SignUpRedux'
+import { SignUpTypes } from '../Redux/SignUpRedux'
 import { CreateGuardianTypes } from '../Redux/CreateGuardianRedux'
+import { CreateChildTypes } from '../Redux/CreateChildRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -18,6 +19,7 @@ import { getUserAvatar } from './GithubSagas'
 import { login } from './LoginSagas'
 import { signUp } from './SignUpSagas'
 import { createGuardian } from './CreateGuardianSagas'
+import { createChild } from './CreateChildSagas'
 
 /* ------------- API ------------- */
 
@@ -34,6 +36,7 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_REQUEST, login),
     takeLatest(SignUpTypes.SIGN_UP_REQUEST, signUp),
     takeLatest(CreateGuardianTypes.CREATE_GUARDIAN_REQUEST, createGuardian),
+    takeLatest(CreateChildTypes.CREATE_CHILD_REQUEST, createChild),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
