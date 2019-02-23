@@ -34,7 +34,7 @@ class DashboardScreen extends Component {
         </View>
         <FooterNav navigation={this.props.navigation} />
         <ActionButton buttonColor='rgba(231,76,60,1)' offsetY={100}>
-          <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => console.log('notes tapped!')}>
+          <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => this.props.navigation.navigate('CreateEventScreen')}>
             <Icon name='md-calendar' style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => this.props.navigation.navigate('CreateChildScreen')}>
