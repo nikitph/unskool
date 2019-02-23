@@ -113,7 +113,7 @@ STYLE.formTitle = {
 }
 
 STYLE.formSubTitle = {
-  color: 'white',
+  color: 'gray',
   textAlign: 'center',
   fontWeight: '500'
 }

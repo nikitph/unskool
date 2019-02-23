@@ -31,6 +31,7 @@ export default class PhotoUpload extends React.Component {
 
   options = {
     title: 'Select Photo',
+    allowsEditing: true,
     storageOptions: {
       skipBackup: true,
       path: 'images'

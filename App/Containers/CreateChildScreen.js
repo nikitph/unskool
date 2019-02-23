@@ -21,6 +21,7 @@ import CheckBox from '../Components/CheckBox'
 import { Button } from 'react-native-elements'
 import Link from '../Components/Link'
 import globalStyles from '../Themes/GlobalStyles'
+import PhotoUpload from '../Components/PhotoUpload'
 
 class CreateChildScreen extends Component {
   static navigationOptions = {
@@ -246,17 +247,23 @@ class CreateChildScreen extends Component {
 
         <View className='image-uploader'>
           <View style={globalStyles.formImageContainer}>
-            <Image
-              source={userImage}
-              style={globalStyles.formImage}
-              resizeMode='cover' />
-          </View>
-          <View className='image-uploader--identification'>
-            <Link
-              text='Add a profile image'
-              onClick={() => this.handleImageSelector()}
-              extraStyle={globalStyles.uploadImageButton}
-            />
+            <PhotoUpload
+              width={100}
+              height={100}
+              onPhotoSelect={avatar => {
+                 }}>
+              <Image
+                style={{
+                  paddingVertical: 10,
+                  width: 100,
+                  height: 100,
+                  borderRadius: 50
+                }}
+                resizeMode='cover'
+                source={{
+                  uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+                }} />
+            </PhotoUpload>
           </View>
         </View>
 
@@ -281,7 +288,7 @@ class CreateChildScreen extends Component {
               initial={userGender === 'male' ? 0 : 1}
               style={{padding: 30, marginRight: 10}}
               buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30}}
+              labelStyle={{marginRight: 30, color:'gray'}}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'gender') }}
             />
@@ -298,16 +305,18 @@ class CreateChildScreen extends Component {
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={10}
               buttonWrapStyle={{padding: 10, marginRight: 10}}
-              labelStyle={{marginRight: 10, color: 'white', fontSize: 14}}
+              labelStyle={{marginRight: 10, color: 'gray', fontSize: 14}}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'age') }}
             />
           </View>
 
           <Button
-            text='Submit'
-            extraStyle={{marginTop: 20, marginBottom: 120}}
-            onPress={() => this.submitForm()} />
+            onPress={() => { this.submitForm() }}
+            type='solid'
+            title='Submit'
+            loading={false}
+          />
         </View>
       </ScrollView>
     )
