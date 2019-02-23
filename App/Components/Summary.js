@@ -7,6 +7,7 @@ import {
 } from 'react-native'// import PropTypes from 'prop-types';
 import style from './Styles/SummaryStyle'
 import { Avatar, Badge } from 'react-native-elements'
+import GlobalStyles from '../Themes/GlobalStyles'
 
 export default class Summary extends Component {
   constructor (props) {
@@ -41,6 +42,30 @@ export default class Summary extends Component {
 
     let languageTags = dataToTag(languages, 'languages')
     let specialtyTags = dataToTag(specialties, 'specialties')
+
+    function dataToAvatar (children, childs) {
+      return (
+        Object.keys(children).map((item, i) => {
+          let keyId = `${childs}${item}${i}`
+          console.log(children[item])
+          if (children[item].profileImage) {
+            return (
+              <View key={keyId} style={{padding:5}}>
+                <Avatar rounded
+                  size='medium'
+                  source={{
+                    uri: children[item].profileImage
+                  }}
+                  showEditButton
+              />
+              </View>
+            )
+          }
+        })
+      )
+    }
+
+    let avatars = dataToAvatar(userData.children, 'childs')
     console.log(specialtyTags)
 
     function dataToTag (items, cat) {
@@ -76,16 +101,9 @@ export default class Summary extends Component {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={{padding: 10}}>
-          <Avatar
-            rounded
-            size='medium'
-            source={{
-              uri:
-                'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
-            }}
-            showEditButton
-          />
+        <Text style={GlobalStyles.formSubTitle}>Children</Text>
+        <View style={{flex: 0.8, flexDirection: 'row', flexWrap: wrapState, overflow: 'hidden', padding: 10}}>
+          {avatars}
         </View>
       </View>
     )
