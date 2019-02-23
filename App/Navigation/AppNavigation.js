@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import CreateEventScreen from '../Containers/CreateEventScreen'
 import CreateChildScreen from '../Containers/CreateChildScreen'
 import FeedbackScreen from '../Containers/FeedbackScreen'
 import TutorialScreen from '../Containers/TutorialScreen'
@@ -12,6 +13,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  CreateEventScreen: { screen: CreateEventScreen },
   CreateChildScreen: { screen: CreateChildScreen },
   TutorialScreen: { screen: TutorialScreen },
   CreateGuardianScreen: { screen: CreateGuardianScreen },
