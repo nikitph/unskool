@@ -12,21 +12,45 @@
 
 import { call, put } from 'redux-saga/effects'
 import CreateChildActions from '../Redux/CreateChildRedux'
-// import { CreateChildSelectors } from '../Redux/CreateChildRedux'
+import { dbService, mapp } from '../Services/Firebase'
+import { NavigationActions } from 'react-navigation'
+import { Platform } from 'react-native'
+import { genericFileUpload } from '../Services/Uploader'
+import CreateGuardianActions from '../Redux/CreateGuardianRedux'
 
-export function * createChild (api, action) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(CreateChildSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.getcreateChild, data)
+export function * createChild ({cdata, alertfunc, nav}) {
+  const { gid,
+    fName,
+    lName,
+    age,
+    profileImage,
+    gender,
+    allergies } = cdata
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CreateChildActions.createChildSuccess(response.data))
-  } else {
-    yield put(CreateChildActions.createChildFailure())
+  let storageRef = mapp.storage().ref(`childImages/${gid}`)
+
+  try {
+    let childImageLoc = 'https://www.cmsabirmingham.org/stuff/2017/01/default-placeholder.png'
+    if (profileImage) {
+      const uploadUri = Platform.OS === 'ios' ? profileImage.uri.replace('file://', '') : profileImage.uri
+      childImageLoc = yield call(genericFileUpload, uploadUri, profileImage.name, storageRef)
+    }
+
+    const childKey = yield call(dbService.database.create, `guardians/${gid}/children`, {
+      gid,
+      fName,
+      lName,
+      age,
+      profileImage: childImageLoc,
+      gender,
+      allergies
+    })
+
+    yield put(CreateChildActions.createChildSuccess({childKey}))
+    const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
+    yield call(nav.dispatch, resetAction)
+  } catch (error) {
+    yield put(CreateGuardianActions.createGuardianFailure(error))
+    alertfunc('error', 'Error', error.message)
   }
 }

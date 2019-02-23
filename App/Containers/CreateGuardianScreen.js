@@ -10,6 +10,7 @@ import style from './Styles/CreateGuardianScreenStyle'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import RadioForm from 'react-native-simple-radio-button'
 import colorsVariables from '../Themes/Variables'
+import DropdownAlert from 'react-native-dropdownalert'
 import globalStyles from '../Themes/GlobalStyles'
 
 import { Button } from 'react-native-elements'
@@ -110,7 +111,7 @@ class CreateGuardianScreen extends Component {
     if (this.state.latlong) {
       this.submitForm()
     } else {
-      this.refs.toast.show('A valid Address is required!', 2500)
+      this.showAlert('error', 'Error', 'A valid Address is required!')
     }
   }
 
@@ -338,13 +339,13 @@ class CreateGuardianScreen extends Component {
             loading={this.props.fetching}
           />
         </View>
-        <Toast ref='toast' position='bottom' opacity={0.9} fadeOutDuration={500} textStyle={{
-          fontSize: 18,
-          fontFamily: 'AvenirNext-Regular',
-          fontWeight: '400',
-          color: 'white',
-          textAlign: 'center'
-        }} />
+        <DropdownAlert
+          ref={(ref) => this.dropdown = ref}
+          showCancel
+          translucent
+          errorColor={'rgba(250,50,50,1)'}
+          closeInterval={6000}
+        />
       </ScrollView>
     )
   }

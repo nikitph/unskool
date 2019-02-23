@@ -4,9 +4,9 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  createChildRequest: ['data'],
+  createChildRequest: ['cdata', 'alertfunc', 'nav'],
   createChildSuccess: ['payload'],
-  createChildFailure: null
+  createChildFailure: ['payload']
 })
 
 export const CreateChildTypes = Types

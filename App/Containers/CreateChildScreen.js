@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import CreateChildActions from '../Redux/CreateChildRedux'
 import * as Animatable from 'react-native-animatable'
 // Styles
 import style from './Styles/CreateChildScreenStyle'
@@ -22,6 +22,7 @@ import { Button } from 'react-native-elements'
 import Link from '../Components/Link'
 import globalStyles from '../Themes/GlobalStyles'
 import PhotoUpload from '../Components/PhotoUpload'
+import DropdownAlert from 'react-native-dropdownalert'
 
 class CreateChildScreen extends Component {
   static navigationOptions = {
@@ -43,13 +44,14 @@ class CreateChildScreen extends Component {
       gender: null,
       uploadProgress: null,
       imageModal: false,
-      allergies: [ 'Pollen', 'Asthma', 'Pet', 'Dairy', 'Gluten', 'eggs', 'Other' ]
+      allergies: []
     }
     // bind functions
     this.radioButtonChange = this.radioButtonChange.bind(this)
     this.checkboxChange = this.checkboxChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
+    this.showAlert = this.showAlert.bind(this)
   }
 
   handleImageSelector () {
@@ -77,6 +79,10 @@ class CreateChildScreen extends Component {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
+  }
+
+  showAlert (type, title, message) {
+    this.dropdown.alertWithType(type, title, message)
   }
 
   checkboxChange (checkbox, checkboxOptions, checked) {
@@ -109,6 +115,8 @@ class CreateChildScreen extends Component {
    * @param e
    */
   submitForm () {
+    this.props.attemptCreateChild(this.state, this.showAlert, this.props.navigation)
+
     /* const props = this.props
     const { fName, lName, selectedImage, profileImage } = this.state
     // gather the child's info from the state
@@ -251,7 +259,10 @@ class CreateChildScreen extends Component {
               width={100}
               height={100}
               onPhotoSelect={avatar => {
-                 }}>
+                if (avatar) {
+                  this.setState({ profileImage: avatar })
+                }
+              }}>
               <Image
                 style={{
                   paddingVertical: 10,
@@ -288,7 +299,7 @@ class CreateChildScreen extends Component {
               initial={userGender === 'male' ? 0 : 1}
               style={{padding: 30, marginRight: 10}}
               buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color:'gray'}}
+              labelStyle={{marginRight: 30, color: 'gray'}}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'gender') }}
             />
@@ -315,9 +326,16 @@ class CreateChildScreen extends Component {
             onPress={() => { this.submitForm() }}
             type='solid'
             title='Submit'
-            loading={false}
+            loading={this.props.fetching}
           />
         </View>
+        <DropdownAlert
+          ref={(ref) => this.dropdown = ref}
+          showCancel
+          translucent
+          errorColor={'rgba(250,50,50,1)'}
+          closeInterval={6000}
+        />
       </ScrollView>
     )
   }
@@ -325,12 +343,15 @@ class CreateChildScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guardian: state.login.payload
+    guardian: state.login.payload,
+    fetching: state.createchild.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptCreateChild: (cdata, alertfunc, nav) =>
+      dispatch(CreateChildActions.createChildRequest(cdata, alertfunc, nav))
   }
 }
 
