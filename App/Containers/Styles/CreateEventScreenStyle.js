@@ -1,16 +1,15 @@
-import GlobalStyles from '../../Themes/GlobalStyles'
 
-const CreateEventForm = {};
+const CreateEventForm = {}
 
 CreateEventForm.container = {
-  padding: 10,
+  padding: 10
 }
 
 CreateEventForm.subTitle = {
   fontSize: 18,
   marginTop: 20,
   fontWeight: '500',
-  color: 'rgba(0,0,0,.5)',
+  color: 'rgba(0,0,0,.5)'
 }
 
 CreateEventForm.seatsAvailableContainer = {
@@ -38,7 +37,7 @@ CreateEventForm.seatIcon = {
 }
 
 CreateEventForm.seatCount = {
-  position: 'absolute',
+  position: 'absolute'
 }
 
 CreateEventForm.seatCountCopy = {
@@ -67,4 +66,4 @@ CreateEventForm.dateText = {
   fontSize: 16
 }
 
-export default CreateEventForm;
+export default CreateEventForm
