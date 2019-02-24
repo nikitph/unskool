@@ -16,7 +16,6 @@ import { dbService, mapp } from '../Services/Firebase'
 import { NavigationActions } from 'react-navigation'
 import { Platform } from 'react-native'
 import { genericFileUpload } from '../Services/Uploader'
-import CreateGuardianActions from '../Redux/CreateGuardianRedux'
 
 export function * createChild ({cdata, alertfunc, nav}) {
   const { gid,
@@ -50,7 +49,7 @@ export function * createChild ({cdata, alertfunc, nav}) {
     const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
-    yield put(CreateGuardianActions.createGuardianFailure(error))
+    yield put(CreateChildActions.createChildFailure(error))
     alertfunc('error', 'Error', error.message)
   }
 }

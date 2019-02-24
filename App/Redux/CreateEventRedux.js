@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  createEventRequest: ['data'],
+  createEventRequest: ['edata', 'alertfunc', 'nav'],
   createEventSuccess: ['payload'],
   createEventFailure: null
 })

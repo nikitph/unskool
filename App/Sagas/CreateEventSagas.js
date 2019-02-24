@@ -14,7 +14,7 @@ import { call, put } from 'redux-saga/effects'
 import CreateEventActions from '../Redux/CreateEventRedux'
 // import { CreateEventSelectors } from '../Redux/CreateEventRedux'
 
-export function * createEvent (api, action) {
+export function * createEvent ({edata, alertfunc, nav}) {
   const { data } = action
   // get current data from Store
   // const currentData = yield select(CreateEventSelectors.getData)

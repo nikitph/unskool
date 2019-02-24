@@ -19,6 +19,8 @@ import {
 import moment from 'moment'
 import globalStyles from '../Themes/GlobalStyles'
 import DatePicker from 'react-native-datepicker'
+import * as Animatable from 'react-native-animatable'
+import CreateEventActions from '../Redux/CreateEventRedux'
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 
 import { generateCalendarDates } from '../Services/DateGenerator'
@@ -29,6 +31,8 @@ import { Button } from 'react-native-elements'
 import Link from '../Components/Link'
 import PrivacyForm from '../Components/PrivacyForm'
 import PhotoUpload from '../Components/PhotoUpload'
+import DropdownAlert from 'react-native-dropdownalert'
+import { Images } from '../Themes'
 
 const now = moment().hour(0).minute(0)
 const nowFormat = now.format('YYYY-MM-DD')
@@ -38,6 +42,10 @@ const yesterday = `${today.slice(0, 8)}${priorDay}`
 // import BackButton from '../components/BackButton';
 
 class CreateEventScreen extends Component {
+  static navigationOptions = {
+    headerTitle: <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
+    />
+  };
   constructor (props) {
     super(props)
 
@@ -76,10 +84,15 @@ class CreateEventScreen extends Component {
     this.checkboxChange = this.checkboxChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
+    this.showAlert = this.showAlert.bind(this)
   }
 
   handleImageSelector () {
     this.setState({imageModal: !this.state.imageModal})
+  }
+
+  showAlert (type, title, message) {
+    this.dropdown.alertWithType(type, title, message)
   }
 
   selectImage () {
@@ -154,22 +167,20 @@ class CreateEventScreen extends Component {
    * @param e
    */
   submitForm () {
-   /* const props = this.props;
-    const { app } = props;
-    const newEvent = {...this.state};
+    const newEvent = {...this.state}
 
     const {
       formattedStartDate,
       formattedFinishDate,
       recurringDays,
       frequency
-    } = newEvent;
+    } = newEvent
 
     // generate a collection of formatted dates from the recurring event days and place that collection into the newEvent obj
-    newEvent.calendarDates = generateCalendarDates(formattedStartDate, formattedFinishDate, recurringDays, frequency);
+    newEvent.calendarDates = generateCalendarDates(formattedStartDate, formattedFinishDate, recurringDays, frequency)
 
     // store the selected image's url
-    const { selectedImage, profileImage } = this.state;
+    const { selectedImage, profileImage } = this.state
 
     let imageUri
     selectedImage
@@ -177,10 +188,10 @@ class CreateEventScreen extends Component {
       : imageUri = profileImage
 
     // add a timestamp to the added event
-    newEvent.timestamp = (new Date()).getTime();
+    newEvent.timestamp = (new Date()).getTime()
 
     // update the store, create a new user object with the updated event in it
-    const newUserObject = app.props.user;
+    /* const newUserObject = app.props.user;
 
     // get the collection of the host's events
     const eventGroup = app.props.user.hostEvents || {};
@@ -209,6 +220,7 @@ class CreateEventScreen extends Component {
 
     // navigate to the dashboard
     app.goToScene('Dashboard', {app}) */
+    this.props.attemptCreateEvent(this.state, this.showAlert, this.props.navigation)
   }
 
   /**
@@ -437,8 +449,20 @@ class CreateEventScreen extends Component {
           <PrivacyForm globalStyle={globalStyles} onChange={this.radioButtonChange} privacy={this.state.privacy}
             title={'Event Privacy'} />
 
-          <Button text='Submit' onPress={() => this.submitForm()} />
+          <Button
+            onPress={() => { this.submitForm() }}
+            type='solid'
+            title='Submit'
+            loading={this.props.fetching}
+          />
         </View>
+        <DropdownAlert
+          ref={(ref) => this.dropdown = ref}
+          showCancel
+          translucent
+          errorColor={'rgba(250,50,50,1)'}
+          closeInterval={6000}
+        />
       </ScrollView>
     )
   }
@@ -446,12 +470,15 @@ class CreateEventScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guardian: state.login.payload
+    guardian: state.login.payload,
+    fetching: state.createevent.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptCreateEvent: (edata, alertfunc, nav) =>
+      dispatch(CreateEventActions.createEventRequest(edata, alertfunc, nav))
   }
 }
 
