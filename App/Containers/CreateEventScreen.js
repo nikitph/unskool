@@ -220,7 +220,7 @@ class CreateEventScreen extends Component {
 
     // navigate to the dashboard
     app.goToScene('Dashboard', {app}) */
-    this.props.attemptCreateEvent(this.state, this.showAlert, this.props.navigation)
+    this.props.attemptCreateEvent(newEvent, this.showAlert, this.props.navigation)
   }
 
   /**

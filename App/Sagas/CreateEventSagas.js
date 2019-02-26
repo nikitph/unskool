@@ -12,21 +12,36 @@
 
 import { call, put } from 'redux-saga/effects'
 import CreateEventActions from '../Redux/CreateEventRedux'
+import { Platform } from 'react-native'
+import { dbService, mapp } from '../Services/Firebase'
+import { genericFileUpload } from '../Services/Uploader'
+import { NavigationActions } from 'react-navigation'
 // import { CreateEventSelectors } from '../Redux/CreateEventRedux'
 
 export function * createEvent ({edata, alertfunc, nav}) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(CreateEventSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.getcreateEvent, data)
+  const { gid,
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CreateEventActions.createEventSuccess(response.data))
-  } else {
-    yield put(CreateEventActions.createEventFailure())
+    profileImage
+    } = edata
+
+  let storageRef = mapp.storage().ref(`eventImages/${gid}`)
+
+  try {
+    let eventImageLoc = 'https://www.cmsabirmingham.org/stuff/2017/01/default-placeholder.png'
+    if (profileImage) {
+      const uploadUri = Platform.OS === 'ios' ? profileImage.uri.replace('file://', '') : profileImage.uri
+      eventImageLoc = yield call(genericFileUpload, uploadUri, profileImage.name, storageRef)
+    }
+
+    const eventKey = yield call(dbService.database.create, `guardians/${gid}/events`, {
+      ...edata, profileImage: eventImageLoc
+    })
+
+    yield put(CreateEventActions.createEventSuccess({eventKey}))
+    const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
+    yield call(nav.dispatch, resetAction)
+  } catch (error) {
+    yield put(CreateEventActions.createEventFailure({error}))
+    alertfunc('error', 'Error', error.message)
   }
 }
