@@ -41,7 +41,7 @@ class FooterNav extends Component {
     return (
       <View style={style.container}>
         <LinearGradient
-          colors={['white','white']}
+          colors={['white', 'white']}
           style={[style.footerNav]}
         >
           <Link
