@@ -20,7 +20,6 @@ import { NavigationActions } from 'react-navigation'
 
 export function * createEvent ({edata, alertfunc, nav}) {
   const { gid,
-
     profileImage
     } = edata
 
