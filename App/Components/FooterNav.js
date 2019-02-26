@@ -71,7 +71,7 @@ class FooterNav extends Component {
           <Link
             extraStyle={style.footerLink}
             textStyles={style.footerLinkCopy}
-            onClick={() => navigation.navigate('DashboardScreen')}
+            onClick={() => this.props.navigation.navigate('FeedbackFormScreen')}
             iconTop={{url: checkScene('Feedback'), dimensions: feedbackIcon }}
             text='FEEDBACK' />
         </LinearGradient>
