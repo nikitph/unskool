@@ -8,10 +8,16 @@ import style from './Styles/FeedbackFormScreenStyle'
 
 import { View, TouchableHighlight, Text, Image, TextInput, ScrollView } from 'react-native'
 import { SegmentedControls } from 'react-native-radio-buttons'
+import * as Animatable from 'react-native-animatable'
 import { Button } from 'react-native-elements'
 import globalStyles from '../Themes/GlobalStyles'
+import { sendEmail } from '../Services/Email'
+import { Images } from '../Themes'
 
 class FeedbackFormScreen extends Component {
+  static navigationOptions = {
+    headerTitle: <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={{ width: 40, height: 40 }} />
+  }
   constructor (props) {
     super(props)
     this.state = {
@@ -38,15 +44,15 @@ class FeedbackFormScreen extends Component {
       '\n Features requested : ' + data.features +
       '\n Comments : ' + data.comments +
       '\n Recommended :' + data.recommended +
-      '\n From : ' + this.props.user.displayName + ' ' + this.props.user.email
+      '\n From : ' + this.props.guardian.displayName + ' ' + this.props.guardian.email
   }
 
   sendMail (data) {
     let emailBody = this.getEmailBody(data)
 
-    /* sendEmail('mycommunityclass@gmail.com', 'Someone Left a feedback', emailBody).then((response) => {
+    sendEmail('mycommunityclass@gmail.com', 'Someone Left a feedback', emailBody).then((response) => {
       if (response.ok) {
-        this.props.alertFunc('success', 'Success', 'Feedback successfully submitted!')
+        // this.props.alertFunc('success', 'Success', 'Feedback successfully submitted!')
         this.setState({
           response: `${response.status} - ${response.ok}`,
           rating: '',
@@ -56,18 +62,17 @@ class FeedbackFormScreen extends Component {
           features: '',
           comments: ''
         })
+        this.props.navigation.navigate('DashboardScreen')
       } else {
-        this.props.alertFunc('error', 'Error', 'Uh oh! Something went wrong. Please try again')
+        // this.props.alertFunc('error', 'Error', 'Uh oh! Something went wrong. Please try again')
         this.setState({
           response: `${response.status} - ${response.ok}`
         })
       }
-    }) */
+    })
   }
 
   render () {
-    const props = this.props
-
     return (
       <ScrollView style={style.container}>
         <View style={style.titleRow}>
@@ -194,7 +199,7 @@ class FeedbackFormScreen extends Component {
         <View style={[style.textGroup, {width: '100%'}]}>
           <View>
             <Button
-              onPress={() => { }}
+              onPress={() => { this.sendMail(this.state) }}
               type='solid'
               title='Submit'
             />
@@ -208,6 +213,7 @@ class FeedbackFormScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    guardian: state.login.payload
   }
 }
 
