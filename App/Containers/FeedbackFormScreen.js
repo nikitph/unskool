@@ -27,7 +27,8 @@ class FeedbackFormScreen extends Component {
       bugs: '',
       features: '',
       comments: '',
-      response: ''
+      response: '',
+      loading: false
     }
   }
 
@@ -60,13 +61,15 @@ class FeedbackFormScreen extends Component {
           recommended: '',
           bugs: '',
           features: '',
-          comments: ''
+          comments: '',
+          loading: false
         })
         this.props.navigation.navigate('DashboardScreen')
       } else {
         // this.props.alertFunc('error', 'Error', 'Uh oh! Something went wrong. Please try again')
         this.setState({
-          response: `${response.status} - ${response.ok}`
+          response: `${response.status} - ${response.ok}`,
+          loading: false
         })
       }
     })
@@ -199,9 +202,11 @@ class FeedbackFormScreen extends Component {
         <View style={[style.textGroup, {width: '100%'}]}>
           <View>
             <Button
-              onPress={() => { this.sendMail(this.state) }}
+              onPress={() => { this.setState({loading: true})
+                this.sendMail(this.state)}}
               type='solid'
               title='Submit'
+              loading={this.state.loading}
             />
           </View>
         </View>
