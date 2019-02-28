@@ -13,7 +13,8 @@ export const reducers = combineReducers({
   signup: require('./SignUpRedux').reducer,
   createguardian: require('./CreateGuardianRedux').reducer,
   createchild: require('./CreateChildRedux').reducer,
-  createevent: require('./CreateEventRedux').reducer
+  createevent: require('./CreateEventRedux').reducer,
+  browsehosts: require('./BrowseHostsRedux').reducer
 })
 
 export default () => {

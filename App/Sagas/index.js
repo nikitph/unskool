@@ -12,6 +12,7 @@ import { SignUpTypes } from '../Redux/SignUpRedux'
 import { CreateGuardianTypes } from '../Redux/CreateGuardianRedux'
 import { CreateChildTypes } from '../Redux/CreateChildRedux'
 import { CreateEventTypes} from '../Redux/CreateEventRedux'
+import { BrowseHostsTypes } from '../Redux/BrowseHostsRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -22,6 +23,7 @@ import { signUp } from './SignUpSagas'
 import { createGuardian } from './CreateGuardianSagas'
 import { createChild } from './CreateChildSagas'
 import { createEvent } from './CreateEventSagas'
+import { browseHosts } from './BrowseHostsSagas'
 
 /* ------------- API ------------- */
 
@@ -40,6 +42,7 @@ export default function * root () {
     takeLatest(CreateGuardianTypes.CREATE_GUARDIAN_REQUEST, createGuardian),
     takeLatest(CreateChildTypes.CREATE_CHILD_REQUEST, createChild),
     takeLatest(CreateEventTypes.CREATE_EVENT_REQUEST, createEvent),
+    takeLatest(BrowseHostsTypes.BROWSE_HOSTS_REQUEST, browseHosts),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
