@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import {
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
   Image,
 } from 'react-native'
@@ -10,7 +10,7 @@ import {
 import style from '../Themes/GlobalStyles'
 
 const Link = ({ text, onClick, extraStyle, textStyles, iconTop, customElement, hasGradient }) => (
-  <TouchableHighlight style={[style.Link, extraStyle || {}]} onPress={onClick}>
+  <TouchableOpacity style={[style.Link, extraStyle || {}]} onPress={onClick}>
     <View>
       {
         customElement &&
@@ -27,7 +27,7 @@ const Link = ({ text, onClick, extraStyle, textStyles, iconTop, customElement, h
         {text}
       </Text>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 )
 
 Link.propTypes = {
