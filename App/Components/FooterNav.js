@@ -59,7 +59,7 @@ class FooterNav extends Component {
           <Link
             extraStyle={style.footerLink, style.browseHostsLink}
             textStyles={style.footerLinkCopy}
-            onClick={() => navigation.navigate('DashboardScreen')}
+            onClick={() => this.props.navigation.navigate('BrowseHostsScreen')}
             iconTop={{url: checkScene('BrowseHosts'), dimensions: browseHostsIconStyles }}
             text='BROWSE HOSTS' />
           <Link

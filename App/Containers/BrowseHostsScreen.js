@@ -9,6 +9,7 @@ import styles from './Styles/BrowseHostsScreenStyle'
 
 class BrowseHostsScreen extends Component {
   render () {
+    console.log(this.props.events)
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView behavior='position'>
@@ -21,6 +22,7 @@ class BrowseHostsScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    events: state.browsehosts.payload
   }
 }
 

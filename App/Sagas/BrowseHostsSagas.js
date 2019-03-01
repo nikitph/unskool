@@ -12,7 +12,7 @@
 
 import { call, put, take } from 'redux-saga/effects'
 import BrowseHostsActions from '../Redux/BrowseHostsRedux'
-import { mapp, dbService } from '../Services/Firebase'
+import { dbService } from '../Services/Firebase'
 // import { BrowseHostsSelectors } from '../Redux/BrowseHostsRedux'
 
 export function * browseHosts () {
@@ -20,7 +20,6 @@ export function * browseHosts () {
 
   while (true) {
     const { value: events } = yield take(channel)
-    console.log(events)
     yield put(BrowseHostsActions.browseHostsSuccess(events))
   }
 }
