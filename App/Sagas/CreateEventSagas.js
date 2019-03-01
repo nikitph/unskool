@@ -32,7 +32,7 @@ export function * createEvent ({edata, alertfunc, nav}) {
       eventImageLoc = yield call(genericFileUpload, uploadUri, profileImage.name, storageRef)
     }
 
-    const eventKey = yield call(dbService.database.create, `guardians/${gid}/events`, {
+    const eventKey = yield call(dbService.database.create, `hostEvents/${gid}`, {
       ...edata, profileImage: eventImageLoc
     })
 

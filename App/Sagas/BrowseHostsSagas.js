@@ -10,23 +10,17 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
+import { call, put, take } from 'redux-saga/effects'
 import BrowseHostsActions from '../Redux/BrowseHostsRedux'
+import { mapp, dbService } from '../Services/Firebase'
 // import { BrowseHostsSelectors } from '../Redux/BrowseHostsRedux'
 
-export function * browseHosts (api, action) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(BrowseHostsSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.getbrowseHosts, data)
+export function * browseHosts () {
+  const channel = yield call(dbService.database.channel, `hostEvents`)
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(BrowseHostsActions.browseHostsSuccess(response.data))
-  } else {
-    yield put(BrowseHostsActions.browseHostsFailure())
+  while (true) {
+    const { value: events } = yield take(channel)
+    console.log(events)
+    yield put(BrowseHostsActions.browseHostsSuccess(events))
   }
 }
