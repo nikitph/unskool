@@ -152,7 +152,10 @@ class BrowseHostsScreen extends Component {
                 renderItem={this.carRenderer}
                 ref={(carousel) => { this._carousel = carousel }}
                 sliderWidth={deviceWidth - 40} // make the sliderWidth and itemWidth equivalent to make it left align
-                itemWidth={deviceWidth - 40} // subtract 40 for item's left and right padding
+                itemWidth={deviceWidth - 100} // subtract 40 for item's left and right padding
+                inactiveSlideScale={0.9}
+                inactiveSlideOpacity={0.7}
+                layout={'stack'} layoutCardOffset={`40`}
               >
               </Carousel>
             </View>
@@ -185,7 +188,6 @@ class BrowseHostsScreen extends Component {
   }
 
   carRenderer ({item, index}) {
-    console.log(item)
     let teaserData = item
     const recurringDays = teaserData.recurringDays || []
     const { hostName, title, image, startTime, finishTime, gid, latlong = { lat: 90.000, lng: 0.000 }, sponsored = false } = teaserData
@@ -210,7 +212,6 @@ class BrowseHostsScreen extends Component {
       eventImage = {uri: image, cache: 'web'}
       imageStyle = style.teaserImage
     }
-    console.log(eventImage)
 
     return (<View style={style.teaserContainer} id={eventHostName} key={eventHostName}>
       <TouchableHighlight
