@@ -7,6 +7,7 @@ import {
   ScrollView
 } from 'react-native'
 import { connect } from 'react-redux'
+import FastImage from 'react-native-fast-image'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -206,7 +207,7 @@ class BrowseHostsScreen extends Component {
       eventImage = require('../Images/logo.png')
       imageStyle = {width: 150, height: 150}
     } else {
-      eventImage = {uri: image, cache: 'force-cache'}
+      eventImage = {uri: image, cache: 'web'}
       imageStyle = style.teaserImage
     }
     console.log(eventImage)
@@ -214,7 +215,7 @@ class BrowseHostsScreen extends Component {
     return (<View style={style.teaserContainer} id={eventHostName} key={eventHostName}>
       <TouchableHighlight
       >
-        <Image
+        <FastImage
           source={eventImage}
           resizeMode='cover'
           style={imageStyle} />
@@ -264,7 +265,6 @@ class BrowseHostsScreen extends Component {
     </View>)
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
