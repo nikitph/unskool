@@ -12,9 +12,9 @@ import FastImage from 'react-native-fast-image'
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-import Carousel from 'react-native-snap-carousel';
-import LinearGradient from 'react-native-linear-gradient';
-import Link from '../Components/Link';
+import Carousel from 'react-native-snap-carousel'
+import LinearGradient from 'react-native-linear-gradient'
+import Link from '../Components/Link'
 import style from './Styles/BrowseHostsScreenStyle'
 import Metrics from '../Themes/Metrics'
 
@@ -121,7 +121,6 @@ class BrowseHostsScreen extends Component {
         teaserOutput.push(teaserElement)
         carData.push(teaserData)
       }
-      console.log(carData)
 
       if (teaserOutput.length > 0) {
         isGuardianSponsorer ? hostEventsOutput.unshift(
@@ -145,6 +144,7 @@ class BrowseHostsScreen extends Component {
               <Link
                 extraStyle={style.hostName}
                 textStyles={style.hostNameText}
+                onClick={() => this.props.navigation.navigate('BrowseHostsScreen')}
                 text={eventHostName} />
               <Carousel
                 className='host-events'
@@ -156,8 +156,7 @@ class BrowseHostsScreen extends Component {
                 inactiveSlideScale={0.9}
                 inactiveSlideOpacity={0.7}
                 layout={'stack'} layoutCardOffset={`40`}
-              >
-              </Carousel>
+               />
             </View>
           )
       }
@@ -205,7 +204,7 @@ class BrowseHostsScreen extends Component {
     let eventImage
     let imageStyle
 
-    if (image === '../Images/logo.png' || image === '' || image === "") {
+    if (image === '../Images/logo.png' || image === '' || image === '') {
       eventImage = require('../Images/logo.png')
       imageStyle = {width: 150, height: 150}
     } else {
