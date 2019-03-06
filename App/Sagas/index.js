@@ -14,6 +14,7 @@ import { CreateChildTypes } from '../Redux/CreateChildRedux'
 import { CreateEventTypes} from '../Redux/CreateEventRedux'
 import { BrowseHostsTypes } from '../Redux/BrowseHostsRedux'
 import { GuardianTypes } from '../Redux/GuardianRedux'
+import { EditGuardianTypes } from '../Redux/EditGuardianRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -22,6 +23,7 @@ import { getUserAvatar } from './GithubSagas'
 import { login } from './LoginSagas'
 import { signUp } from './SignUpSagas'
 import { createGuardian } from './CreateGuardianSagas'
+import { editGuardian } from './EditGuardianSagas'
 import { createChild } from './CreateChildSagas'
 import { createEvent } from './CreateEventSagas'
 import { browseHosts } from './BrowseHostsSagas'
@@ -42,6 +44,7 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_REQUEST, login),
     takeLatest(SignUpTypes.SIGN_UP_REQUEST, signUp),
     takeLatest(CreateGuardianTypes.CREATE_GUARDIAN_REQUEST, createGuardian),
+    takeLatest(EditGuardianTypes.EDIT_GUARDIAN_REQUEST, editGuardian),
     takeLatest(CreateChildTypes.CREATE_CHILD_REQUEST, createChild),
     takeLatest(CreateEventTypes.CREATE_EVENT_REQUEST, createEvent),
     takeLatest(BrowseHostsTypes.BROWSE_HOSTS_REQUEST, browseHosts),

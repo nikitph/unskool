@@ -20,10 +20,11 @@ export function * login ({email, password, alertfunc, nav}) {
     // const location = yield call(dbService.database.read, `users/${uid}/location`)
     yield put(LoginActions.loginSuccess({uid, displayName, photoURL, ...guardian}))
     yield put(BrowseHostActions.browseHostsRequest())
-    yield put(GuardianActions.guardianRequest())
+    // yield put(GuardianActions.guardianRequest())
     const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' },{ ...guardian})], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
+    console.log(error)
     yield put(LoginActions.loginFailure(error))
     alertfunc('error', 'Error', error.message)
   }

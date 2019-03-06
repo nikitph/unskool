@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, TextInput } from 'react-native'
+import { ScrollView, Text, View, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-import CreateGuardianActions from '../Redux/CreateGuardianRedux'
+import EditGuardianActions from '../Redux/EditGuardianRedux'
 import * as Animatable from 'react-native-animatable'
 
 // Styles
@@ -12,11 +12,13 @@ import RadioForm from 'react-native-simple-radio-button'
 import colorsVariables from '../Themes/Variables'
 import DropdownAlert from 'react-native-dropdownalert'
 import globalStyles from '../Themes/GlobalStyles'
+import FastImage from 'react-native-fast-image'
 
 import { Button } from 'react-native-elements'
 import CheckBox from '../Components/CheckBox'
 import Toast from 'react-native-easy-toast'
 import { Images } from '../Themes'
+import PhotoUpload from '../Components/PhotoUpload'
 // import { sendEmail } from '../../helpers/email'
 // import BackButton from '../components/BackButton';
 
@@ -32,7 +34,7 @@ class EditGuardianScreen extends Component {
       uid,
       displayName,
       greeting,
-      photoURL,
+      profileImage,
       email,
       street,
       state,
@@ -50,7 +52,7 @@ class EditGuardianScreen extends Component {
       uid,
       displayName,
       greeting,
-      photoURL,
+      profileImage,
       email,
       street,
       state,
@@ -133,7 +135,7 @@ class EditGuardianScreen extends Component {
    * @param e
    */
   submitForm () {
-    this.props.attemptCreateGuardian(this.state, this.showAlert, this.props.navigation)
+    this.props.attemptEditGuardian(this.state, this.showAlert, this.props.navigation)
     // Send welcome email
     // this.sendWelcomeMail(data)
   }
@@ -211,7 +213,30 @@ class EditGuardianScreen extends Component {
     return (
       <ScrollView>
         <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
-          <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={style.logo} />
+          <View className='image-uploader'>
+            <View style={globalStyles.formImageContainer}>
+              <PhotoUpload
+                width={100}
+                height={100}
+                onPhotoSelect={avatar => {
+                  if (avatar) {
+                    this.setState({ profileImage: avatar })
+                  }
+                }}>
+                <FastImage
+                  style={{
+                    paddingVertical: 10,
+                    width: 100,
+                    height: 100,
+                    borderRadius: 50
+                  }}
+                  resizeMode='cover'
+                  source={{
+                    uri: this.state.profileImage
+                  }} />
+              </PhotoUpload>
+            </View>
+          </View>
         </View>
         <Text style={[globalStyles.formTitle]}> Help us get to know you... </Text>
         <View style={style.formContainer}>
@@ -379,13 +404,14 @@ class EditGuardianScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guardian: state.login.payload
+    guardian: state.login.payload,
+    fetching: state.editguardian.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptCreateGuardian: (gdata, alertfunc, nav) => dispatch(CreateGuardianActions.createGuardianRequest(gdata, alertfunc, nav))
+    attemptEditGuardian: (gdata, alertfunc, nav) => dispatch(EditGuardianActions.editGuardianRequest(gdata, alertfunc, nav))
   }
 }
 
