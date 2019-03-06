@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {
   View,
   Text,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native'
 
 import style from './Styles/HeroStyle'
@@ -49,16 +50,30 @@ class Hero extends Component {
             <Text style={style.userName}>{ displayName }</Text>
             <View style={style.hr} />
             { addressOutput }
-            <LinearGradient
-              style={[style.chatButton, globalStyles.addItem]}
-              colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}>
-              <Image
-                source={require('../Images/chatone.png')}
-                resizeMode='cover'
-                style={style.chatIcon} />
-            </LinearGradient>
+            {/* <TouchableOpacity onPress={ () => {}}>
+              <LinearGradient
+                style={[style.chatButton]}
+                colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
+              >
+                <Image
+                  source={require('../Images/chatone.png')}
+                  resizeMode='cover'
+                  style={style.chatIcon} />
+              </LinearGradient>
+            </TouchableOpacity> */}
           </LinearGradient>
         </View>
+        <LinearGradient
+          colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
+          style={style.edit}
+        >
+          <TouchableOpacity onPress={() => {}} className='add-item-button edit-profile-button'>
+            <Image
+              source={require('../Images/edit.png')}
+              resizeMode='cover'
+              style={{width: 60, height: 60}} />
+          </TouchableOpacity>
+        </LinearGradient>
         <View style={style.decoClip} />
       </View>
     )

@@ -59,10 +59,20 @@ hero.requestFriendButton = {
 }
 
 hero.chatButton = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   position: 'absolute',
-  right: 69,
-  bottom: 0,
-  zIndex: 1
+  borderRadius: 22.5,
+  height: 45,
+  width: 45,
+  right: 70,
+  bottom: -20,
+  padding: 10,
+  shadowColor: 'rgba(51, 51, 112, 0.6)',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 1,
+  zIndex: 2
 }
 
 hero.chatIcon = {
