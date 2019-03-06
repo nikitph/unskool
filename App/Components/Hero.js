@@ -16,7 +16,8 @@ import { Images, Metrics } from '../Themes'
 
 class Hero extends Component {
   static PropTypes={
-    guardian: PropTypes.object
+    guardian: PropTypes.object,
+    nav: PropTypes.object
   };
 
   render () {
@@ -67,7 +68,7 @@ class Hero extends Component {
           colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
           style={style.edit}
         >
-          <TouchableOpacity onPress={() => {}} className='add-item-button edit-profile-button'>
+          <TouchableOpacity onPress={() => { this.props.nav.navigate('EditGuardianScreen')}} className='add-item-button edit-profile-button'>
             <Image
               source={require('../Images/edit.png')}
               resizeMode='cover'

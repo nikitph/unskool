@@ -27,7 +27,7 @@ class DashboardScreen extends Component {
       <Animatable.View style={styles.container} animation='fadeIn'>
         <View >
           <Hero
-            guardian={this.props.guardian} />
+            guardian={this.props.guardian} nav={this.props.navigation} />
         </View>
         <View style={{flex: 0.3}}>
           <Summary guardian={this.props.guardian} />
