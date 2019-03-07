@@ -29,7 +29,7 @@ export default class Summary extends Component {
 
   render () {
     let userData = this.props.guardian
-    console.log(userData)
+    console.log(this.props)
 
     // if guardianData is passed in the props, then show guardian data
     // instead of admin user data
@@ -43,20 +43,21 @@ export default class Summary extends Component {
     let languageTags = dataToTag(languages, 'languages')
     let specialtyTags = dataToTag(specialties, 'specialties')
 
-    function dataToAvatar (children, childs) {
+    function dataToAvatar (children, childs, nav) {
       return (
         Object.keys(children).map((item, i) => {
           let keyId = `${childs}${item}${i}`
           console.log(children[item])
           if (children[item].profileImage) {
             return (
-              <View key={keyId} style={{padding:5}}>
+              <View key={keyId} style={{padding: 5}}>
                 <Avatar rounded
                   size='medium'
                   source={{
                     uri: children[item].profileImage
                   }}
                   showEditButton
+                  onEditPress={() => nav.navigate('EditChildScreen')}
               />
               </View>
             )
@@ -65,8 +66,7 @@ export default class Summary extends Component {
       )
     }
 
-    let avatars = dataToAvatar(userData.children, 'childs')
-    console.log(specialtyTags)
+    let avatars = dataToAvatar(userData.children, 'childs', this.props.nav)
 
     function dataToTag (items, cat) {
       return (

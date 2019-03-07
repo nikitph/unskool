@@ -30,7 +30,7 @@ class DashboardScreen extends Component {
             guardian={this.props.guardian} nav={this.props.navigation} />
         </View>
         <View style={{flex: 0.3}}>
-          <Summary guardian={this.props.guardian} />
+          <Summary guardian={this.props.guardian} nav={this.props.navigation}/>
         </View>
         <FooterNav navigation={this.props.navigation} />
         <ActionButton buttonColor='rgba(231,76,60,1)' offsetY={100}>
