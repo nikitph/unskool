@@ -57,7 +57,7 @@ export default class Summary extends Component {
                     uri: children[item].profileImage
                   }}
                   showEditButton
-                  onEditPress={() => nav.navigate('EditChildScreen')}
+                  onEditPress={() => nav.navigate('EditChildScreen',{ childData: children[item]})}
               />
               </View>
             )

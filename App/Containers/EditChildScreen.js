@@ -9,6 +9,7 @@ import styles from './Styles/EditChildScreenStyle'
 
 class EditChildScreen extends Component {
   render () {
+    console.log(this.props)
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView behavior='position'>

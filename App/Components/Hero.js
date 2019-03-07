@@ -11,6 +11,7 @@ import style from './Styles/HeroStyle'
 import styleVariables from '../Themes/Variables'
 import globalStyles from '../Themes/GlobalStyles'
 import LinearGradient from 'react-native-linear-gradient'
+import { Avatar, Badge } from 'react-native-elements'
 import FastImage from 'react-native-fast-image'
 import { Images, Metrics } from '../Themes'
 
