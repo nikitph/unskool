@@ -9,7 +9,6 @@ import { Images } from '../Themes'
 import {
   View,
   Text,
-  TouchableHighlight,
   TextInput,
   AsyncStorage,
   ScrollView,
@@ -19,7 +18,6 @@ import {
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 import CheckBox from '../Components/CheckBox'
 import { Button } from 'react-native-elements'
-import Link from '../Components/Link'
 import globalStyles from '../Themes/GlobalStyles'
 import PhotoUpload from '../Components/PhotoUpload'
 import DropdownAlert from 'react-native-dropdownalert'
@@ -34,20 +32,20 @@ class EditChildScreen extends Component {
     let child = props.navigation.state.params.childData
     console.log(child)
 
+    const {
+      gid,
+      fName,
+      lName,
+      age,
+      profileImage,
+      gender,
+      allergies
+  } = child
+
     //
     // STATE OBJECT
     //
-    this.state = {
-      gid: props.guardian.uid,
-      fName: '',
-      lName: '',
-      age: '',
-      profileImage: '../Images/blank-profile-pic.png',
-      gender: null,
-      uploadProgress: null,
-      imageModal: false,
-      allergies: []
-    }
+    this.state = child
     // bind functions
     this.radioButtonChange = this.radioButtonChange.bind(this)
     this.checkboxChange = this.checkboxChange.bind(this)
@@ -174,6 +172,7 @@ class EditChildScreen extends Component {
     const props = this.props
     let formData = { allergies: [ 'Pollen', 'Asthma', 'Pet', 'Dairy', 'Gluten', 'eggs', 'Other' ] }
     const { profileImage } = this.state
+    let allergyList = this.state.allergies || ['']
 
     const outputCheckboxes = () => {
       let checkboxOutput = []
@@ -183,15 +182,26 @@ class EditChildScreen extends Component {
             <Text style={globalStyles.formSubTitle}>{category}</Text>
             <View style={[globalStyles.checkboxContainer, {marginBottom: 30}]}>
               {formData[category].map(item => {
-                return (
-                  <View key={item}>
+                let checkbox = ''
+                // pre-check any items that were selected and saved
+                if (allergyList.indexOf(item) > -1) {
+                  checkbox =
+                    <CheckBox
+                      label={item}
+                      checked
+                      key={item}
+                      onChange={(checked) => this.checkboxChange(item, category, checked)}
+                    />
+                } else {
+                  checkbox =
                     <CheckBox
                       label={item}
                       key={item}
                       onChange={(checked) => this.checkboxChange(item, category, checked)}
                     />
-                  </View>
-                )
+                }
+
+                return checkbox
               })}
             </View>
           </View>
@@ -230,29 +240,6 @@ class EditChildScreen extends Component {
 
     return (
       <ScrollView style={globalStyles.formContainer}>
-        {
-          /* page overlay for the image selection
-             rendered based on the state per the open/close */
-
-          this.state.imageModal &&
-          // if true, render the imageModal
-          <View style={style.imageModal}>
-            <Text style={globalStyles.imagePickerTitle}>
-              Select an image for your profile
-            </Text>
-            <Link
-              text='Cancel'
-              extraStyle={[globalStyles.chooseImage, {backgroundColor: 'maroon'}]}
-              textStyles={{color: 'white'}}
-              onClick={() => this.handleImageSelector()} />
-            <Link
-              text='Select'
-              extraStyle={globalStyles.chooseImage}
-              onClick={() => this.selectImage()} />
-
-            {/* image handler */}
-          </View>
-        }
         <Text style={[globalStyles.formTitle, style.title]}> Add your child here! </Text>
 
         <View className='image-uploader'>
@@ -274,7 +261,7 @@ class EditChildScreen extends Component {
                 }}
                 resizeMode='cover'
                 source={{
-                  uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+                  uri: this.state.profileImage
                 }} />
             </PhotoUpload>
           </View>
@@ -283,14 +270,14 @@ class EditChildScreen extends Component {
         <View>
           <TextInput
             style={globalStyles.textInput}
-            placeholder='First Name'
+            placeholder={this.state.fName}
             placeholderTextColor='white'
             onChangeText={(value) => this.handleChange(value, 'fName')}
           />
 
           <TextInput
             style={globalStyles.textInput}
-            placeholder='Last Name'
+            placeholder={this.state.lName}
             placeholderTextColor='white'
             onChangeText={(value) => this.handleChange(value, 'lName')}
           />
