@@ -30,7 +30,9 @@ class EditChildScreen extends Component {
   constructor (props) {
     super(props)
     let child = props.navigation.state.params.childData
-    console.log(child)
+    let ckey = props.navigation.state.params.ckey
+
+    console.log(ckey)
 
     const {
       gid,
@@ -45,7 +47,7 @@ class EditChildScreen extends Component {
     //
     // STATE OBJECT
     //
-    this.state = child
+    this.state = { ckey, ...child }
     // bind functions
     this.radioButtonChange = this.radioButtonChange.bind(this)
     this.checkboxChange = this.checkboxChange.bind(this)
