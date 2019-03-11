@@ -13,6 +13,7 @@ import { CreateGuardianTypes } from '../Redux/CreateGuardianRedux'
 import { CreateChildTypes } from '../Redux/CreateChildRedux'
 import { EditChildTypes } from '../Redux/EditChildRedux'
 import { CreateEventTypes} from '../Redux/CreateEventRedux'
+import { EditEventTypes } from '../Redux/EditEventRedux'
 import { BrowseHostsTypes } from '../Redux/BrowseHostsRedux'
 import { GuardianTypes } from '../Redux/GuardianRedux'
 import { EditGuardianTypes } from '../Redux/EditGuardianRedux'
@@ -28,6 +29,7 @@ import { editGuardian } from './EditGuardianSagas'
 import { createChild } from './CreateChildSagas'
 import { editChild } from './EditChildSagas'
 import { createEvent } from './CreateEventSagas'
+import { editEvent } from './EditEventSagas'
 import { browseHosts } from './BrowseHostsSagas'
 import { getGuardians } from './GuardianSagas'
 
@@ -50,6 +52,7 @@ export default function * root () {
     takeLatest(CreateChildTypes.CREATE_CHILD_REQUEST, createChild),
     takeLatest(EditChildTypes.EDIT_CHILD_REQUEST, editChild),
     takeLatest(CreateEventTypes.CREATE_EVENT_REQUEST, createEvent),
+    takeLatest(EditEventTypes.EDIT_EVENT_REQUEST, editEvent),
     takeLatest(BrowseHostsTypes.BROWSE_HOSTS_REQUEST, browseHosts),
     takeLatest(GuardianTypes.GUARDIAN_REQUEST, getGuardians),
 
