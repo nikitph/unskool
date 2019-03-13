@@ -19,7 +19,7 @@ import styles from './Styles/DashboardScreenStyle'
 
 class DashboardScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
   render () {

@@ -1,6 +1,7 @@
 import { put, select } from 'redux-saga/effects'
 import GithubActions, { GithubSelectors } from '../Redux/GithubRedux'
 import { is } from 'ramda'
+import BrowseHostActions from '../Redux/BrowseHostsRedux'
 
 // exported to make available for tests
 export const selectAvatar = GithubSelectors.selectAvatar
@@ -33,6 +34,7 @@ export function * startup (action) {
     })
   }
   const avatar = yield select(selectAvatar)
+  yield put(BrowseHostActions.browseHostsRequest())
   // only get if we don't have it yet
   if (!is(String, avatar)) {
     yield put(GithubActions.userRequest('GantMan'))
