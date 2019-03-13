@@ -40,6 +40,7 @@ export function * createEvent ({edata, alertfunc, nav}) {
     const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
+    console.log(error)
     yield put(CreateEventActions.createEventFailure({error}))
     alertfunc('error', 'Error', error.message)
   }

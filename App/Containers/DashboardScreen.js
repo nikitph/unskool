@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Images } from '../Themes'
 import * as Animatable from 'react-native-animatable'
 import Hero from '../Components/Hero'
+import EventTeaser from '../Components/EventTeaser'
 import Summary from '../Components/Summary'
 import FooterNav from '../Components/FooterNav'
 import ActionButton from 'react-native-action-button'
@@ -25,22 +26,19 @@ class DashboardScreen extends Component {
     console.log(this.props)
     return (
       <Animatable.View style={styles.container} animation='fadeIn'>
-        <View >
-          <Hero
-            guardian={this.props.guardian} nav={this.props.navigation} />
-        </View>
-        <View style={{flex: 0.3}}>
-          <Summary guardian={this.props.guardian} nav={this.props.navigation}/>
-        </View>
+          <View >
+            <Hero
+              guardian={this.props.guardian} nav={this.props.navigation} />
+          </View>
+        <ScrollView>
+          <View style={{flex: 0.3}}>
+            <Summary guardian={this.props.guardian} nav={this.props.navigation} />
+          </View>
+          <View style={{paddingBottom: 120}}>
+            <EventTeaser guardian={this.props.guardian} events={this.props.events} />
+          </View>
+        </ScrollView>
         <FooterNav navigation={this.props.navigation} />
-        <ActionButton buttonColor='rgba(231,76,60,1)' offsetY={100}>
-          <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => this.props.navigation.navigate('CreateEventScreen')}>
-            <Icon name='md-calendar' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => this.props.navigation.navigate('CreateChildScreen')}>
-            <Icon name='md-person-add' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-        </ActionButton>
       </Animatable.View>
     )
   }
@@ -48,7 +46,8 @@ class DashboardScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guardian: state.login.payload
+    guardian: state.login.payload,
+    events: state.browsehosts.payload
   }
 }
 

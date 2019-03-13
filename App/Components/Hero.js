@@ -9,11 +9,14 @@ import {
 
 import style from './Styles/HeroStyle'
 import styleVariables from '../Themes/Variables'
+import Icon from 'react-native-vector-icons/Ionicons'
 import globalStyles from '../Themes/GlobalStyles'
 import LinearGradient from 'react-native-linear-gradient'
 import { Avatar, Badge } from 'react-native-elements'
 import FastImage from 'react-native-fast-image'
 import { Images, Metrics } from '../Themes'
+import ActionButton from 'react-native-action-button'
+import styles from '../Containers/Styles/DashboardScreenStyle'
 
 class Hero extends Component {
   static PropTypes={
@@ -65,18 +68,18 @@ class Hero extends Component {
             </TouchableOpacity> */}
           </LinearGradient>
         </View>
-        <LinearGradient
-          colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
-          style={style.edit}
-        >
-          <TouchableOpacity onPress={() => { this.props.nav.navigate('EditGuardianScreen')}} className='add-item-button edit-profile-button'>
-            <Image
-              source={require('../Images/edit.png')}
-              resizeMode='cover'
-              style={{width: 60, height: 60}} />
-          </TouchableOpacity>
-        </LinearGradient>
         <View style={style.decoClip} />
+        <ActionButton buttonColor='rgba(231,76,60,0.8)' offsetX={10}>
+          <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => this.props.nav.navigate('CreateEventScreen')}>
+            <Icon name='md-calendar' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => this.props.nav.navigate('CreateChildScreen')}>
+            <Icon name='md-person-add' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title='Edit profile' onPress={() => this.props.nav.navigate('CreateChildScreen')}>
+            <Icon name='md-create' style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
       </View>
     )
   }
