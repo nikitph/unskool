@@ -76,7 +76,7 @@ class Hero extends Component {
           <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => this.props.nav.navigate('CreateChildScreen')}>
             <Icon name='md-person-add' style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title='Edit profile' onPress={() => this.props.nav.navigate('CreateChildScreen')}>
+          <ActionButton.Item buttonColor='green' title='Edit profile' onPress={() => this.props.nav.navigate('EditGuardianScreen')}>
             <Icon name='md-create' style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
