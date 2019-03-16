@@ -59,6 +59,7 @@ export default class Summary extends Component {
                   }}
                   showEditButton
                   onEditPress={() => nav.navigate('EditChildScreen', { childData: children[item], ckey: item})}
+                  // onPress={() => nav.navigate('ChildViewScreen', { childData: children[item], ckey: item})}
               />
               </View>
             )

@@ -62,4 +62,11 @@ summary.tagItemCopy = {
   fontWeight: '500'
 }
 
+summary.modal= {
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: 300
+}
+
+
 export default summary
