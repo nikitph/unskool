@@ -7,36 +7,30 @@ import Hero from '../Components/Hero'
 import EventTeaser from '../Components/EventTeaser'
 import Summary from '../Components/Summary'
 import FooterNav from '../Components/FooterNav'
-import ActionButton from 'react-native-action-button'
-import Icon from 'react-native-vector-icons/Ionicons'
-import PhotoUpload from '../Components/PhotoUpload'
-
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
-
 // Styles
-import styles from './Styles/DashboardScreenStyle'
+import styles from './Styles/ViewGuardianScreenStyle'
 
-class DashboardScreen extends Component {
+class ViewGuardianScreen extends Component {
   static navigationOptions = {
     headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
   render () {
     console.log(this.props)
+    let guardian = this.props.navigation.state.params
     return (
       <Animatable.View style={styles.container} animation='fadeIn'>
         <View >
           <Hero
-            guardian={this.props.guardian} nav={this.props.navigation} bVisible />
+            guardian={guardian} nav={this.props.navigation} bVisible={false} />
         </View>
         <ScrollView>
           <View style={{flex: 0.3}}>
-            <Summary guardian={this.props.guardian} nav={this.props.navigation} />
+            <Summary guardian={guardian} nav={this.props.navigation} />
           </View>
-          <View style={{paddingBottom: 120}}>
-            <EventTeaser guardian={this.props.guardian} events={this.props.events} />
-          </View>
+          {/* <View style={{paddingBottom: 120}}> */}
+          {/* <EventTeaser guardian={this.props.guardian} events={this.props.events} /> */}
+          {/* </View> */}
         </ScrollView>
         <FooterNav navigation={this.props.navigation} />
       </Animatable.View>
@@ -46,8 +40,6 @@ class DashboardScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guardian: state.login.payload,
-    events: state.browsehosts.payload
   }
 }
 
@@ -56,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ViewGuardianScreen)

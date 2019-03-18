@@ -21,7 +21,8 @@ import styles from '../Containers/Styles/DashboardScreenStyle'
 class Hero extends Component {
   static PropTypes={
     guardian: PropTypes.object,
-    nav: PropTypes.object
+    nav: PropTypes.object,
+    bVisible: PropTypes.boolean
   };
 
   render () {
@@ -69,7 +70,7 @@ class Hero extends Component {
           </LinearGradient>
         </View>
         <View style={style.decoClip} />
-        <ActionButton buttonColor='rgba(231,76,60,0.8)' offsetX={10}>
+        { this.props.bVisible && <ActionButton buttonColor='rgba(231,76,60,0.8)' offsetX={10}>
           <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => this.props.nav.navigate('CreateEventScreen')}>
             <Icon name='md-calendar' style={styles.actionButtonIcon} />
           </ActionButton.Item>
@@ -79,7 +80,7 @@ class Hero extends Component {
           <ActionButton.Item buttonColor='green' title='Edit profile' onPress={() => this.props.nav.navigate('EditGuardianScreen')}>
             <Icon name='md-create' style={styles.actionButtonIcon} />
           </ActionButton.Item>
-        </ActionButton>
+        </ActionButton>}
       </View>
     )
   }

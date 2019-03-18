@@ -17,6 +17,7 @@ import { EditEventTypes } from '../Redux/EditEventRedux'
 import { BrowseHostsTypes } from '../Redux/BrowseHostsRedux'
 import { GuardianTypes } from '../Redux/GuardianRedux'
 import { EditGuardianTypes } from '../Redux/EditGuardianRedux'
+import { SingleGuardianTypes } from '../Redux/SingleGuardianRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -32,6 +33,7 @@ import { createEvent } from './CreateEventSagas'
 import { editEvent } from './EditEventSagas'
 import { browseHosts } from './BrowseHostsSagas'
 import { getGuardians } from './GuardianSagas'
+import { getSingleGuardian } from './SingleGuardianSagas'
 
 /* ------------- API ------------- */
 
@@ -55,6 +57,7 @@ export default function * root () {
     takeLatest(EditEventTypes.EDIT_EVENT_REQUEST, editEvent),
     takeLatest(BrowseHostsTypes.BROWSE_HOSTS_REQUEST, browseHosts),
     takeLatest(GuardianTypes.GUARDIAN_REQUEST, getGuardians),
+    takeLatest(SingleGuardianTypes.SINGLE_GUARDIAN_REQUEST, getSingleGuardian),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)

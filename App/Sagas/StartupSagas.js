@@ -2,6 +2,7 @@ import { put, select } from 'redux-saga/effects'
 import GithubActions, { GithubSelectors } from '../Redux/GithubRedux'
 import { is } from 'ramda'
 import BrowseHostActions from '../Redux/BrowseHostsRedux'
+import GuardianActions from '../Redux/GuardianRedux'
 
 // exported to make available for tests
 export const selectAvatar = GithubSelectors.selectAvatar

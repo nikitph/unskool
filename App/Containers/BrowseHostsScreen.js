@@ -17,8 +17,17 @@ import LinearGradient from 'react-native-linear-gradient'
 import Link from '../Components/Link'
 import style from './Styles/BrowseHostsScreenStyle'
 import Metrics from '../Themes/Metrics'
+import LoginActions from '../Redux/LoginRedux'
+import SingleGuardianActions from '../Redux/SingleGuardianRedux'
+import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay'
+import { Images } from '../Themes'
+import * as Animatable from 'react-native-animatable'
 
 class BrowseHostsScreen extends Component {
+  static navigationOptions = {
+    headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
+    />
+  };
   render () {
     const props = this.props
     const deviceWidth = Metrics.screenWidth
@@ -144,7 +153,7 @@ class BrowseHostsScreen extends Component {
               <Link
                 extraStyle={style.hostName}
                 textStyles={style.hostNameText}
-                onClick={() => this.props.navigation.navigate('BrowseHostsScreen')}
+                onClick={() => this.props.getGuardian(guardianid, this.props.navigation)}
                 text={eventHostName} />
               <Carousel
                 className='host-events'
@@ -182,6 +191,13 @@ class BrowseHostsScreen extends Component {
             text='click here' /><Text style={{color: 'black', fontFamily: 'AvenirNext-UltraLight', fontSize: 16, textAlign: 'center'}}>
           to share the app to potential hosts to build our community in your area!</Text>
         </View> }
+        <OrientationLoadingOverlay
+          visible={this.props.fetching}
+          color='white'
+          indicatorSize='large'
+          messageFontSize={24}
+          message='Loading Guardian'
+         />
       </ScrollView>
     )
   }
@@ -269,12 +285,14 @@ class BrowseHostsScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     events: state.browsehosts.payload,
-    guardian: state.login.payload
+    guardian: state.login.payload,
+    fetching: state.singleguardian.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getGuardian: (gid, nav) => dispatch(SingleGuardianActions.singleGuardianRequest(gid, nav))
   }
 }
 
