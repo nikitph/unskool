@@ -17,6 +17,7 @@ export const reducers = combineReducers({
   createchild: require('./CreateChildRedux').reducer,
   editchild: require('./EditChildRedux').reducer,
   editevent: require('./EditEventRedux').reducer,
+  deleteevent: require('./DeleteEventRedux').reducer,
   createevent: require('./CreateEventRedux').reducer,
   browsehosts: require('./BrowseHostsRedux').reducer,
   guardians: require('./GuardianRedux')
