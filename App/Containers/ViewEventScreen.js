@@ -40,8 +40,7 @@ class ViewEventScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={style.teaserContainer} id={eventHostName} key={eventHostName}>
-          <TouchableHighlight onPress={() => this.props.navigation.navigate('ViewEventScreen',{item})}
-          >
+          <TouchableHighlight>
             <FastImage
               source={eventImage}
               resizeMode='cover'

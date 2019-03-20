@@ -16,7 +16,7 @@ ViewEvent.teaserContainer = {
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: styleVariables.mc2purpleElectric,
-  width: deviceWidth - 40,
+  width: deviceWidth,
   height: 200
 }
 

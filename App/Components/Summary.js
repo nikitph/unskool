@@ -47,8 +47,6 @@ export default class Summary extends Component {
       return (
         Object.keys(children).map((item, i) => {
           let keyId = `${childs}${item}${i}`
-          console.log(children[item])
-          console.log(item)
           if (children[item].profileImage) {
             return (
               <View key={keyId} style={{padding: 5}}>
