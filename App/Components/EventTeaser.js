@@ -13,9 +13,109 @@ import LinearGradient from 'react-native-linear-gradient'
 import Carousel from 'react-native-snap-carousel'
 import styleVariables from '../Themes/Variables'
 import globalStyles from '../Themes/GlobalStyles'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { Button } from 'react-native-elements'
 import Metrics from '../Themes/Metrics'
 
 export default class EventTeaser extends Component {
+  _renderItem ({item, index}) {
+    const events = this.props.events || [' ']
+    let teaserData = item
+    console.log(item)
+    const { gid, title, profileImage, date, startTime, finishTime } = teaserData
+    const recurringDays = teaserData.recurringDays || []
+
+    // handle the output of the image
+    let eventImage = profileImage !== '../Images/logo.png'
+      ? {uri: profileImage}
+      : require('../Images/logo.png')
+
+    return (<View style={style.teaserElement} key={teaserData.title}>
+      <TouchableHighlight className='event-image' onPress={() => {}}>
+        <ImageBackground
+          source={eventImage}
+          resizeMode='cover'
+          style={style.teaserImage} />
+      </TouchableHighlight>
+      <View style={style.addEventContainer}>
+
+        {
+          !events &&
+          <LinearGradient
+            colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
+            style={[globalStyles.addItem, style.editItem]}
+          >
+            <TouchableHighlight onPress={() => {}}>
+              <Image
+                source={require('../Images/edit.png')}
+                resizeMode='cover'
+                style={{width: 40, height: 40}} />
+            </TouchableHighlight>
+          </LinearGradient>
+        }
+
+        {
+          !events &&
+          <LinearGradient
+            colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
+            style={[globalStyles.addItem, style.addItem]}
+          >
+            <TouchableHighlight onPress={() => {}}>
+              <Image
+                source={require('../Images/plus-sign-white.png')}
+                resizeMode='cover'
+                style={{position: 'relative', top: 2, left: 1, width: 35, height: 30}} />
+            </TouchableHighlight>
+          </LinearGradient>
+        }
+      </View>
+      <View style={style.eventView}>
+        <Text style={style.eventTitle}>{title}</Text>
+        <View style={style.eventTags}>
+          {
+            teaserData.ageRange &&
+            teaserData.ageRange.map((item) => {
+              return (
+                <View className='tag-item' key={`${teaserData.title}${item}`}>
+                  <Text style={style.tagItemCopy}>{item}</Text>
+                </View>
+              )
+            })
+          }
+        </View>
+        <View style={style.eventDays}>
+          {
+            // develop the view for recurring days ex: M/W/F
+            // if there are no recurring days, show the date of the event
+            recurringDays.map((item, index) => {
+              if (recurringDays.length === 1 && item === ' ') {
+                let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
+                return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>{stringDate}</Text></View>
+              } else if (index === 0 || index === 1) {
+                return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>{item}</Text></View>
+              } else {
+                return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>/{item}</Text></View>
+              }
+            })
+          }
+        </View>
+        <View className='time'><Text>{startTime} - {finishTime}</Text></View>
+        <Button
+          style={{padding:0}}
+          type='clear'
+          onPress={() => this.props.nav.navigate('EditEventScreen', { eventData: item, ekey: item.ekey})}
+          icon={
+            <Icon
+              name='ios-create'
+              size={24}
+              color='grey'
+            ><Text style={{fontSize: 16}}>Edit Event</Text></Icon>
+          }
+        />
+      </View>
+    </View>)
+  }
+
   render () {
     const props = this.props
     console.log(props)
@@ -62,7 +162,8 @@ export default class EventTeaser extends Component {
 
     } else {
       for (let teaser in teaserData) {
-        carData.push(teaserData[teaser])
+        let data = {ekey: teaser, ...teaserData[teaser]}
+        carData.push(data)
       }
     }
 
@@ -159,91 +260,6 @@ export default class EventTeaser extends Component {
       teaserOutput = teaserOutput == [] ? [' '] : teaserOutput
     }
 
-    function carRenderer ({item, index}) {
-      let teaserData = item
-      console.log(item)
-      const { gid, title, profileImage, date, startTime, finishTime } = teaserData
-      const recurringDays = teaserData.recurringDays || []
-
-      // handle the output of the image
-      let eventImage = profileImage !== '../Images/logo.png'
-        ? {uri: profileImage}
-        : require('../Images/logo.png')
-
-      return (<View style={style.teaserElement} key={teaserData.title}>
-        <TouchableHighlight className='event-image' onPress={() => {}}>
-          <ImageBackground
-            source={eventImage}
-            resizeMode='cover'
-            style={style.teaserImage} />
-        </TouchableHighlight>
-        <View style={style.addEventContainer}>
-
-          {
-              !events &&
-              <LinearGradient
-                colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
-                style={[globalStyles.addItem, style.editItem]}
-              >
-                <TouchableHighlight onPress={() => {}}>
-                  <Image
-                    source={require('../Images/edit.png')}
-                    resizeMode='cover'
-                    style={{width: 40, height: 40}} />
-                </TouchableHighlight>
-              </LinearGradient>
-            }
-
-          {
-              !events &&
-              <LinearGradient
-                colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
-                style={[globalStyles.addItem, style.addItem]}
-              >
-                <TouchableHighlight onPress={() => {}}>
-                  <Image
-                    source={require('../Images/plus-sign-white.png')}
-                    resizeMode='cover'
-                    style={{position: 'relative', top: 2, left: 1, width: 35, height: 30}} />
-                </TouchableHighlight>
-              </LinearGradient>
-            }
-        </View>
-        <View style={style.eventView}>
-          <Text style={style.eventTitle}>{title}</Text>
-          <View style={style.eventTags}>
-            {
-                teaserData.ageRange &&
-                teaserData.ageRange.map((item) => {
-                  return (
-                    <View className='tag-item' key={`${teaserData.title}${item}`}>
-                      <Text style={style.tagItemCopy}>{item}</Text>
-                    </View>
-                  )
-                })
-              }
-          </View>
-          <View style={style.eventDays}>
-            {
-                // develop the view for recurring days ex: M/W/F
-                // if there are no recurring days, show the date of the event
-                recurringDays.map((item, index) => {
-                  if (recurringDays.length === 1 && item === ' ') {
-                    let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
-                    return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>{stringDate}</Text></View>
-                  } else if (index === 0 || index === 1) {
-                    return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>{item}</Text></View>
-                  } else {
-                    return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>/{item}</Text></View>
-                  }
-                })
-              }
-          </View>
-          <View className='time'><Text>{startTime} - {finishTime}</Text></View>
-        </View>
-      </View>)
-    }
-
     return (
       <View style={style.teaserContainer}>
         <Text style={{textAlign: 'center', paddingBottom:20}}>My Events</Text>
@@ -251,12 +267,11 @@ export default class EventTeaser extends Component {
         <Carousel
           ref={(carousel) => { this._carousel = carousel }}
           data={carData}
-          renderItem={carRenderer}
+          renderItem={this._renderItem.bind(this)}
           layout={'stack'} layoutCardOffset={`18`}
           sliderWidth={deviceWidth - 40} // make the sliderWidth and itemWidth equivalent to make it left align
           itemWidth={deviceWidth - 40} // subtract 40 for item's left and right padding
          />
-
       </View>
     )
   }

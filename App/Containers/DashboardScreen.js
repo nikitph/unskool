@@ -35,7 +35,7 @@ class DashboardScreen extends Component {
             <Summary guardian={this.props.guardian} nav={this.props.navigation} />
           </View>
           <View style={{paddingBottom: 120}}>
-            <EventTeaser guardian={this.props.guardian} events={this.props.events} />
+            <EventTeaser guardian={this.props.guardian} events={this.props.events} nav={this.props.navigation} />
           </View>
         </ScrollView>
         <FooterNav navigation={this.props.navigation} />

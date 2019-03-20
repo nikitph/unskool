@@ -326,6 +326,7 @@ class EditEventScreen extends Component {
             style={globalStyles.textInput}
             placeholder='Event Title'
             placeholderTextColor='white'
+            defaultValue={this.state.title}
             onChangeText={(value) => this.handleChange(value, 'title')}
           />
 
@@ -335,6 +336,7 @@ class EditEventScreen extends Component {
             numberOfLines={6}
             placeholder='Summary of the event'
             placeholderTextColor='white'
+            defaultValue={this.state.summary}
             onChangeText={(value) => this.handleChange(value, 'summary')}
           />
 
@@ -457,7 +459,15 @@ class EditEventScreen extends Component {
           <Button
             onPress={() => { this.submitForm() }}
             type='solid'
-            title='Submit'
+            title='Update Event'
+            loading={this.props.fetching}
+          />
+          <View style={{margin:7}}/>
+          <Button
+            onPress={() => { this.submitForm() }}
+            type='solid'
+            buttonStyle={{backgroundColor:'red'}}
+            title='Delete Event'
             loading={this.props.fetching}
           />
         </View>
