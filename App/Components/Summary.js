@@ -43,7 +43,7 @@ export default class Summary extends Component {
     let languageTags = dataToTag(languages, 'languages')
     let specialtyTags = dataToTag(specialties, 'specialties')
 
-    function dataToAvatar (children, childs, nav) {
+    function dataToAvatar (children, childs, nav, bVisible) {
       return (
         Object.keys(children).map((item, i) => {
           let keyId = `${childs}${item}${i}`
@@ -57,7 +57,7 @@ export default class Summary extends Component {
                   source={{
                     uri: children[item].profileImage
                   }}
-                  showEditButton
+                  showEditButton={bVisible}
                   onEditPress={() => nav.navigate('EditChildScreen', { childData: children[item], ckey: item})}
                   // onPress={() => nav.navigate('ChildViewScreen', { childData: children[item], ckey: item})}
               />
@@ -68,7 +68,7 @@ export default class Summary extends Component {
       )
     }
 
-    let avatars = dataToAvatar(userData.children, 'childs', this.props.nav)
+    let avatars = dataToAvatar(userData.children, 'childs', this.props.nav, this.props.bVisible)
 
     function dataToTag (items, cat) {
       return (

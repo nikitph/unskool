@@ -163,7 +163,7 @@ class BrowseHostsScreen extends Component {
                 itemWidth={deviceWidth - 100} // subtract 40 for item's left and right padding
                 inactiveSlideScale={0.9}
                 inactiveSlideOpacity={0.7}
-                layout={'stack'} layoutCardOffset={`40`}
+                layout={'stack'} layoutCardOffset={40}
                 autoplay
                />
             </View>

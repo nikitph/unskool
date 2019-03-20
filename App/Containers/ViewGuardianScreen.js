@@ -26,7 +26,7 @@ class ViewGuardianScreen extends Component {
         </View>
         <ScrollView>
           <View style={{flex: 0.3}}>
-            <Summary guardian={guardian} nav={this.props.navigation} />
+            <Summary guardian={guardian} nav={this.props.navigation} bVisible={false} />
           </View>
           {/* <View style={{paddingBottom: 120}}> */}
           {/* <EventTeaser guardian={this.props.guardian} events={this.props.events} /> */}

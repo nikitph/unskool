@@ -32,7 +32,7 @@ class DashboardScreen extends Component {
         </View>
         <ScrollView>
           <View style={{flex: 0.3}}>
-            <Summary guardian={this.props.guardian} nav={this.props.navigation} />
+            <Summary guardian={this.props.guardian} nav={this.props.navigation} bVisible />
           </View>
           <View style={{paddingBottom: 120}}>
             <EventTeaser guardian={this.props.guardian} events={this.props.events} nav={this.props.navigation} />
