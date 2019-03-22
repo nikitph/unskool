@@ -48,7 +48,7 @@ class Hero extends Component {
           <FastImage
             source={userImage}
             resizeMode='cover'
-            style={{width: Metrics.screenWidth, height: 320}} />
+            style={{width: Metrics.screenWidth, height: 300}} />
           <LinearGradient
             style={style.mainInfo}
             colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)']}
