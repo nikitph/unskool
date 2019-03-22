@@ -35,7 +35,9 @@ summary.summaryCopy = {
 
 summary.greetingContainer = {
   paddingTop: 10,
-  paddingBottom: 8
+  paddingBottom: 5,
+  justifyContent: 'center',
+  alignItems: 'center'
 }
 
 summary.summaryBodyCopy = {

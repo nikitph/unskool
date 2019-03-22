@@ -101,8 +101,8 @@ export default class Summary extends Component {
             </TouchableHighlight>
           </View>
         </View>
-        <Text style={GlobalStyles.formSubTitle}>Children</Text>
-        <View style={{flex: 0.8, flexDirection: 'row', flexWrap: wrapState, overflow: 'hidden', padding: 10}}>
+        <Text style={GlobalStyles.formSubTitle}>CHILDREN</Text>
+        <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', overflow: 'hidden', alignItems: 'center', justifyContent: 'center'}}>
           {avatars}
         </View>
       </View>
