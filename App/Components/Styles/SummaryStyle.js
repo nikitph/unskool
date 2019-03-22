@@ -28,7 +28,9 @@ summary.summaryCopy = {
   color: styleVariables.mc2fontGray,
   paddingLeft: 16,
   paddingRight: 16,
-  marginBottom: 9
+  marginBottom: 9,
+  fontSize: 16,
+  fontStyle: 'italic'
 }
 
 summary.greetingContainer = {
