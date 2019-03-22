@@ -12,21 +12,20 @@
 
 import { call, put } from 'redux-saga/effects'
 import DeleteEventActions from '../Redux/DeleteEventRedux'
+import { dbService, mapp } from '../Services/Firebase'
+import { NavigationActions } from 'react-navigation'
 // import { DeleteEventSelectors } from '../Redux/DeleteEventRedux'
 
-export function * deleteEvent (api, action) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(DeleteEventSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.getdeleteEvent, data)
+export function * deleteEvent ({edata, alertfunc, nav}) {
+  const { ekey, gid } = edata
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(DeleteEventActions.deleteEventSuccess(response.data))
-  } else {
-    yield put(DeleteEventActions.deleteEventFailure())
+  try {
+    yield call(dbService.database.delete, `hostEvents/${gid}/${ekey}`)
+    yield put(DeleteEventActions.deleteEventSuccess({del: 'done'}))
+    const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
+    yield call(nav.dispatch, resetAction)
+  } catch (error) {
+    yield put(DeleteEventActions.deleteEventFailure({error}))
+    alertfunc('error', 'Error', error.message)
   }
 }

@@ -20,6 +20,7 @@ import globalStyles from '../Themes/GlobalStyles'
 import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable'
 import CreateEventActions from '../Redux/CreateEventRedux'
+import DeleteEventActions from '../Redux/DeleteEventRedux'
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 
 import { generateCalendarDates } from '../Services/DateGenerator'
@@ -215,7 +216,11 @@ class EditEventScreen extends Component {
     this.props.attemptCreateEvent(newEvent, this.showAlert, this.props.navigation)
   }
 
-  /**
+  deleteEvent () {
+    this.props.attemptDeleteEvent({ekey: this.state.ekey, gid: this.state.gid}, this.showAlert, this.props.navigation)
+  }
+
+    /**
    *
    * @returns {XML}
    */
@@ -462,11 +467,11 @@ class EditEventScreen extends Component {
             title='Update Event'
             loading={this.props.fetching}
           />
-          <View style={{margin:7}}/>
+          <View style={{margin: 7}} />
           <Button
-            onPress={() => { this.submitForm() }}
+            onPress={() => { this.deleteEvent() }}
             type='solid'
-            buttonStyle={{backgroundColor:'red'}}
+            buttonStyle={{backgroundColor: 'red'}}
             title='Delete Event'
             loading={this.props.fetching}
           />
@@ -493,7 +498,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptCreateEvent: (edata, alertfunc, nav) =>
-      dispatch(CreateEventActions.createEventRequest(edata, alertfunc, nav))
+      dispatch(CreateEventActions.createEventRequest(edata, alertfunc, nav)),
+    attemptDeleteEvent: (edata, alertfunc, nav) =>
+      dispatch(DeleteEventActions.deleteEventRequest(edata, alertfunc, nav))
   }
 }
 
