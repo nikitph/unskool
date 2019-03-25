@@ -70,6 +70,17 @@ class Hero extends Component {
           </LinearGradient>
         </View>
         <View style={style.decoClip} />
+        { !this.props.bVisible && <TouchableOpacity onPress={ () => {} }>
+          <LinearGradient
+            style={[style.chatButton, globalStyles.addItem]}
+            colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
+          >
+            <Image
+              source={require('../Images/chatone.png')}
+              resizeMode='cover'
+              style={style.chatIcon} />
+          </LinearGradient>
+        </TouchableOpacity>}
         { this.props.bVisible && <ActionButton buttonColor='rgba(231,76,60,0.8)' offsetX={10}>
           <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => this.props.nav.navigate('CreateEventScreen')}>
             <Icon name='md-calendar' style={styles.actionButtonIcon} />
