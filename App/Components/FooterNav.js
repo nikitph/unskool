@@ -14,6 +14,8 @@ class FooterNav extends Component {
     const iconStyles = {width: 100, height: 60, marginBottom: -15, marginTop: -10}
     const browseHostsIconStyles = {width: 80, height: 60, marginBottom: -8, marginTop: -10, position: 'relative', top: -5}
     const feedbackIcon = {height: 45, width: 60}
+    const chatIcon = {height: 45, width: 60}
+
 
     // get the current scene
     const props = this.props
@@ -33,7 +35,7 @@ class FooterNav extends Component {
       Dashboard: [ require('../Images/home-blue.png'), require('../Images/home-purp.png') ],
       Calendar: [ require('../Images/calander-blue.png'), require('../Images/calender-purp.png') ],
       BrowseHosts: [ require('../Images/globe-blue.png'), require('../Images/globe-purple.png') ],
-      Notifications: [ require('../Images/bell-blue.png'), require('../Images/bell-purp.png') ],
+      Chat: [ require('../Images/chat_gray.png'), require('../Images/chat_blue.png') ],
       Feedback: [ require('../Images/feedback-blue.png'), require('../Images/feedback-purp.png') ]
 
     }
@@ -66,8 +68,8 @@ class FooterNav extends Component {
             extraStyle={style.footerLink}
             textStyles={style.footerLinkCopy}
             onClick={() => navigation.navigate('DashboardScreen')}
-            iconTop={{url: checkScene('Notifications'), dimensions: iconStyles }}
-            text='ALERTS' />
+            iconTop={{url: checkScene('Chat'), dimensions: chatIcon }}
+            text='CHAT' />
           <Link
             extraStyle={style.footerLink}
             textStyles={style.footerLinkCopy}
