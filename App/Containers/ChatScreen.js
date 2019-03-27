@@ -1,32 +1,42 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
-
-// Styles
-import styles from './Styles/ChatScreenStyle'
+import { View } from 'react-native'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
+  constructor () {
+    super()
+  }
+
+  componentWillMount () {
+    let msg = []
+    this.setState({
+      messages: msg
+    })
+  }
+
+  onSend (messages = []) {
+    let msgObj = (messages[0])
+    // sendMessage(this.props, Object.assign({}, msgObj, {receiver: this.props.gid, sender: this.props.user.uid}))
+    // this.setState((previousState) => {
+    //   return {
+    //     messages: GiftedChat.append(previousState.messages, messages),
+    //   };
+    // });
+  }
+
   render () {
+    const props = this.props
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>ChatScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <View style={{flex: 1, backgroundColor: 'white', paddingBottom:30}}>
+        <GiftedChat
+          messages={[]}
+          onSend={(messages) => this.onSend(messages)}
+          user={{_id: '1', name: 'test', avatar: ''}}
+        />
+
+      </View>
     )
-  }
+  };
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChatScreen)
+export default ChatScreen
