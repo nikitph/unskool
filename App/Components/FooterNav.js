@@ -16,7 +16,6 @@ class FooterNav extends Component {
     const feedbackIcon = {height: 45, width: 60}
     const chatIcon = {height: 45, width: 60}
 
-
     // get the current scene
     const props = this.props
     const { navigation } = props
@@ -67,7 +66,7 @@ class FooterNav extends Component {
           <Link
             extraStyle={style.footerLink}
             textStyles={style.footerLinkCopy}
-            onClick={() => navigation.navigate('DashboardScreen')}
+            onClick={() => navigation.navigate('ConversationsScreen')}
             iconTop={{url: checkScene('Chat'), dimensions: chatIcon }}
             text='CHAT' />
           <Link

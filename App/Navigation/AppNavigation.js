@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import ConversationsScreen from '../Containers/ConversationsScreen'
 import ChatScreen from '../Containers/ChatScreen'
 import ViewEventScreen from '../Containers/ViewEventScreen'
 import ViewGuardianScreen from '../Containers/ViewGuardianScreen'
@@ -22,6 +23,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  ConversationsScreen: { screen: ConversationsScreen },
   ChatScreen: { screen: ChatScreen },
   ViewEventScreen: { screen: ViewEventScreen },
   ViewGuardianScreen: { screen: ViewGuardianScreen },
