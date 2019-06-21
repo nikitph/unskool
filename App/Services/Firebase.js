@@ -7,3 +7,4 @@ import ReduxSagaFirebase from 'redux-saga-firebase'
 
 export const mapp = firebase.initializeApp(config)
 export const dbService = new ReduxSagaFirebase(mapp)
+export const db = mapp.database()
