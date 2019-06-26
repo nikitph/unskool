@@ -12,6 +12,7 @@ export function * login ({email, password, alertfunc, nav}) {
     const response = yield call(dbService.auth.signInWithEmailAndPassword, email.toString(), password.toString(), function () {})
     const {uid, displayName, photoURL} = response.user
     const guardian = yield call(dbService.database.read, `guardians/${uid}`)
+    console.log(guardian)
 
     FastImage.preload([
       {
