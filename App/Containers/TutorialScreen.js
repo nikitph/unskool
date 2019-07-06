@@ -15,6 +15,9 @@ import style from './Styles/CreateGuardianScreenStyle'
 import * as Animatable from 'react-native-animatable'
 
 class TutorialScreen extends Component {
+  static navigationOptions = {
+    header: null
+  }
   _renderDotIndicator () {
     return <PagerDotIndicator pageCount={5}
       selectedDotStyle={{width: 13, borderRadius: 6, backgroundColor: '#74bcf7'}}

@@ -12,17 +12,18 @@ export function * login ({email, password, alertfunc, nav}) {
     const response = yield call(dbService.auth.signInWithEmailAndPassword, email.toString(), password.toString(), function () {})
     const {uid, displayName, photoURL} = response.user
     const guardian = yield call(dbService.database.read, `guardians/${uid}`)
-    console.log(guardian)
 
-    FastImage.preload([
-      {
-        uri: guardian.image
-      }])
+    if (guardian.image) {
+      FastImage.preload([
+        {
+          uri: guardian.image
+        }])
+    }
     // const location = yield call(dbService.database.read, `users/${uid}/location`)
     yield put(LoginActions.loginSuccess({uid, displayName, photoURL, ...guardian}))
     // yield put(BrowseHostActions.browseHostsRequest())
     // yield put(GuardianActions.guardianRequest())
-    const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' },{ ...guardian})], 0)
+    const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'}, {...guardian})], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
     console.log(error)
