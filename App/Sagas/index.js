@@ -19,6 +19,7 @@ import { GuardianTypes } from '../Redux/GuardianRedux'
 import { EditGuardianTypes } from '../Redux/EditGuardianRedux'
 import { SingleGuardianTypes } from '../Redux/SingleGuardianRedux'
 import { DeleteEventTypes } from '../Redux/DeleteEventRedux'
+import { ChatPostTypes } from '../Redux/ChatPostRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -36,6 +37,7 @@ import { deleteEvent } from './DeleteEventSagas'
 import { browseHosts } from './BrowseHostsSagas'
 import { getGuardians } from './GuardianSagas'
 import { getSingleGuardian } from './SingleGuardianSagas'
+import { chatPost } from './ChatPostSagas'
 
 /* ------------- API ------------- */
 
@@ -61,6 +63,7 @@ export default function * root () {
     takeLatest(GuardianTypes.GUARDIAN_REQUEST, getGuardians),
     takeLatest(SingleGuardianTypes.SINGLE_GUARDIAN_REQUEST, getSingleGuardian),
     takeLatest(DeleteEventTypes.DELETE_EVENT_REQUEST, deleteEvent),
+    takeLatest(ChatPostTypes.CHAT_POST_REQUEST, chatPost),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)

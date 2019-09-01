@@ -20,7 +20,8 @@ export const reducers = combineReducers({
   deleteevent: require('./DeleteEventRedux').reducer,
   createevent: require('./CreateEventRedux').reducer,
   browsehosts: require('./BrowseHostsRedux').reducer,
-  guardians: require('./GuardianRedux')
+  guardians: require('./GuardianRedux').reducer,
+  chatpost: require('./ChatPostRedux').reducer
 })
 
 export default () => {

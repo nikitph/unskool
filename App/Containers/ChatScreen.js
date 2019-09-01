@@ -2,10 +2,15 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { connect } from 'react-redux'
+import ChatPostTypes from '../Redux/ChatPostRedux'
+import { dbService, mapp } from '../Services/Firebase'
+
+const usr = mapp.auth()
 
 class ChatScreen extends Component {
   constructor (props) {
     super(props)
+    console.log(usr)
   }
 
   componentWillMount () {
@@ -28,7 +33,7 @@ class ChatScreen extends Component {
 
   render () {
     return (
-      <View style={{flex: 1, backgroundColor: 'white', paddingBottom:30}}>
+      <View style={{flex: 1, backgroundColor: 'white', paddingBottom: 30}}>
         <GiftedChat
           messages={[]}
           onSend={(messages) => this.onSend(messages)}
@@ -40,9 +45,20 @@ class ChatScreen extends Component {
   };
 }
 const mapStateToProps = (state) => {
+  let msgArray = state.itemchat ? Object.values(state.itemchat.payload) : []
   return {
+    messages: msgArray,
     guardian: state.login.payload
   }
 }
 
-export default connect(mapStateToProps)(ChatScreen)
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+    postMessage: (data) =>
+      dispatch(ChatPostTypes.chatPostRequest(data))
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps())(ChatScreen)
