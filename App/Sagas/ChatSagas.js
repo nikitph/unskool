@@ -10,24 +10,17 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
+import { call, put, take } from 'redux-saga/effects'
+import { mapp, dbService } from '../Services/Firebase'
 import ChatActions from '../Redux/ChatRedux'
 
-// import { ChatSelectors } from '../Redux/ChatRedux'
+const usr = mapp.auth()
 
-export function * getChat (api, action) {
-  const {data} = action
-  // get current data from Store
-  // const currentData = yield select(ChatSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.getchat, data)
+export function * getChat () {
+  const channel = yield call(dbService.database.channel, `messages/${usr.currentUser.uid}`)
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ChatActions.chatSuccess(response.data))
-  } else {
-    yield put(ChatActions.chatFailure())
+  while (true) {
+    const {value: messages} = yield take(channel)
+    yield put(ChatActions.chatSuccess(messages))
   }
 }

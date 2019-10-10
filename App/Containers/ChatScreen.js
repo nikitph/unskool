@@ -10,34 +10,50 @@ const usr = mapp.auth()
 class ChatScreen extends Component {
   constructor (props) {
     super(props)
-    console.log(usr)
+    const {navigation, messages} = props
+    let sender = {
+      buyerId: usr.currentUser.uid,
+      buyerName: usr.currentUser.displayName,
+      buyerPic: usr.currentUser.photoURL
+    }
+    let initState = Object.assign({}, sender, messages)
+    this.state = initState
+    this.onSend = this.onSend.bind(this)
   }
 
   componentWillMount () {
-    let msg = []
     this.setState({
-      messages: msg
+      messages: this.props.messages.filter(msg => (msg.sender === usr.currentUser.uid ||
+        msg.receiver === usr.currentUser.uid)).sort(function compare (a, b) {
+        let dateA = new Date(a.createdAt)
+        let dateB = new Date(b.createdAt)
+        return dateB - dateA
+      })
     })
   }
 
   onSend (messages = []) {
     let msgObj = (messages[0])
-    let receiver = this.props.navigation.state.params
-    // sendMessage(this.props, Object.assign({}, msgObj, {receiver: this.props.gid, sender: this.props.user.uid}))
-    // this.setState((previousState) => {
-    //   return {
-    //     messages: GiftedChat.append(previousState.messages, messages),
-    //   };
-    // });
+    this.props.postMessage(Object.assign({}, this.state, msgObj))
+    this.setState((previousState) => {
+      return {
+        messages: GiftedChat.append(previousState.messages, messages)
+      }
+    })
   }
 
   render () {
     return (
       <View style={{flex: 1, backgroundColor: 'white', paddingBottom: 30}}>
         <GiftedChat
-          messages={[]}
+          messages={this.props.messages.filter(msg => (msg.sender === usr.currentUser.uid ||
+            msg.receiver === usr.currentUser.uid)).sort(function compare (a, b) {
+            let dateA = new Date(a.createdAt)
+            let dateB = new Date(b.createdAt)
+            return dateB - dateA
+          })}
           onSend={(messages) => this.onSend(messages)}
-          user={{_id: '1', name: 'test', avatar: ''}}
+          user={{_id: usr.currentUser.uid, name: usr.currentUser.displayName, avatar: usr.currentUser.photoURL}}
         />
 
       </View>
@@ -45,7 +61,7 @@ class ChatScreen extends Component {
   };
 }
 const mapStateToProps = (state) => {
-  let msgArray = state.itemchat ? Object.values(state.itemchat.payload) : []
+  let msgArray = state.chat ? Object.values(state.chat.payload) : []
   return {
     messages: msgArray,
     guardian: state.login.payload
