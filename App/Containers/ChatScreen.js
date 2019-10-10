@@ -25,10 +25,10 @@ class ChatScreen extends Component {
     this.setState({
       messages: this.props.messages.filter(msg => (msg.sender === usr.currentUser.uid ||
         msg.receiver === usr.currentUser.uid)).sort(function compare (a, b) {
-        let dateA = new Date(a.createdAt)
-        let dateB = new Date(b.createdAt)
-        return dateB - dateA
-      })
+          let dateA = new Date(a.createdAt)
+          let dateB = new Date(b.createdAt)
+          return dateB - dateA
+        })
     })
   }
 
@@ -48,10 +48,10 @@ class ChatScreen extends Component {
         <GiftedChat
           messages={this.props.messages.filter(msg => (msg.sender === usr.currentUser.uid ||
             msg.receiver === usr.currentUser.uid)).sort(function compare (a, b) {
-            let dateA = new Date(a.createdAt)
-            let dateB = new Date(b.createdAt)
-            return dateB - dateA
-          })}
+              let dateA = new Date(a.createdAt)
+              let dateB = new Date(b.createdAt)
+              return dateB - dateA
+            })}
           onSend={(messages) => this.onSend(messages)}
           user={{_id: usr.currentUser.uid, name: usr.currentUser.displayName, avatar: usr.currentUser.photoURL}}
         />
