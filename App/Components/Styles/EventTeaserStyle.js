@@ -11,7 +11,7 @@ EventTeaser.teaserContainer = {
 }
 
 EventTeaser.teaserImage = {
-  width: Metrics.screenWidth - 40,
+  width: Metrics.screenWidth - 100,
   height: 100,
   backgroundColor: styleVariables.mc2purpleElectric
 }

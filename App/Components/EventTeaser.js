@@ -268,9 +268,12 @@ export default class EventTeaser extends Component {
           ref={(carousel) => { this._carousel = carousel }}
           data={carData}
           renderItem={this._renderItem.bind(this)}
-          layout={'stack'} layoutCardOffset={18}
+          activeSlideAlignment={'start'}
+          activeSlideOffset={20}
+          inactiveSlideShift={-10}
+          layout={'default'}
           sliderWidth={deviceWidth - 40} // make the sliderWidth and itemWidth equivalent to make it left align
-          itemWidth={deviceWidth - 40} // subtract 40 for item's left and right padding
+          itemWidth={deviceWidth - 100} // subtract 40 for item's left and right padding
          />
       </View>
     )
