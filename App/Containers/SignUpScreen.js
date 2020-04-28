@@ -171,7 +171,7 @@ class SignUpScreen extends Component {
 
 type SignUpScreenProps = {
   dispatch: PropTypes.func,
-  fetching: PropTypes.boolean,
+  fetching: PropTypes.object,
   attemptSignUp: PropTypes.func,
   error: PropTypes.object
 }

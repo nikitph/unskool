@@ -141,7 +141,7 @@ class LoginScreen extends Component {
 
 type LoginScreenProps = {
   dispatch: PropTypes.func,
-  fetching: PropTypes.boolean,
+  fetching: PropTypes.object,
   attemptLogin: PropTypes.func,
   error: PropTypes.object
 }
