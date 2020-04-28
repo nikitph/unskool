@@ -9,7 +9,17 @@
 
 **Step 2:** cd to the cloned repo:
 
-**Step 3:** Install the Application with `yarn` or `npm i`
+**Step 3:** 
+
+1. nvm install 10.0.0
+
+2. modify runIos.js
+
+3. RCTModuleMethod.mm add the following line 93
+
+         RCTReadString(input, "__attribute__((__unused__))") ||
+
+Install the Application with `yarn` or `npm i`
 
 
 ## :arrow_forward: How to Run App
