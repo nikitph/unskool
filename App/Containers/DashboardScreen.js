@@ -7,9 +7,6 @@ import Hero from '../Components/Hero'
 import EventTeaser from '../Components/EventTeaser'
 import Summary from '../Components/Summary'
 import FooterNav from '../Components/FooterNav'
-import ActionButton from 'react-native-action-button'
-import Icon from 'react-native-vector-icons/Ionicons'
-import PhotoUpload from '../Components/PhotoUpload'
 
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -19,8 +16,7 @@ import styles from './Styles/DashboardScreenStyle'
 
 class DashboardScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
-    />
+    headerTitle: <Image animation='fadeIn' source={Images.launch} style={{width: 40, height: 40}}/>
   };
   render () {
     console.log(this.props)
