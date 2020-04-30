@@ -435,11 +435,19 @@ class CreateEventScreen extends Component {
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={30}
               buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'white', fontSize: 15}}
+              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'frequency') }}
             />
           </View>
+          <Text style={{
+            fontSize: 18,
+            marginTop: 20,
+            marginBottom: 10,
+            fontWeight: '500',
+            color: 'rgba(0,0,0,.5)'
+          }}>Age Range</Text>
+
           <View style={[globalStyles.radioButtonContainer, {marginBottom: 30}]}>
             { outputCheckboxes() }
           </View>

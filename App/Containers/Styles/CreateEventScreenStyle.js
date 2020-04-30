@@ -62,7 +62,7 @@ CreateEventForm.datePickerText = {
 }
 
 CreateEventForm.dateText = {
-  color: 'white',
+  color: 'rgba(0,0,0,.5)',
   fontSize: 16
 }
 
