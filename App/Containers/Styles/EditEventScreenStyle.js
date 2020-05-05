@@ -62,7 +62,7 @@ EditEventForm.datePickerText = {
 }
 
 EditEventForm.dateText = {
-  color: 'white',
+  color: 'rgba(0,0,0,.3)',
   fontSize: 16
 }
 
