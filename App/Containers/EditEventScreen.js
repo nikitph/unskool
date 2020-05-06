@@ -19,7 +19,7 @@ import moment from 'moment'
 import globalStyles from '../Themes/GlobalStyles'
 import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable'
-import CreateEventActions from '../Redux/CreateEventRedux'
+import EditEventActions from '../Redux/EditEventRedux'
 import DeleteEventActions from '../Redux/DeleteEventRedux'
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 
@@ -66,6 +66,8 @@ class EditEventScreen extends Component {
       seatsAvailable,
       recurringDays,
       frequency,
+      externalLink = '',
+      eventType = 'inperson',
       ageRange,
       startDate,
       startTime,
@@ -213,7 +215,7 @@ class EditEventScreen extends Component {
 
     // navigate to the dashboard
     app.goToScene('Dashboard', {app}) */
-    this.props.attemptCreateEvent(newEvent, this.showAlert, this.props.navigation)
+    this.props.attemptEditEvent(newEvent, this.showAlert, this.props.navigation)
   }
 
   deleteEvent () {
@@ -281,6 +283,22 @@ class EditEventScreen extends Component {
         frequencySelected = i
       }
     })
+
+      // set the data structure for the event type radio buttons group
+      const event_type_radio_props = [
+        {label: 'inperson', value: 'inperson'},
+        {label: 'online', value: 'online'},
+        {label: 'virtual', value: 'virtual'}
+      ]
+
+      // needed to ensure radio doesnt reset on privacy change
+      let eventTypeSelected
+      event_type_radio_props.map((option, i) => {
+        // if there's a match, return the index of the matching item
+        if (this.state.eventType === option.value) {
+          eventTypeSelected = i
+        }
+      })
 
     // set the data structure for the recurringDays checkbox group
     const recurringDays_checkbox_props = [
@@ -458,6 +476,28 @@ class EditEventScreen extends Component {
             { outputCheckboxes() }
           </View>
 
+          <View>
+            <Text style={style.subTitle}>Event Type</Text>
+            <RadioForm
+              radio_props={event_type_radio_props}
+              initial={eventTypeSelected}
+              style={{marginTop: 5, marginBottom: 5}}
+              buttonColor={'rgba(0, 0, 0, 0.3)'}
+              buttonSize={30}
+              buttonWrapStyle={{padding: 30, marginRight: 10}}
+              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
+              formHorizontal
+              onPress={(value) => { this.radioButtonChange(value, 'eventType') }}
+            />
+            <TextInput
+              style={globalStyles.textInput}
+              placeholder='External URL'
+              placeholderTextColor='white'
+              defaultValue={this.state.externalLink}
+              onChangeText={(value) => this.handleChange(value, 'externalLink')}
+            />
+          </View>
+
           <PrivacyForm globalStyle={globalStyles} onChange={this.radioButtonChange} privacy={this.state.privacy}
             title={'Event Privacy'} />
 
@@ -473,7 +513,7 @@ class EditEventScreen extends Component {
             type='solid'
             buttonStyle={{backgroundColor: 'red'}}
             title='Delete Event'
-            loading={this.props.fetching}
+            loading={this.props.deleting}
           />
         </View>
         <DropdownAlert
@@ -491,14 +531,15 @@ class EditEventScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     guardian: state.login.payload,
-    fetching: state.createevent.fetching
+    fetching: state.editevent.fetching,
+    deleting: state.deleteevent.fetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptCreateEvent: (edata, alertfunc, nav) =>
-      dispatch(CreateEventActions.createEventRequest(edata, alertfunc, nav)),
+    attemptEditEvent: (edata, alertfunc, nav) =>
+      dispatch(EditEventActions.editEventRequest(edata, alertfunc, nav)),
     attemptDeleteEvent: (edata, alertfunc, nav) =>
       dispatch(DeleteEventActions.deleteEventRequest(edata, alertfunc, nav))
   }
