@@ -43,7 +43,7 @@ const yesterday = `${today.slice(0, 8)}${priorDay}`
 
 class CreateEventScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: <Image source={Images.launch} style={{width: 40, height: 40}}
     />
   };
   constructor (props) {
@@ -302,9 +302,7 @@ class CreateEventScreen extends Component {
                   borderRadius: 50
                 }}
                 resizeMode='cover'
-                source={{
-                  uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
-                }} />
+                source={require('../Images/blank-profile-pic.png')}/>
             </PhotoUpload>
           </View>
           <View className='image-uploader--identification'>
@@ -437,11 +435,19 @@ class CreateEventScreen extends Component {
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={30}
               buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'white', fontSize: 15}}
+              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'frequency') }}
             />
           </View>
+          <Text style={{
+            fontSize: 18,
+            marginTop: 20,
+            marginBottom: 10,
+            fontWeight: '500',
+            color: 'rgba(0,0,0,.5)'
+          }}>Age Range</Text>
+
           <View style={[globalStyles.radioButtonContainer, {marginBottom: 30}]}>
             { outputCheckboxes() }
           </View>

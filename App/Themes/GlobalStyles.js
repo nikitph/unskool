@@ -225,4 +225,13 @@ STYLE.checkboxSubTitle = {
   fontWeight: '500'
 }
 
+STYLE.centeredCheckboxSubTitle = {
+  fontSize: 18,
+  marginBottom: 10,
+  color: 'rgba(0,0,0,.5)',
+  textAlign: 'center',
+  width: '100%',
+  fontWeight: '500'
+}
+
 export default StyleSheet.create(STYLE)

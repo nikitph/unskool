@@ -14,14 +14,14 @@ const PrivacyForm = (props) => {
 
   return (
     <View style={{alignItems: 'center', marginTop: 10, marginBottom: 10}}>
-      <Text style={props.globalStyle.checkboxSubTitle}>{props.title}</Text>
+      <Text style={props.globalStyle.centeredCheckboxSubTitle}>{props.title}</Text>
       <RadioForm
         radio_props={privacy_props}
         formHorizontal
         buttonColor={colorsVariables.mc2LightBlue}
         style={{paddingTop: 15, marginRight: 10}}
         labelStyle={{marginRight: 30}}
-        labelColor={'white'}
+        labelColor={'rgba(0,0,0,.5)'}
         initial={props.privacy === 'public' ? 0 : 1}
         onPress={(value) => { props.onChange(value, 'privacy') }}
       />
