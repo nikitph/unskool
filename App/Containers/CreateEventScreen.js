@@ -68,9 +68,11 @@ class CreateEventScreen extends Component {
       ageRange: [],
       startDate: '',
       startTime: '',
+      externalLink: '',
       formattedStartDate: '',
       finishDate: '',
       finishTime: '',
+      eventType: '',
       formattedFinishDate: '',
       imageModal: false,
       sponsored: props.guardian.sponsored || false
@@ -265,6 +267,22 @@ class CreateEventScreen extends Component {
       }
     })
 
+    // set the data structure for the event type radio buttons group
+    const event_type_radio_props = [
+      {label: 'inperson', value: 'inperson'},
+      {label: 'online', value: 'online'},
+      {label: 'virtual', value: 'virtual'}
+    ]
+
+    // needed to ensure radio doesnt reset on privacy change
+    let eventTypeSelected
+    event_type_radio_props.map((option, i) => {
+      // if there's a match, return the index of the matching item
+      if (this.state.eventType === option.value) {
+        eventTypeSelected = i
+      }
+    })
+
     // set the data structure for the recurringDays checkbox group
     const recurringDays_checkbox_props = [
       {label: 'Mon', value: 'M' },
@@ -450,6 +468,27 @@ class CreateEventScreen extends Component {
 
           <View style={[globalStyles.radioButtonContainer, {marginBottom: 30}]}>
             { outputCheckboxes() }
+          </View>
+
+          <View>
+            <Text style={style.subTitle}>Event Type</Text>
+            <RadioForm
+              radio_props={event_type_radio_props}
+              initial={eventTypeSelected}
+              style={{marginTop: 5, marginBottom: 5}}
+              buttonColor={'rgba(0, 0, 0, 0.3)'}
+              buttonSize={30}
+              buttonWrapStyle={{padding: 30, marginRight: 10}}
+              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
+              formHorizontal
+              onPress={(value) => { this.radioButtonChange(value, 'eventType') }}
+            />
+            <TextInput
+              style={globalStyles.textInput}
+              placeholder='External URL'
+              placeholderTextColor='white'
+              onChangeText={(value) => this.handleChange(value, 'externalLink')}
+            />
           </View>
 
           <PrivacyForm globalStyle={globalStyles} onChange={this.radioButtonChange} privacy={this.state.privacy}

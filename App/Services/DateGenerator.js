@@ -95,7 +95,7 @@ export function generateCalendarDates (formattedStartDate, formattedFinishDate, 
   if (startsOnRecurringDay) {
     const firstRecurringDayIndex = recurringDays.indexOf(dayConversions[startingDay].label)
     recurringDaysList = recurringDays.slice(0)
-    recurringDaysList.splice(firstRecurringDayIndex, 1)
+    recurringDaysList.asMutable().splice(firstRecurringDayIndex, 1)
   }
 
   let dateGroup = []

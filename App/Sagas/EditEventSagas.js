@@ -12,21 +12,40 @@
 
 import { call, put } from 'redux-saga/effects'
 import EditEventActions from '../Redux/EditEventRedux'
+import { dbService, mapp } from '../Services/Firebase'
+import { genericFileUpload } from '../Services/Uploader'
+import { NavigationActions } from 'react-navigation'
+import { Platform } from 'react-native'
+import LoginActions from '../Redux/LoginRedux'
 // import { EditEventSelectors } from '../Redux/EditEventRedux'
 
-export function * editEvent (api, action) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(EditEventSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.geteditEvent, data)
+export function * editEvent ({edata, alertfunc, nav}) {
+  const {
+    gid,
+    profileImage,
+    ekey
+  } = edata
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(EditEventActions.editEventSuccess(response.data))
-  } else {
-    yield put(EditEventActions.editEventFailure())
+  let storageRef = mapp.storage().ref(`eventImages/${gid}`)
+
+  try {
+    let eventImageLoc
+    if (profileImage.uri) {
+      const uploadUri = Platform.OS === 'ios' ? profileImage.uri.replace('file://', '') : profileImage.uri
+      eventImageLoc = yield call(genericFileUpload, uploadUri, profileImage.name, storageRef)
+    } else { eventImageLoc = profileImage }
+
+    const eventKey = yield call(dbService.database.patch, `hostEvents/${gid}/${ekey}`, {
+      ...edata, profileImage: eventImageLoc
+    })
+
+    const guardian = yield call(dbService.database.read, `guardians/${gid}`)
+    yield put(LoginActions.loginSuccess({gid, ...guardian}))
+    yield put(EditEventActions.editEventSuccess({eventKey}))
+    const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
+    yield call(nav.dispatch, resetAction)
+  } catch (error) {
+    yield put(EditEventActions.editEventFailure({error}))
+    alertfunc('error', 'Error', error.message)
   }
 }
