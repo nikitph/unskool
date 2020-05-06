@@ -16,7 +16,7 @@ import { Images } from '../Themes'
 
 class FeedbackFormScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={{ width: 40, height: 40 }} />
+    headerTitle: <Image iterationCount='infinite' source={Images.launch} style={{width: 40, height: 40}}/>
   }
   constructor (props) {
     super(props)
