@@ -36,7 +36,7 @@ class TutorialScreen extends Component {
     return (
       <View style={{height: '100%', backgroundColor: 'white', paddingTop: 50, paddingBottom: 20}}>
         <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
-          <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={style.logo} />
+          <Image source={Images.launch} style={style.logo}/>
         </View>
         <IndicatorViewPager
           style={{flex: 0.8}}

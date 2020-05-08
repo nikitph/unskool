@@ -185,7 +185,7 @@ class CreateGuardianScreen extends Component {
     // <BackButton path="/welcome-search" />
 
     return (
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps='handled'>
         <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
           <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={style.logo} />
         </View>
@@ -225,7 +225,7 @@ class CreateGuardianScreen extends Component {
               minLength={2} // minimum length of text to search
               autoFocus
               returnKeyType={'default'}
-              listViewDisplayed='auto'    // true/false/undefined
+              listViewDisplayed='true'    // true/false/undefined
               fetchDetails
               onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
                 let componentForm = {
