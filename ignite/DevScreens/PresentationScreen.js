@@ -2,7 +2,8 @@ import React from 'react'
 import { ScrollView, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 // Screens
 import APITestingScreen from './APITestingScreen'
 import ComponentExamplesScreen from './ComponentExamplesScreen'
@@ -39,7 +40,7 @@ class PresentationScreen extends React.Component {
     this.props.navigation.navigate('FaqScreen')
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -82,13 +83,13 @@ class PresentationScreen extends React.Component {
 }
 
 const stackNavigator = createStackNavigator({
-  PresentationScreen: {screen: PresentationScreen},
-  APITestingScreen: {screen: APITestingScreen},
-  ComponentExamplesScreen: {screen: ComponentExamplesScreen},
-  DeviceInfoScreen: {screen: DeviceInfoScreen},
-  PluginExamplesScreen: {screen: PluginExamplesScreen},
-  ThemeScreen: {screen: ThemeScreen},
-  FaqScreen: {screen: FaqScreen}
+  PresentationScreen: { screen: PresentationScreen },
+  APITestingScreen: { screen: APITestingScreen },
+  ComponentExamplesScreen: { screen: ComponentExamplesScreen },
+  DeviceInfoScreen: { screen: DeviceInfoScreen },
+  PluginExamplesScreen: { screen: PluginExamplesScreen },
+  ThemeScreen: { screen: ThemeScreen },
+  FaqScreen: { screen: FaqScreen }
 }, {
   cardStyle: {
     opacity: 1,
@@ -100,7 +101,7 @@ const stackNavigator = createStackNavigator({
   navigationOptions: {
     header: {
       left: (
-        <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{marginHorizontal: 10}} /></TouchableOpacity>
+        <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{ marginHorizontal: 10 }} /></TouchableOpacity>
       ),
       style: {
         backgroundColor: '#3e243f'
