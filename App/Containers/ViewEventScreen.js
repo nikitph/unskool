@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, TouchableHighlight, View } from 'react-native'
+import { ScrollView, Text, TouchableHighlight, View } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -9,6 +9,9 @@ import styles from './Styles/ViewEventScreenStyle'
 import style from './Styles/BrowseHostsScreenStyle'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
+import { Metrics } from '../Themes'
+import styleVariables from '../Themes/Variables'
+import { Badge } from 'react-native-elements'
 
 class ViewEventScreen extends Component {
   render () {
@@ -39,12 +42,19 @@ class ViewEventScreen extends Component {
     }
     return (
       <ScrollView style={styles.container}>
-        <View style={style.teaserContainer} id={eventHostName} key={eventHostName}>
+        <View style={{
+          position: 'relative',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: styleVariables.mc2purpleElectric,
+          width: Metrics.screenWidth,
+          height: 300
+        }} id={eventHostName} key={eventHostName}>
           <TouchableHighlight>
             <FastImage
               source={eventImage}
               resizeMode='cover'
-              style={imageStyle} />
+              style={{width: Metrics.screenWidth, height: 300}}/>
           </TouchableHighlight>
           <LinearGradient
             style={style.eventView}
@@ -56,38 +66,44 @@ class ViewEventScreen extends Component {
               //   <FaChild/>
               // </View>
             }
-            <Text style={style.title}>{title}</Text>
-            <View style={style.tags}>
-              {
-                ageRange.map((item) => {
-                  return (
-                    <View style={style.bulletAndTagItem} key={`${eventHostName}${item}`}>
-                      <View style={style.bullet} />
-                      <Text style={style.tagItem}>{item}</Text>
+          </LinearGradient>
+        </View>
+        <View>
+          <Text style={styles.title}>{title}</Text>
+          <View style={styles.tags}>
+
+            {
+              ageRange.map((item) => {
+                return (
+                  <View style={styles.bulletAndTagItem} key={`${eventHostName}${item}`}>
+                    <View style={styles.bullet}>
+                      <Badge value={item} status='primary' textStyle={styles.tagItem} badgeStyle={styles.badgeContainer}
+                             containerStyle={styles.badgeContainer}/>
                     </View>
-                  )
+                  </View>
+                )
+              })
+            }
+          </View>
+          <View style={styles.dayAndTime}>
+            <View style={styles.days}>
+              {
+                recurringDays.map((item, index) => {
+                  // conditionals for handling the various output for the recurring days
+                  if (recurringDays.length === 1 && item === ' ') {
+                    let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
+                    return <Text style={styles.dayText} key={`${eventHostName}${item}`}>{stringDate}</Text>
+                  } else if (index === 0 || index === 1) {
+                    return <Text style={styles.dayText} key={`${eventHostName}${item}`}>{item}</Text>
+                  } else {
+                    return <Text style={styles.dayText} key={`${eventHostName}${item}`}>/{item}</Text>
+                  }
                 })
               }
             </View>
-            <View style={style.dayAndTime}>
-              <View style={style.days}>
-                {
-                  recurringDays.map((item, index) => {
-                    // conditionals for handling the various output for the recurring days
-                    if (recurringDays.length === 1 && item === ' ') {
-                      let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
-                      return <Text style={style.dayText} key={`${eventHostName}${item}`}>{stringDate}</Text>
-                    } else if (index === 0 || index === 1) {
-                      return <Text style={style.dayText} key={`${eventHostName}${item}`}>{item}</Text>
-                    } else {
-                      return <Text style={style.dayText} key={`${eventHostName}${item}`}>/{item}</Text>
-                    }
-                  })
-                }
-              </View>
-              <View style={style.time}><Text style={style.timeText}>{startTime} - {finishTime}</Text></View>
-            </View>
-          </LinearGradient>
+          </View>
+          <View style={styles.time}><Text style={styles.timeText}>{startTime} - {finishTime}</Text></View>
+
         </View>
       </ScrollView>
     )
