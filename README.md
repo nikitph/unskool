@@ -75,3 +75,27 @@ The `.env` file is ignored by git keeping those secrets out of your repo.
 2. Add your config variables
 3. Follow instructions at [https://github.com/luggit/react-native-config#setup](https://github.com/luggit/react-native-config#setup)
 4. Done!
+
+
+### appcenter setup
+
+1. type this to command line `appcenter login`
+
+2. create app to appcenter by typing this command to command line
+
+`appcenter apps create -d <appDisplayName> -o <operatingSystem>  -p <platform>` 
+  appDisplayName = unskool
+  operatingSystem = Android OR iOS
+  platform = React-Native
+
+3. deploy changes using this command
+
+    # for staging
+    `appcenter codepush deployment add -a <ownerName>/<appName> Staging`
+
+    # for production
+    `appcenter codepush deployment add -a <ownerName>/<appName> Production`
+
+
+please once check this link for more info
+https://docs.microsoft.com/en-us/appcenter/distribution/codepush/cli

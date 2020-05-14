@@ -1,4 +1,5 @@
 package com.unskool;
+import com.microsoft.codepush.react.CodePush;
 
 import android.app.Application;
 import android.content.Context;
@@ -30,6 +31,10 @@ public class MainApplication extends Application implements ReactApplication {
         return BuildConfig.DEBUG;
       }
 
+      @Override
+      protected String getJSBundleFile() {
+          return CodePush.getJSBundleFile();
+      }
     // @Override
     // protected List<ReactPackage> getPackages() {
     //   return Arrays.<ReactPackage>asList(
