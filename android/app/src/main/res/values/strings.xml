@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">unskool</string>
-    <string moduleConfig="true" name="CodePushDeploymentKey">5cd55ba3b23cfee883d1a6ffe311fafe871b313d</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">941b250de9959330e21a334a612dae6bfd6c3968</string>
 </resources>
