@@ -29,8 +29,8 @@
     "create-ios-appcenter": "appcenter apps create -d unskool-ios -o iOS -p React-Native",
     "get-ios-details": "code-push deployment ls unskool-ios -k",
     "get-android-details": "code-push deployment ls unskool-Android -k",
-    "release-android-appcenter": "appcenter codepush release-react -a unskool-outlook.com/unskool-android -d Staging",
-    "release-ios-appcenter": "appcenter codepush release-react -a unskool-outlook.com/unskool-ios -d Staging"
+    "release-android-appcenter": "appcenter codepush release-react -a unskool12-outlook.com/unskool-android -d Staging",
+    "release-ios-appcenter": "appcenter codepush release-react -a unskool12-outlook.com/unskool-ios -d Staging"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",

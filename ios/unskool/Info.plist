@@ -46,7 +46,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
 	<key>CodePushDeploymentKey</key>
-	<string>20fba370ed840f2757e2eaa8581669cdf700827b</string>
+	<string>HEz366NCn-z-iTNWDjZMcI5Z_l-Hc44L4_l7o</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
