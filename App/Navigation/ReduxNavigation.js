@@ -2,20 +2,20 @@ import * as React from 'react'
 import { BackHandler, Platform } from 'react-native'
 import {
   createReactNavigationReduxMiddleware,
-  reduxifyNavigator
+  createReduxContainer,
 } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
 import AppNavigation from './AppNavigation'
 
 createReactNavigationReduxMiddleware(
-  'root',
+  // 'root',
   (state) => state.nav
 )
 
-const ReduxAppNavigator = reduxifyNavigator(AppNavigation, 'root')
+const ReduxAppNavigator = createReduxContainer(AppNavigation, 'root')
 
 class ReduxNavigation extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     if (Platform.OS === 'ios') return
     BackHandler.addEventListener('hardwareBackPress', () => {
       const { dispatch, nav } = this.props
@@ -29,12 +29,12 @@ class ReduxNavigation extends React.Component {
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (Platform.OS === 'ios') return
     BackHandler.removeEventListener('hardwareBackPress', undefined)
   }
 
-  render () {
+  render() {
     return <ReduxAppNavigator dispatch={this.props.dispatch} state={this.props.nav} />
   }
 }

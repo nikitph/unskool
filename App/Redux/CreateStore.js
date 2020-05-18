@@ -1,3 +1,5 @@
+import '../Config/ReactotronConfig'
+
 import { createStore, applyMiddleware, compose } from 'redux'
 import Rehydration from '../Services/Rehydration'
 import ReduxPersist from '../Config/ReduxPersist'
@@ -15,7 +17,7 @@ export default (rootReducer, rootSaga) => {
 
   /* ------------- Navigation Middleware ------------ */
   const navigationMiddleware = createReactNavigationReduxMiddleware(
-    'root',
+    // 'root',
     state => state.nav
   )
   middleware.push(navigationMiddleware)

@@ -6,6 +6,7 @@ import ElementStyles from '../Themes/ElementStyles'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import { ThemeProvider } from 'react-native-elements'
+import codePush from "react-native-code-push";
 
 // create our store
 const store = createStore()
@@ -20,7 +21,7 @@ const store = createStore()
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <ThemeProvider theme={ElementStyles}>
@@ -32,6 +33,8 @@ class App extends Component {
 }
 
 // allow reactotron overlay for fast design in dev mode
+App = codePush(App);
+
 export default DebugConfig.useReactotron
   ? console.tron.overlay(App)
   : App

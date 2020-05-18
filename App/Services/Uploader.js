@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Platform
 } from 'react-native'
-import RNFetchBlob from 'react-native-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob'
 import { mapp } from '../Services/Firebase'
 const usr = mapp.auth()
 
