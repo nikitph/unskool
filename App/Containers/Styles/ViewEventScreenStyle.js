@@ -30,39 +30,54 @@ ViewEvent.eventView = {
 }
 
 ViewEvent.title = {
-  color: 'white',
+  color: 'black',
+  position: 'relative',
+  fontSize: 20,
+  fontWeight: '300',
+  alignSelf: 'center',
+  margin: 10,
+  textDecorationLine: 'underline'
+}
+
+ViewEvent.ageRange = {
+  color: 'black',
+  position: 'relative',
   fontSize: 16,
-  fontWeight: '500'
+  fontWeight: '300',
+  alignSelf: 'center'
 }
 
 ViewEvent.tags = {
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  alignSelf: 'center'
 }
 
 ViewEvent.bulletAndTagItem = {
   display: 'flex',
-  marginRight: 18,
+  marginVertical: 15,
   flexDirection: 'row',
   alignItems: 'center'
 }
 
 ViewEvent.bullet = {
-  width: 5,
-  height: 5,
-  borderRadius: 2.5,
-  marginRight: 3,
+
+  margin: 4,
   backgroundColor: 'white'
 }
 
 ViewEvent.tagItem = {
   color: 'white',
-  fontSize: 12
+  fontSize: 16,
+  padding: 3,
 }
+
+ViewEvent.badgeContainer = {height: 24}
 
 ViewEvent.dayAndTime = {
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  alignSelf: 'center'
 }
 
 ViewEvent.days = {
@@ -79,12 +94,12 @@ ViewEvent.dayText = {
 }
 
 ViewEvent.time = {
-  alignItems: 'flex-end',
-  justifyContent: 'flex-end'
+  alignItems: 'center',
+  justifyContent: 'center'
 }
 
 ViewEvent.timeText = {
-  color: 'white',
+  color: 'black',
   fontSize: 12
 }
 
@@ -99,7 +114,7 @@ ViewEvent.hostName = {
 }
 
 ViewEvent.hostNameText = {
-  color: 'white',
+  color: 'black',
   fontWeight: '500'
 }
 
@@ -121,6 +136,42 @@ ViewEvent.childDropOff = {
   right: 9,
   bottom: 17,
   zIndex: 1
+}
+
+ViewEvent.eventView = {
+  paddingTop: 13
+}
+
+ViewEvent.eventTitle = {
+  fontSize: 16,
+  color: styleVariables.mc2fontGray
+}
+
+ViewEvent.eventTags = {
+  display: 'flex',
+  flexDirection: 'row',
+  marginTop: 5
+}
+
+ViewEvent.tagItemCopy = {
+  color: styleVariables.mc2medGray,
+  marginRight: 20
+}
+
+ViewEvent.eventDays = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  marginTop: 5
+}
+
+ViewEvent.eventDay = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  color: styleVariables.mc2Turquoise,
+  fontSize: 17,
+  fontWeight: '500'
 }
 
 export default ViewEvent
