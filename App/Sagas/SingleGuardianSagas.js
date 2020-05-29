@@ -26,6 +26,7 @@ export function * getSingleGuardian ({ gid, nav }) {
           uri: guardian.image
         }])
     }
+    console.log(guardian)
     yield put(SingleGuardianActions.singleGuardianSuccess({guardian}))
     const gAction = NavigationActions.navigate({routeName: 'ViewGuardianScreen', params: guardian})
     yield call(nav.dispatch, gAction)

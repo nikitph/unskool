@@ -70,7 +70,7 @@ class Hero extends Component {
           </LinearGradient>
         </View>
         <View style={style.decoClip} />
-        { !this.props.bVisible && <TouchableOpacity onPress={ () => this.props.nav.navigate('ChatScreen') }>
+        { !this.props.bVisible && <TouchableOpacity onPress={ () => this.props.nav.navigate('ChatScreen',{params: this.props.guardian}) }>
           <LinearGradient
             style={[style.chatButton, globalStyles.addItem]}
             colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
