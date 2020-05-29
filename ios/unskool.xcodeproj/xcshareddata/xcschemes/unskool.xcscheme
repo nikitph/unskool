@@ -6,7 +6,6 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
-        
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -21,7 +20,6 @@
                ReferencedContainer = "container:unskool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -41,7 +39,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      
    </TestAction>
    <LaunchAction
       buildConfiguration = "Release"
@@ -63,7 +60,6 @@
             ReferencedContainer = "container:unskool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

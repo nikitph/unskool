@@ -56,7 +56,7 @@ class BrowseHostsScreen extends Component {
         isGuardianSponsorer = sponsored
 
         // filter out events belonging to user
-        // if (gid === props.guardian.uid) { continue }
+         if (gid === props.guardian.uid) { continue }
 
         // set the gid for the scope above
         const ageRange = teaserData.ageRange || []
