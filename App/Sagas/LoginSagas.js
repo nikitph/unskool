@@ -24,8 +24,8 @@ export function* login({ email, password, alertfunc, nav }) {
     yield put(LoginActions.loginSuccess({ uid, displayName, photoURL, ...guardian }))
     AsyncStorage.setItem('user', JSON.stringify({ uid, displayName, photoURL, ...guardian }))
 
-    yield put(BrowseHostActions.browseHostsRequest())
-    yield put(GuardianActions.guardianRequest())
+    // yield put(BrowseHostActions.browseHostsRequest())
+    // yield put(GuardianActions.guardianRequest())
     const resetAction = nav.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' }, { ...guardian })], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
