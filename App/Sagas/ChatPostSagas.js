@@ -16,12 +16,13 @@ import ChatPostActions from '../Redux/ChatPostRedux'
 import { mapp } from '../Services/Firebase'
 
 const db = mapp.database()
+const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/my-community-classroom-app.appspot.com/o/app-images%2Fblank-profile-pic.png?alt=media&token=ddf9cff0-ad81-4105-85b1-6f5498e16686'
 
 export function * chatPost (action) {
   const {data} = action
   const {text, senderName, senderId, senderPic, receiverName, receiverId, _id} = data
   const msgObj = Object.assign({text, senderName, senderId, senderPic, receiverName, receiverId, _id},
-    {createdAt: data.createdAt.toJSON()}, {user: data.user}, {receiverPic: data.receiverPic || 'https://www.cmsabirmingham.org/stuff/2017/01/default-placeholder.png'})
+    {createdAt: data.createdAt.toJSON()}, {user: data.user}, {receiverPic: data.receiverPic || defaultImage})
   console.log(db)
   console.log(msgObj)
 
