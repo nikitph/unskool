@@ -16,9 +16,9 @@ import { Images } from '../Themes'
 
 class FeedbackFormScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Image iterationCount='infinite' source={Images.launch} style={{width: 40, height: 40}}/>
+    headerTitle: () => <Image iterationCount='infinite' source={Images.launch} style={{ width: 40, height: 40 }} />
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       rating: '',
@@ -32,13 +32,13 @@ class FeedbackFormScreen extends Component {
     }
   }
 
-  handleFieldChange (value, fieldName) {
+  handleFieldChange(value, fieldName) {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
   }
 
-  getEmailBody (data) {
+  getEmailBody(data) {
     return 'Rating: ' + data.rating +
       '\n Device : ' + data.device +
       '\n Bugs reported : ' + data.bugs +
@@ -48,7 +48,7 @@ class FeedbackFormScreen extends Component {
       '\n From : ' + this.props.guardian.displayName + ' ' + this.props.guardian.email
   }
 
-  sendMail (data) {
+  sendMail(data) {
     let emailBody = this.getEmailBody(data)
 
     sendEmail('mycommunityclass@gmail.com', 'Someone Left a feedback', emailBody).then((response) => {
@@ -75,42 +75,42 @@ class FeedbackFormScreen extends Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <ScrollView style={style.container}>
         <View style={style.titleRow}>
-          <View style={{marginLeft: 20, marginRight: 20, marginBottom: 5}}>
-            <Text style={{fontSize: 15, fontWeight: '100', color: 'rgba(0,0,0,0.7)'}}>Your feedback is extremely
+          <View style={{ marginLeft: 20, marginRight: 20, marginBottom: 5 }}>
+            <Text style={{ fontSize: 15, fontWeight: '100', color: 'rgba(0,0,0,0.7)' }}>Your feedback is extremely
               valuable and important for us to improve and give you the perfect user experience you deserve! {'\n'}{'\n'}
               Please share your thoughts with us below.</Text>
           </View>
-          <View style={{marginLeft: 20, marginRight: 20, marginBottom: 5}}>
+          <View style={{ marginLeft: 20, marginRight: 20, marginBottom: 5 }}>
             <Text style={style.questionStyle}>{'\n'}What do you think of our App?</Text>
           </View>
           <SegmentedControls
             options={['1', '2', '3', '4', '5']}
             onSelection={(rating) => this.handleFieldChange(rating, 'rating')}
             selectedOption={this.state.rating}
-            optionContainerStyle={{flex: 1}}
+            optionContainerStyle={{ flex: 1 }}
           />
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <View>
-              <Text style={{fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)'}}>meh.</Text>
+              <Text style={{ fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)' }}>meh.</Text>
             </View>
             <View>
-              <Text style={{fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)'}}>Awesome!</Text>
+              <Text style={{ fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)' }}>Awesome!</Text>
             </View>
           </View>
         </View>
         <View style={style.textGroup}>
-          <View style={{marginRight: 10}}>
+          <View style={{ marginRight: 10 }}>
             <Text
               style={style.questionStyle}>What device are you currently using?
             </Text>
           </View>
           <View>
             <TextInput
-              style={[globalStyles.textInput, {height: 90}]}
+              style={[globalStyles.textInput, { height: 90 }]}
               multiline
               numberOfLines={6}
               placeholder='i.e. iPhone 7, Samsung Galaxy S8...'
@@ -121,7 +121,7 @@ class FeedbackFormScreen extends Component {
           </View>
         </View>
         <View style={style.textGroup}>
-          <View style={{marginRight: 10}}>
+          <View style={{ marginRight: 10 }}>
             <Text
               style={style.questionStyle}>Did you come across any bugs or
               issues while using our app that need to be fixed immediately?
@@ -129,7 +129,7 @@ class FeedbackFormScreen extends Component {
           </View>
           <View>
             <TextInput
-              style={[globalStyles.textInput, {height: 90}]}
+              style={[globalStyles.textInput, { height: 90 }]}
               multiline
               numberOfLines={6}
               placeholder='Your Thoughts...'
@@ -140,7 +140,7 @@ class FeedbackFormScreen extends Component {
           </View>
         </View>
         <View style={style.textGroup}>
-          <View style={{marginRight: 10}}>
+          <View style={{ marginRight: 10 }}>
             <Text
               style={style.questionStyle}>Are there any features you'd like to
               see added to your experience in a future update?
@@ -148,7 +148,7 @@ class FeedbackFormScreen extends Component {
           </View>
           <View>
             <TextInput
-              style={[globalStyles.textInput, {height: 90}]}
+              style={[globalStyles.textInput, { height: 90 }]}
               multiline
               numberOfLines={6}
               placeholder='Your Thoughts...'
@@ -159,7 +159,7 @@ class FeedbackFormScreen extends Component {
           </View>
         </View>
         <View style={style.textGroup}>
-          <View style={{marginRight: 10}}>
+          <View style={{ marginRight: 10 }}>
             <Text
               style={style.questionStyle}>Is there anything else you'd like to
               share with us?
@@ -167,7 +167,7 @@ class FeedbackFormScreen extends Component {
           </View>
           <View>
             <TextInput
-              style={[globalStyles.textInput, {height: 90}]}
+              style={[globalStyles.textInput, { height: 90 }]}
               multiline
               numberOfLines={6}
               placeholder='Your Thoughts...'
@@ -178,32 +178,34 @@ class FeedbackFormScreen extends Component {
           </View>
         </View>
         <View style={style.imageGroup}>
-          <View style={{marginLeft: 20, marginRight: 20}}>
+          <View style={{ marginLeft: 20, marginRight: 20 }}>
             <Text style={style.questionStyle}>How likely are
-              you to recommend My Community Classroom
+            you to recommend My Community Classroom
               to your friends and Family?</Text>
           </View>
           <SegmentedControls
             options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
             onSelection={(recommended) => this.handleFieldChange(recommended, 'recommended')}
             selectedOption={this.state.recommended}
-            optionContainerStyle={{flex: 1}}
+            optionContainerStyle={{ flex: 1 }}
           />
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <View>
-              <Text style={{fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)'}}>not at all</Text>
+              <Text style={{ fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)' }}>not at all</Text>
             </View>
             <View>
-              <Text style={{fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)'}}>very likely</Text>
+              <Text style={{ fontSize: 12, fontWeight: '100', color: 'rgba(0,0,0,0.5)' }}>very likely</Text>
             </View>
           </View>
 
         </View>
-        <View style={[style.textGroup, {width: '100%'}]}>
+        <View style={[style.textGroup, { width: '100%' }]}>
           <View>
             <Button
-              onPress={() => { this.setState({loading: true})
-                this.sendMail(this.state)}}
+              onPress={() => {
+                this.setState({ loading: true })
+                this.sendMail(this.state)
+              }}
               type='solid'
               title='Submit'
               loading={this.state.loading}

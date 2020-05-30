@@ -15,7 +15,7 @@ import {
   Image
 } from 'react-native'
 
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button'
 import CheckBox from '../Components/CheckBox'
 import { Button } from 'react-native-elements'
 import globalStyles from '../Themes/GlobalStyles'
@@ -24,10 +24,10 @@ import DropdownAlert from 'react-native-dropdownalert'
 
 class EditChildScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: () => <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
-  constructor (props) {
+  constructor(props) {
     super(props)
     let child = props.navigation.state.params.childData
     let ckey = props.navigation.state.params.ckey
@@ -42,7 +42,7 @@ class EditChildScreen extends Component {
       profileImage,
       gender,
       allergies
-  } = child
+    } = child
 
     //
     // STATE OBJECT
@@ -56,40 +56,40 @@ class EditChildScreen extends Component {
     this.showAlert = this.showAlert.bind(this)
   }
 
-  handleImageSelector () {
-    this.setState({imageModal: !this.state.imageModal})
+  handleImageSelector() {
+    this.setState({ imageModal: !this.state.imageModal })
   }
 
-  selectImage () {
+  selectImage() {
     // if the user didn't select an image, skip this
     if (!this.state.selectedImage) return
 
     // set the image uri to the profile image and close the modal
-    this.setState({ profileImage: this.state.selectedImage.uri})
+    this.setState({ profileImage: this.state.selectedImage.uri })
     this.handleImageSelector()
   }
 
-  getSelectedImages (images, current) {
-    this.setState({selectedImage: current})
+  getSelectedImages(images, current) {
+    this.setState({ selectedImage: current })
   }
 
   /**
    *
    * @param e
    */
-  handleChange (value, fieldName) {
+  handleChange(value, fieldName) {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
   }
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   }
 
-  checkboxChange (checkbox, checkboxOptions, checked) {
+  checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[ checkboxOptions ]
+    const options = this.state[checkboxOptions]
     let index
 
     // check if the check box is checked or unchecked
@@ -103,7 +103,7 @@ class EditChildScreen extends Component {
     }
   }
 
-  radioButtonChange (value, group) {
+  radioButtonChange(value, group) {
     // current array of options
     const newState = {}
     newState[group] = value
@@ -116,7 +116,7 @@ class EditChildScreen extends Component {
    *
    * @param e
    */
-  submitForm () {
+  submitForm() {
     this.props.attemptEditChild(this.state, this.showAlert, this.props.navigation)
 
     /* const props = this.props
@@ -170,9 +170,9 @@ class EditChildScreen extends Component {
    *
    * @returns {XML}
    */
-  render () {
+  render() {
     const props = this.props
-    let formData = { allergies: [ 'Pollen', 'Asthma', 'Pet', 'Dairy', 'Gluten', 'eggs', 'Other' ] }
+    let formData = { allergies: ['Pollen', 'Asthma', 'Pet', 'Dairy', 'Gluten', 'eggs', 'Other'] }
     const { profileImage } = this.state
     let allergyList = this.state.allergies || ['']
 
@@ -182,7 +182,7 @@ class EditChildScreen extends Component {
         checkboxOutput.push(
           <View>
             <Text style={globalStyles.formSubTitle}>{category}</Text>
-            <View style={[globalStyles.checkboxContainer, {marginBottom: 30}]}>
+            <View style={[globalStyles.checkboxContainer, { marginBottom: 30 }]}>
               {formData[category].map(item => {
                 let checkbox = ''
                 // pre-check any items that were selected and saved
@@ -213,11 +213,11 @@ class EditChildScreen extends Component {
     }
 
     const age_radio_props = [
-      {label: '0-3', value: '03' },
-      {label: '3-6', value: '36' },
-      {label: '6-9', value: '69' },
-      {label: '9-12', value: '912' },
-      {label: '12-15', value: '1215' }
+      { label: '0-3', value: '03' },
+      { label: '3-6', value: '36' },
+      { label: '6-9', value: '69' },
+      { label: '9-12', value: '912' },
+      { label: '12-15', value: '1215' }
     ]
 
     let ageSelected
@@ -230,14 +230,14 @@ class EditChildScreen extends Component {
 
     // set the data structure for the radio buttons
     const radio_props = [
-      {label: 'Male', value: 'male' },
-      {label: 'Female', value: 'female' }
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' }
     ]
     let userGender = this.state.gender
 
     // handle the output of the required image
     let userImage = profileImage !== '../Images/blank-profile-pic.png'
-      ? {uri: profileImage}
+      ? { uri: profileImage }
       : require('../Images/blank-profile-pic.png')
 
     return (
@@ -288,26 +288,26 @@ class EditChildScreen extends Component {
             <RadioForm
               radio_props={radio_props}
               initial={userGender === 'male' ? 0 : 1}
-              style={{padding: 30, marginRight: 10}}
-              buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'gray'}}
+              style={{ padding: 30, marginRight: 10 }}
+              buttonWrapStyle={{ padding: 30, marginRight: 10 }}
+              labelStyle={{ marginRight: 30, color: 'gray' }}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'gender') }}
             />
           </View>
 
-          { outputCheckboxes() }
+          {outputCheckboxes()}
 
           <View>
             <Text style={style.subTitle}>Age Range</Text>
             <RadioForm
               radio_props={age_radio_props}
               initial={ageSelected}
-              style={{marginTop: 5, marginBottom: 5}}
+              style={{ marginTop: 5, marginBottom: 5 }}
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={10}
-              buttonWrapStyle={{padding: 10, marginRight: 10}}
-              labelStyle={{marginRight: 10, color: 'gray', fontSize: 14}}
+              buttonWrapStyle={{ padding: 10, marginRight: 10 }}
+              labelStyle={{ marginRight: 10, color: 'gray', fontSize: 14 }}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'age') }}
             />

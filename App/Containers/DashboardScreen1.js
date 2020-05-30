@@ -7,30 +7,32 @@ import Hero from '../Components/Hero'
 import EventTeaser from '../Components/EventTeaser'
 import Summary from '../Components/Summary'
 import FooterNav from '../Components/FooterNav'
-// Styles
-import styles from './Styles/ViewGuardianScreenStyle'
 
-class ViewGuardianScreen extends Component {
+// Add Actions - replace 'Your' with whatever your reducer is called :)
+// import YourActions from '../Redux/YourRedux'
+
+// Styles
+import styles from './Styles/DashboardScreenStyle'
+
+class DashboardScreen extends Component {
   static navigationOptions = {
-    headerTitle: () => <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
-    />
+    headerTitle: <Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }} />
   };
   render() {
     console.log(this.props)
-    let guardian = this.props.navigation.state.params
     return (
       <Animatable.View style={styles.container} animation='fadeIn'>
         <View >
           <Hero
-            guardian={guardian} nav={this.props.navigation} bVisible={false} />
+            guardian={this.props.guardian} nav={this.props.navigation} bVisible />
         </View>
         <ScrollView>
           <View style={{ flex: 0.3 }}>
-            <Summary guardian={guardian} nav={this.props.navigation} bVisible={false} />
+            <Summary guardian={this.props.guardian} nav={this.props.navigation} bVisible />
           </View>
-          {/* <View style={{paddingBottom: 120}}> */}
-          {/* <EventTeaser guardian={this.props.guardian} events={this.props.events} /> */}
-          {/* </View> */}
+          <View style={{ paddingBottom: 120 }}>
+            <EventTeaser guardian={this.props.guardian} events={this.props.events} nav={this.props.navigation} />
+          </View>
         </ScrollView>
         <FooterNav navigation={this.props.navigation} />
       </Animatable.View>
@@ -40,6 +42,8 @@ class ViewGuardianScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    guardian: state.login.payload,
+    events: state.browsehosts.payload
   }
 }
 
@@ -48,4 +52,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewGuardianScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen)

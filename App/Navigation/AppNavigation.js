@@ -23,11 +23,12 @@ import LoginScreen from '../Containers/LoginScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
 import Reviews from '../Containers/Reviews';
 import FriendReview from '../Containers/FriendReview';
-
+import SplashScreen from '../Containers/SplashScreen';
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  SplashScreen: { screen: SplashScreen },
   ResetPasswordScreen: { screen: ResetPasswordScreen },
   ConversationsScreen: { screen: ConversationsScreen },
   ChatScreen: { screen: ChatScreen },
@@ -48,12 +49,12 @@ const PrimaryNav = createStackNavigator({
   SignUpScreen: { screen: SignUpScreen },
   LoginScreen: { screen: LoginScreen },
   LaunchScreen: { screen: LaunchScreen },
-  Reviews: { screen: Reviews, navigationOptions: { header: null } },
-  FriendReview: { screen: FriendReview, navigationOptions: { header: null } },
+  Reviews: { screen: Reviews, navigationOptions: { headerShown: false } },
+  FriendReview: { screen: FriendReview, navigationOptions: { headerShown: false } },
 }, {
   // Default config for all screens
   headerMode: 'screen',
-  initialRouteName: 'LoginScreen',
+  initialRouteName: 'SplashScreen',
   navigationOptions: {
     headerStyle: styles.header
   }

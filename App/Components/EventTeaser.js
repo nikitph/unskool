@@ -18,7 +18,7 @@ import { Button } from 'react-native-elements'
 import Metrics from '../Themes/Metrics'
 
 export default class EventTeaser extends Component {
-  _renderItem ({item, index}) {
+  _renderItem({ item, index }) {
     const events = this.props.events || [' ']
     let teaserData = item
     console.log(item)
@@ -27,11 +27,11 @@ export default class EventTeaser extends Component {
 
     // handle the output of the image
     let eventImage = profileImage !== '../Images/logo.png'
-      ? {uri: profileImage}
+      ? { uri: profileImage }
       : require('../Images/logo.png')
 
     return (<View style={style.teaserElement} key={teaserData.title}>
-      <TouchableHighlight className='event-image' onPress={() => {}}>
+      <TouchableHighlight className='event-image' onPress={() => { }}>
         <ImageBackground
           source={eventImage}
           resizeMode='cover'
@@ -45,11 +45,11 @@ export default class EventTeaser extends Component {
             colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
             style={[globalStyles.addItem, style.editItem]}
           >
-            <TouchableHighlight onPress={() => {}}>
+            <TouchableHighlight onPress={() => { }}>
               <Image
                 source={require('../Images/edit.png')}
                 resizeMode='cover'
-                style={{width: 40, height: 40}} />
+                style={{ width: 40, height: 40 }} />
             </TouchableHighlight>
           </LinearGradient>
         }
@@ -60,11 +60,11 @@ export default class EventTeaser extends Component {
             colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
             style={[globalStyles.addItem, style.addItem]}
           >
-            <TouchableHighlight onPress={() => {}}>
+            <TouchableHighlight onPress={() => { }}>
               <Image
                 source={require('../Images/plus-sign-white.png')}
                 resizeMode='cover'
-                style={{position: 'relative', top: 2, left: 1, width: 35, height: 30}} />
+                style={{ position: 'relative', top: 2, left: 1, width: 35, height: 30 }} />
             </TouchableHighlight>
           </LinearGradient>
         }
@@ -101,22 +101,22 @@ export default class EventTeaser extends Component {
         </View>
         <View className='time'><Text>{startTime} - {finishTime}</Text></View>
         <Button
-          style={{padding:0}}
+          style={{ padding: 0 }}
           type='clear'
-          onPress={() => this.props.nav.navigate('EditEventScreen', { eventData: item, ekey: item.ekey})}
+          onPress={() => this.props.nav.navigate('EditEventScreen', { eventData: item, ekey: item.ekey })}
           icon={
             <Icon
               name='ios-create'
               size={24}
               color='grey'
-            ><Text style={{fontSize: 16}}>Edit Event</Text></Icon>
+            ><Text style={{ fontSize: 16 }}>Edit Event</Text></Icon>
           }
         />
       </View>
     </View>)
   }
 
-  render () {
+  render() {
     const props = this.props
     console.log(props)
     const events = props.events || [' ']
@@ -139,12 +139,12 @@ export default class EventTeaser extends Component {
     // if the teaserData is undefined, output a fallback element
     if (teaserData[0] === ' ') {
       teaserOutput =
-        <View style={{justifyContent: 'center', width: deviceWidth - 40, height: 50}}>
+        <View style={{ justifyContent: 'center', width: deviceWidth - 40, height: 50 }}>
           <Text>
             Want to host? Add an event here
           </Text>
-          <View style={{top: -6, right: 0}}>
-            <TouchableHighlight onPress={() => {}}>
+          <View style={{ top: -6, right: 0 }}>
+            <TouchableHighlight onPress={() => { }}>
               <LinearGradient
                 colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
                 style={[globalStyles.addItem, style.addItem]}
@@ -152,7 +152,7 @@ export default class EventTeaser extends Component {
                 <Image
                   source={require('../Images/plus-sign-white.png')}
                   resizeMode='cover'
-                  style={{top: 2, left: 1, width: 40, height: 40}} />
+                  style={{ top: 2, left: 1, width: 40, height: 40 }} />
               </LinearGradient>
             </TouchableHighlight>
           </View>
@@ -162,25 +162,25 @@ export default class EventTeaser extends Component {
 
     } else {
       for (let teaser in teaserData) {
-        let data = {ekey: teaser, ...teaserData[teaser]}
+        let data = { ekey: teaser, ...teaserData[teaser] }
         carData.push(data)
       }
     }
 
     // generate teaser based on the data passed to this function
-    function generateTeasers () {
+    function generateTeasers() {
       for (let teaser in teaserData) {
         const { gid, title, profileImage, date, startTime, finishTime } = teaserData[teaser]
         const recurringDays = teaserData[teaser].recurringDays || []
 
         // handle the output of the image
         let eventImage = profileImage !== '../Images/logo.png'
-          ? {uri: profileImage}
+          ? { uri: profileImage }
           : require('../Images/logo.png')
 
         teaserElement =
           <View style={style.teaserElement} key={teaser}>
-            <TouchableHighlight className='event-image' onPress={() => {}}>
+            <TouchableHighlight className='event-image' onPress={() => { }}>
               <Image
                 source={eventImage}
                 resizeMode='cover'
@@ -194,11 +194,11 @@ export default class EventTeaser extends Component {
                   colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
                   style={[globalStyles.addItem, style.editItem]}
                 >
-                  <TouchableHighlight onPress={() => {}}>
+                  <TouchableHighlight onPress={() => { }}>
                     <Image
                       source={require('../Images/edit.png')}
                       resizeMode='cover'
-                      style={{width: 40, height: 40}} />
+                      style={{ width: 40, height: 40 }} />
                   </TouchableHighlight>
                 </LinearGradient>
               }
@@ -209,11 +209,11 @@ export default class EventTeaser extends Component {
                   colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
                   style={[globalStyles.addItem, style.addItem]}
                 >
-                  <TouchableHighlight onPress={() => {}}>
+                  <TouchableHighlight onPress={() => { }}>
                     <Image
                       source={require('../Images/plus-sign-white.png')}
                       resizeMode='cover'
-                      style={{position: 'relative', top: 2, left: 1, width: 35, height: 30}} />
+                      style={{ position: 'relative', top: 2, left: 1, width: 35, height: 30 }} />
                   </TouchableHighlight>
                 </LinearGradient>
               }
@@ -262,8 +262,9 @@ export default class EventTeaser extends Component {
 
     return (
       <View style={style.teaserContainer}>
-        <Text style={{textAlign: 'center', paddingBottom:20}}>My Events</Text>
-
+        <Text style={{ textAlign: 'center', paddingBottom: 20 }}>My Events</Text>
+        {/* <Text style={style.userTitle}>My Events</Text> */}
+        {/* <View style={style.br} /> */}
         <Carousel
           ref={(carousel) => { this._carousel = carousel }}
           data={carData}
@@ -274,7 +275,7 @@ export default class EventTeaser extends Component {
           layout={'default'}
           sliderWidth={deviceWidth - 40} // make the sliderWidth and itemWidth equivalent to make it left align
           itemWidth={deviceWidth - 100} // subtract 40 for item's left and right padding
-         />
+        />
       </View>
     )
   }

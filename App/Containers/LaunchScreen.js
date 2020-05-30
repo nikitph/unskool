@@ -10,9 +10,9 @@ import styles from './Styles/LaunchScreenStyles'
 
 export default class LaunchScreen extends Component {
   static navigationOptions = {
-    header: null
+    headerShown: false
   }
-  render () {
+  render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
@@ -22,14 +22,14 @@ export default class LaunchScreen extends Component {
               Welcome
             </Text>
             <Text style={styles.sectionText}>
-Easily Connect with like-minded families & manage everything homeschool in one place
+              Easily Connect with like-minded families & manage everything homeschool in one place
             </Text>
             <Image source={Images.family} style={styles.family} />
           </View>
-          <View style={{padding: 20}}>
+          <View style={{ padding: 20 }}>
             <View
-              style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-              <View style={{flex: 0.5}}>
+              style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+              <View style={{ flex: 0.5 }}>
                 <Button
                   type='clear'
                   onPress={() => this.props.navigation.navigate('LoginScreen')}
@@ -42,7 +42,7 @@ Easily Connect with like-minded families & manage everything homeschool in one p
                   }
                 />
               </View>
-              <View style={{flex: 0.5}}>
+              <View style={{ flex: 0.5 }}>
 
                 <Button
                   type='clear'
@@ -58,13 +58,13 @@ Easily Connect with like-minded families & manage everything homeschool in one p
               </View>
             </View>
             <View
-              style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-              <View style={{flex: 0.5}}>
+              style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+              <View style={{ flex: 0.5 }}>
                 <Text style={styles.buttonTitle}>
                   LOGIN
                 </Text>
               </View>
-              <View style={{flex: 0.5}}>
+              <View style={{ flex: 0.5 }}>
 
                 <Text style={styles.buttonTitle}>
                   SIGN UP

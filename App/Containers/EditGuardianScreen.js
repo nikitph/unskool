@@ -24,10 +24,10 @@ import PhotoUpload from '../Components/PhotoUpload'
 
 class EditGuardianScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: () => <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   }
-  constructor (props) {
+  constructor(props) {
     super()
 
     const {
@@ -80,23 +80,23 @@ class EditGuardianScreen extends Component {
    * @param e
    */
 
-  handleChange (value, fieldName) {
+  handleChange(value, fieldName) {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
   }
 
-  capitalizeWord (str) {
+  capitalizeWord(str) {
     return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
   }
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   };
 
-  checkboxChange (checkbox, checkboxOptions, checked) {
+  checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[ checkboxOptions ]
+    const options = this.state[checkboxOptions]
     let index
 
     // check if the check box is checked or unchecked
@@ -110,7 +110,7 @@ class EditGuardianScreen extends Component {
     }
   }
 
-  radioButtonChange (value, group) {
+  radioButtonChange(value, group) {
     // current array of options
     let radioButtonGroup = group
     let radio = value
@@ -122,7 +122,7 @@ class EditGuardianScreen extends Component {
     this.setState(newState)
   }
 
-  confirmAddress () {
+  confirmAddress() {
     if (this.state.latlong) {
       this.submitForm()
     } else {
@@ -134,13 +134,13 @@ class EditGuardianScreen extends Component {
    *
    * @param e
    */
-  submitForm () {
+  submitForm() {
     this.props.attemptEditGuardian(this.state, this.showAlert, this.props.navigation)
     // Send welcome email
     // this.sendWelcomeMail(data)
   }
 
-  getEmailBody (data) {
+  getEmailBody(data) {
     return 'Hi ' + data.displayName +
       '\n Welcome to My Community Classroom!' +
       '\n Thank you for taking the time to register to be a part of a new growing educational community.' +
@@ -162,10 +162,10 @@ class EditGuardianScreen extends Component {
    *
    * @returns {XML}
    */
-  render () {
+  render() {
     let formData = {
-      specialties: [ 'running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other' ],
-      languages_spoken: [ 'english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali' ]
+      specialties: ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other'],
+      languages_spoken: ['english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali']
     }
 
     const outputCheckboxes = () => {
@@ -204,15 +204,15 @@ class EditGuardianScreen extends Component {
 
     // set the data structure for the radio buttons
     const radio_props = [
-      {label: 'Male', value: 'male' },
-      {label: 'Female', value: 'female' }
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' }
     ]
     let userGender = this.state.gender
     // <BackButton path="/welcome-search" />
 
     return (
       <ScrollView>
-        <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <View className='image-uploader'>
             <View style={globalStyles.formImageContainer}>
               <PhotoUpload
@@ -249,7 +249,7 @@ class EditGuardianScreen extends Component {
           />
 
           <TextInput
-            style={[globalStyles.textInput, {height: 90}]}
+            style={[globalStyles.textInput, { height: 90 }]}
             multiline
             numberOfLines={6}
             placeholderTextColor='rgba(0, 0, 0, 0.5)'
@@ -304,14 +304,17 @@ class EditGuardianScreen extends Component {
               placeholderTextColor='white'
               getDefaultValue={() => ''}
               enablePoweredByContainer={false}
-              styles={{ textInput: { minHeight: 40,
-                borderRadius: 3,
-                fontSize: 12,
-                padding: 10,
-                marginTop: 4,
-                marginBottom: 4,
-                color: 'white',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)'},
+              styles={{
+                textInput: {
+                  minHeight: 40,
+                  borderRadius: 3,
+                  fontSize: 12,
+                  padding: 10,
+                  marginTop: 4,
+                  marginBottom: 4,
+                  color: 'white',
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)'
+                },
                 textInputContainer: {
                   backgroundColor: 'rgba(0,0,0,0)',
                   borderTopWidth: 0,
@@ -378,7 +381,7 @@ class EditGuardianScreen extends Component {
             </View>
           </View>
 
-          { outputCheckboxes() }
+          {outputCheckboxes()}
 
           {/* <PrivacyForm globalStyle={globalStyles} onChange={this.radioButtonChange} privacy={this.state.privacy} */}
           {/* title={'Default Event Privacy'}/> */}

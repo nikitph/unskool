@@ -4,7 +4,7 @@ const summary = {}
 
 summary.container = {
   backgroundColor: 'white',
-  height: 220
+  // height: 220
 }
 
 summary.raitingsAndComments = {
@@ -45,10 +45,10 @@ summary.summaryBodyCopy = {
 }
 
 summary.tagItem = {
-  backgroundColor: styleVariables.mc2LightBlue,
+  backgroundColor: styleVariables.mc2medGray,
   height: 25,
   padding: 5,
-  margin: 3
+  margin: 5,
 }
 
 summary.ellipsis = {
@@ -66,7 +66,7 @@ summary.tagItemCopy = {
   fontWeight: '500'
 }
 
-summary.modal= {
+summary.modal = {
   justifyContent: 'center',
   alignItems: 'center',
   height: 300
