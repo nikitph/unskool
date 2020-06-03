@@ -16,7 +16,7 @@ import * as Animatable from 'react-native-animatable'
 
 class TutorialScreen extends Component {
   static navigationOptions = {
-    header: null
+    headerShown: false
   }
   _renderDotIndicator() {
     return <PagerDotIndicator pageCount={5}

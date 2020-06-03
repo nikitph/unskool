@@ -16,6 +16,7 @@ const ReduxAppNavigator = createReduxContainer(AppNavigation, 'root')
 
 class ReduxNavigation extends React.Component {
   componentDidMount() {
+    console.log("==============user", this.props.user)
     if (Platform.OS === 'ios') return
     BackHandler.addEventListener('hardwareBackPress', () => {
       const { dispatch, nav } = this.props
@@ -40,6 +41,7 @@ class ReduxNavigation extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  nav: state.nav
+  nav: state.nav,
+  user: state.login
 })
 export default connect(mapStateToProps)(ReduxNavigation)

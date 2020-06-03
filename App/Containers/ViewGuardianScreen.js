@@ -12,10 +12,10 @@ import styles from './Styles/ViewGuardianScreenStyle'
 
 class ViewGuardianScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: () => <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
-  render () {
+  render() {
     console.log(this.props)
     let guardian = this.props.navigation.state.params
     return (
@@ -25,7 +25,7 @@ class ViewGuardianScreen extends Component {
             guardian={guardian} nav={this.props.navigation} bVisible={false} />
         </View>
         <ScrollView>
-          <View style={{flex: 0.3}}>
+          <View style={{ flex: 0.3 }}>
             <Summary guardian={guardian} nav={this.props.navigation} bVisible={false} />
           </View>
           {/* <View style={{paddingBottom: 120}}> */}

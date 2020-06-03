@@ -1,3 +1,4 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import ResetPasswordScreen from '../Containers/ResetPasswordScreen'
@@ -20,11 +21,14 @@ import DashboardScreen from '../Containers/DashboardScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
-
+import Reviews from '../Containers/Reviews';
+import FriendReview from '../Containers/FriendReview';
+import SplashScreen from '../Containers/SplashScreen';
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  SplashScreen: { screen: SplashScreen },
   ResetPasswordScreen: { screen: ResetPasswordScreen },
   ConversationsScreen: { screen: ConversationsScreen },
   ChatScreen: { screen: ChatScreen },
@@ -44,11 +48,13 @@ const PrimaryNav = createStackNavigator({
   FeedbackScreen: { screen: FeedbackScreen },
   SignUpScreen: { screen: SignUpScreen },
   LoginScreen: { screen: LoginScreen },
-  LaunchScreen: { screen: LaunchScreen }
+  LaunchScreen: { screen: LaunchScreen },
+  Reviews: { screen: Reviews, navigationOptions: { headerShown: false } },
+  FriendReview: { screen: FriendReview, navigationOptions: { headerShown: false } },
 }, {
   // Default config for all screens
   headerMode: 'screen',
-  initialRouteName: 'LaunchScreen',
+  initialRouteName: 'SplashScreen',
   navigationOptions: {
     headerStyle: styles.header
   }

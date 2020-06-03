@@ -21,7 +21,7 @@ import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable'
 import EditEventActions from '../Redux/EditEventRedux'
 import DeleteEventActions from '../Redux/DeleteEventRedux'
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button'
 
 import { generateCalendarDates } from '../Services/DateGenerator'
 // import actions from '../../redux/actions';
@@ -42,10 +42,10 @@ const yesterday = `${today.slice(0, 8)}${priorDay}`
 
 class EditEventScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Image source={Images.launch} style={{width: 40, height: 40}}
+    headerTitle: () => <Image source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     let event = props.navigation.state.params.eventData
@@ -78,7 +78,7 @@ class EditEventScreen extends Component {
       sponsored
     } = event
 
-    this.state = {ekey, ...event}
+    this.state = { ekey, ...event }
 
     // FILE UPLOAD
     // this.storageRef = storage.ref(`event-images/${props.auth.uid}`);
@@ -91,23 +91,23 @@ class EditEventScreen extends Component {
     this.showAlert = this.showAlert.bind(this)
   }
 
-  handleImageSelector () {
-    this.setState({imageModal: !this.state.imageModal})
+  handleImageSelector() {
+    this.setState({ imageModal: !this.state.imageModal })
   }
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   }
 
-  getSelectedImages (images, current) {
-    this.setState({selectedImage: current})
+  getSelectedImages(images, current) {
+    this.setState({ selectedImage: current })
   }
 
   /**
    *
    * @param e
    */
-  handleChange (value, fieldName) {
+  handleChange(value, fieldName) {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
@@ -116,7 +116,7 @@ class EditEventScreen extends Component {
   // HANDLE THE SEATS AVAILABLE
   //
   //
-  handleSeatsAvailable (option) {
+  handleSeatsAvailable(option) {
     // get the current seats available
     let currentSeats = this.state.seatsAvailable
 
@@ -126,12 +126,12 @@ class EditEventScreen extends Component {
 
     if (currentSeats < 0) currentSeats = 0
 
-    this.setState({seatsAvailable: currentSeats})
+    this.setState({ seatsAvailable: currentSeats })
   }
 
-  checkboxChange (checkbox, checkboxOptions, checked) {
+  checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[ checkboxOptions ]
+    const options = this.state[checkboxOptions]
     let index
 
     // check if the check box is checked or unchecked
@@ -145,7 +145,7 @@ class EditEventScreen extends Component {
     }
   }
 
-  radioButtonChange (value, group) {
+  radioButtonChange(value, group) {
     // current array of options
     let radioButtonGroup = group
     let radio = value
@@ -161,8 +161,8 @@ class EditEventScreen extends Component {
    *
    * @param e
    */
-  submitForm () {
-    const newEvent = {...this.state}
+  submitForm() {
+    const newEvent = { ...this.state }
 
     const {
       formattedStartDate,
@@ -218,18 +218,18 @@ class EditEventScreen extends Component {
     this.props.attemptEditEvent(newEvent, this.showAlert, this.props.navigation)
   }
 
-  deleteEvent () {
-    this.props.attemptDeleteEvent({ekey: this.state.ekey, gid: this.state.gid}, this.showAlert, this.props.navigation)
+  deleteEvent() {
+    this.props.attemptDeleteEvent({ ekey: this.state.ekey, gid: this.state.gid }, this.showAlert, this.props.navigation)
   }
 
-    /**
-   *
-   * @returns {XML}
-   */
-  render () {
+  /**
+ *
+ * @returns {XML}
+ */
+  render() {
     const { profileImage } = this.state
     let formData = {
-      'ageRange': [ '0-3', '3-6', '6-9', '9-12', '12-15' ]
+      'ageRange': ['0-3', '3-6', '6-9', '9-12', '12-15']
     }
 
     const outputCheckboxes = () => {
@@ -238,7 +238,7 @@ class EditEventScreen extends Component {
         checkboxOutput.push(
           <View>
             <Text style={globalStyles.formSubTitle}>{category}</Text>
-            <View style={[globalStyles.checkboxContainer, {marginBottom: 30}]}>
+            <View style={[globalStyles.checkboxContainer, { marginBottom: 30 }]}>
               {formData[category].map(item => {
                 let checkbox = ''
                 // pre-check any items that were selected and saved
@@ -284,21 +284,21 @@ class EditEventScreen extends Component {
       }
     })
 
-      // set the data structure for the event type radio buttons group
-      const event_type_radio_props = [
-        {label: 'inperson', value: 'inperson'},
-        {label: 'online', value: 'online'},
-        {label: 'virtual', value: 'virtual'}
-      ]
+    // set the data structure for the event type radio buttons group
+    const event_type_radio_props = [
+      { label: 'inperson', value: 'inperson' },
+      { label: 'online', value: 'online' },
+      { label: 'virtual', value: 'virtual' }
+    ]
 
-      // needed to ensure radio doesnt reset on privacy change
-      let eventTypeSelected
-      event_type_radio_props.map((option, i) => {
-        // if there's a match, return the index of the matching item
-        if (this.state.eventType === option.value) {
-          eventTypeSelected = i
-        }
-      })
+    // needed to ensure radio doesnt reset on privacy change
+    let eventTypeSelected
+    event_type_radio_props.map((option, i) => {
+      // if there's a match, return the index of the matching item
+      if (this.state.eventType === option.value) {
+        eventTypeSelected = i
+      }
+    })
 
     // set the data structure for the recurringDays checkbox group
     const recurringDays_checkbox_props = [
@@ -313,12 +313,12 @@ class EditEventScreen extends Component {
 
     // handle the output of the required image
     let eventImage = profileImage !== '../Images/blank-profile-pic.png'
-      ? {uri: profileImage}
+      ? { uri: profileImage }
       : require('../Images/blank-profile-pic.png')
 
     return (
       <ScrollView style={style.container}>
-        <Text style={[globalStyles.title, {color: 'white', textAlign: 'center'}]}> Add an Event! </Text>
+        <Text style={[globalStyles.title, { color: 'white', textAlign: 'center' }]}> Add an Event! </Text>
         <View className='image-uploader'>
           <View style={globalStyles.formImageContainer}>
             <PhotoUpload
@@ -344,7 +344,7 @@ class EditEventScreen extends Component {
           </View>
         </View>
 
-        <View style={{paddingBottom: 140}}>
+        <View style={{ paddingBottom: 140 }}>
           <TextInput
             style={globalStyles.textInput}
             placeholder='Event Title'
@@ -354,7 +354,7 @@ class EditEventScreen extends Component {
           />
 
           <TextInput
-            style={[globalStyles.textInput, {height: 90}]}
+            style={[globalStyles.textInput, { height: 90 }]}
             multiline
             numberOfLines={6}
             placeholder='Summary of the event'
@@ -363,7 +363,7 @@ class EditEventScreen extends Component {
             onChangeText={(value) => this.handleChange(value, 'summary')}
           />
 
-          <Text style={[style.subTitle, {textAlign: 'center'}]}>Seats Available</Text>
+          <Text style={[style.subTitle, { textAlign: 'center' }]}>Seats Available</Text>
           <View style={style.seatsAvailableContainer}>
             <View style={style.seatsAvailableControls}>
               <TouchableHighlight onPress={() => this.handleSeatsAvailable('minus')}>
@@ -386,7 +386,7 @@ class EditEventScreen extends Component {
                 />
               </TouchableHighlight>
             </View>
-            <View style={style.seatCount}><Text style={style.seatCountCopy}>{ this.state.seatsAvailable }</Text></View>
+            <View style={style.seatCount}><Text style={style.seatCountCopy}>{this.state.seatsAvailable}</Text></View>
           </View>
 
           <Text style={style.subTitle}> Start Date </Text>
@@ -442,7 +442,7 @@ class EditEventScreen extends Component {
           />
 
           <Text style={style.subTitle}>Repeats</Text>
-          <View style={[globalStyles.radioButtonContainer, {marginTop: 5}]}>
+          <View style={[globalStyles.radioButtonContainer, { marginTop: 5 }]}>
             {
               /* custom checkbox output for the event form. This doesn't exist in the formData */
               recurringDays_checkbox_props.map((item) => {
@@ -463,17 +463,17 @@ class EditEventScreen extends Component {
             <RadioForm
               radio_props={frequency_radio_props}
               initial={frequencySelected}
-              style={{marginTop: 5, marginBottom: 5}}
+              style={{ marginTop: 5, marginBottom: 5 }}
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={30}
-              buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
+              buttonWrapStyle={{ padding: 30, marginRight: 10 }}
+              labelStyle={{ marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15 }}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'frequency') }}
             />
           </View>
-          <View style={[globalStyles.radioButtonContainer, {marginBottom: 30}]}>
-            { outputCheckboxes() }
+          <View style={[globalStyles.radioButtonContainer, { marginBottom: 30 }]}>
+            {outputCheckboxes()}
           </View>
 
           <View>
@@ -481,11 +481,11 @@ class EditEventScreen extends Component {
             <RadioForm
               radio_props={event_type_radio_props}
               initial={eventTypeSelected}
-              style={{marginTop: 5, marginBottom: 5}}
+              style={{ marginTop: 5, marginBottom: 5 }}
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={30}
-              buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
+              buttonWrapStyle={{ padding: 30, marginRight: 10 }}
+              labelStyle={{ marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15 }}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'eventType') }}
             />
@@ -507,11 +507,11 @@ class EditEventScreen extends Component {
             title='Update Event'
             loading={this.props.fetching}
           />
-          <View style={{margin: 7}} />
+          <View style={{ margin: 7 }} />
           <Button
             onPress={() => { this.deleteEvent() }}
             type='solid'
-            buttonStyle={{backgroundColor: 'red'}}
+            buttonStyle={{ backgroundColor: 'red' }}
             title='Delete Event'
             loading={this.props.deleting}
           />

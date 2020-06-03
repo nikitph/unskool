@@ -13,12 +13,12 @@ import styles from './Styles/SignUpScreenStyle'
 
 class SignUpScreen extends Component {
   static navigationOptions = {
-    header: null
+    headerShown: false
   };
 
   props: SignUpScreenProps;
 
-  constructor (props: SignUpScreenProps) {
+  constructor(props: SignUpScreenProps) {
     super(props)
     this.showAlert = this.showAlert.bind(this)
 
@@ -36,48 +36,48 @@ class SignUpScreen extends Component {
   }
 
   handlePressSignUp = (state) => {
-    const {email, password, confirmPassword} = state
+    const { email, password, confirmPassword } = state
     if (password === confirmPassword) {
-      this.setState({passwordMismatch: false})
+      this.setState({ passwordMismatch: false })
       this.props.attemptSignUp(email, password, this.showAlert, this.props.navigation)
     } else {
-      this.setState({passwordMismatch: true})
+      this.setState({ passwordMismatch: true })
     }
   };
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   };
 
-  render () {
+  render() {
     const props = this.props
 
     return (
-      <View style={{flex: 1}}>
-        <View style={{flex: 0.3, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
           <Animatable.Image animation='rotate' duration={9000} iterationCount='infinite' source={Images.launch} style={styles.logo} />
         </View>
         <View
-          style={{flex: 0.4, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
-          <View style={{flexDirection: 'column', flex: 1}}>
-            <View style={{flex: 0.1}}>
+          style={{ flex: 0.4, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'column', flex: 1 }}>
+            <View style={{ flex: 0.1 }}>
               <Text style={styles.header}> Sign Up </Text>
             </View>
-            <View style={{flex: 0.7, flexDirection: 'row'}}>
-              <View style={{flex: 0.1, justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{ flex: 0.7, flexDirection: 'row' }}>
+              <View style={{ flex: 0.1, justifyContent: 'center', alignItems: 'center' }}>
                 <Icon name='ios-arrow-back' size={50} color='#900'
                   onPress={() => props.navigation.navigate('LaunchScreen')}
-                  />
+                />
               </View>
-              <View style={{flex: 0.9}}>
+              <View style={{ flex: 0.9 }}>
                 <View style={styles.container}>
                   <View style={styles.form}>
                     <View style={styles.row}>
-                      <View style={{flex: 0.1}}>
+                      <View style={{ flex: 0.1 }}>
                         <Icon name='ios-mail' size={24} color='rgba(0,0,0,0.5)'
-                          />
+                        />
                       </View>
-                      <View style={{flex: 0.9}}>
+                      <View style={{ flex: 0.9 }}>
 
                         <TextInput
                           value={this.state.email}
@@ -85,22 +85,22 @@ class SignUpScreen extends Component {
                           returnKeyType='next'
                           autoCapitalize='none'
                           autoCorrect={false}
-                          style={{fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200'}}
+                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
                           underlineColorAndroid='transparent'
                           placeholder={'Email Address'}
-                          onChangeText={(email) => this.setState({email})}
+                          onChangeText={(email) => this.setState({ email })}
                           onSubmitEditing={() => this.refs.password.focus()}
-                          />
+                        />
                       </View>
 
                     </View>
 
                     <View style={styles.row}>
-                      <View style={{flex: 0.1}}>
+                      <View style={{ flex: 0.1 }}>
                         <Icon name='ios-key' size={24} color='rgba(0,0,0,0.5)'
-                          />
+                        />
                       </View>
-                      <View style={{flex: 0.9}}>
+                      <View style={{ flex: 0.9 }}>
 
                         <TextInput
                           ref='password'
@@ -109,21 +109,21 @@ class SignUpScreen extends Component {
                           returnKeyType='go'
                           autoCapitalize='none'
                           autoCorrect={false}
-                          style={{fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200'}}
+                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
                           secureTextEntry
                           underlineColorAndroid='transparent'
                           placeholder={'Password'}
-                          onChangeText={(password) => this.setState({password})}
-                          />
+                          onChangeText={(password) => this.setState({ password })}
+                        />
                       </View>
                     </View>
 
                     <View style={styles.row}>
-                      <View style={{flex: 0.1}}>
+                      <View style={{ flex: 0.1 }}>
                         <Icon name='ios-key' size={24} color='rgba(0,0,0,0.5)'
-                          />
+                        />
                       </View>
-                      <View style={{flex: 0.9}}>
+                      <View style={{ flex: 0.9 }}>
                         <TextInput
                           ref='password'
                           value={this.state.confirmPassword}
@@ -131,23 +131,23 @@ class SignUpScreen extends Component {
                           returnKeyType='go'
                           autoCapitalize='none'
                           autoCorrect={false}
-                          style={{fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200'}}
+                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
                           secureTextEntry
                           underlineColorAndroid='transparent'
                           placeholder={'Confirm Password'}
-                          onChangeText={(confirmPassword) => this.setState({confirmPassword})}
-                          />
+                          onChangeText={(confirmPassword) => this.setState({ confirmPassword })}
+                        />
                       </View>
                     </View>
                   </View>
 
-                  {this.state.passwordMismatch && this.showAlert('error', 'Error', 'The passwords do not match') }
+                  {this.state.passwordMismatch && this.showAlert('error', 'Error', 'The passwords do not match')}
 
                 </View>
 
               </View>
             </View>
-            <View style={{flex: 0.2}}>
+            <View style={{ flex: 0.2 }}>
               <Button
                 onPress={() => { this.handlePressSignUp(this.state) }}
                 type='solid'

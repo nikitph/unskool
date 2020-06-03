@@ -25,7 +25,9 @@ const images = {
   tut1: require('../Images/intro-tut-card-1.png'),
   tut2: require('../Images/intro-tut-card-2.png'),
   tut3: require('../Images/intro-tut-card-3.png'),
-  tut4: require('../Images/intro-tut-card-4.png')
+  tut4: require('../Images/intro-tut-card-4.png'),
+  child: require('../Images/child.jpeg'),
+  more: require('../Images/more.png'),
 
 }
 

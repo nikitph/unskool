@@ -24,10 +24,10 @@ import * as Animatable from 'react-native-animatable'
 
 class BrowseHostsScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: () => <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
-  render () {
+  render() {
     const props = this.props
     const deviceWidth = Metrics.screenWidth
     const eventData = this.props.events || [' ']
@@ -68,9 +68,9 @@ class BrowseHostsScreen extends Component {
 
         if (image === '../Images/logo.png' || image === '') {
           eventImage = require('../Images/logo.png')
-          imageStyle = {width: 150, height: 150}
+          imageStyle = { width: 150, height: 150 }
         } else {
-          eventImage = {uri: image, cache: 'force-cache'}
+          eventImage = { uri: image, cache: 'force-cache' }
           imageStyle = style.teaserImage
         }
 
@@ -146,7 +146,7 @@ class BrowseHostsScreen extends Component {
               {teaserOutput}
             </Carousel>
           </View>
-          )
+        )
           : hostEventsOutput.push(
             <View className='event-container' key={`${teaserGroup}`}>
               <Link
@@ -165,7 +165,7 @@ class BrowseHostsScreen extends Component {
                 inactiveSlideOpacity={0.7}
                 layout={'stack'} layoutCardOffset={40}
                 autoplay
-               />
+              />
             </View>
           )
       }
@@ -180,28 +180,30 @@ class BrowseHostsScreen extends Component {
     //
     return (
       <ScrollView style={style.container}>
-        { hostEventsOutput.length > 0 ? hostEventsOutput : <View style={{marginTop: 50,
+        {hostEventsOutput.length > 0 ? hostEventsOutput : <View style={{
+          marginTop: 50,
           justifyContent: 'center',
           alignItems: 'center',
-          flexDirection: 'column'}}>
-          <Text style={{color: 'black', fontFamily: 'AvenirNext-UltraLight', fontSize: 16, alignSelf: 'center'}}>
+          flexDirection: 'column'
+        }}>
+          <Text style={{ color: 'black', fontFamily: 'AvenirNext-UltraLight', fontSize: 16, alignSelf: 'center' }}>
             No Hosts currently in your area,</Text>
           <Link
-            textStyles={{color: 'blue', fontFamily: 'AvenirNext-UltraLight', fontSize: 16}}
-            text='click here' /><Text style={{color: 'black', fontFamily: 'AvenirNext-UltraLight', fontSize: 16, textAlign: 'center'}}>
-          to share the app to potential hosts to build our community in your area!</Text>
-        </View> }
+            textStyles={{ color: 'blue', fontFamily: 'AvenirNext-UltraLight', fontSize: 16 }}
+            text='click here' /><Text style={{ color: 'black', fontFamily: 'AvenirNext-UltraLight', fontSize: 16, textAlign: 'center' }}>
+            to share the app to potential hosts to build our community in your area!</Text>
+        </View>}
         <OrientationLoadingOverlay
           visible={this.props.fetching}
           color='white'
           indicatorSize='large'
           messageFontSize={24}
           message='Loading Guardian'
-         />
+        />
       </ScrollView>
     )
   }
-  _renderItem ({item, index}) {
+  _renderItem({ item, index }) {
     let teaserData = item
     const recurringDays = teaserData.recurringDays || []
     const { hostName, title, image, startTime, finishTime, gid, latlong = { lat: 90.000, lng: 0.000 }, sponsored = false } = teaserData
@@ -221,14 +223,14 @@ class BrowseHostsScreen extends Component {
 
     if (image === '../Images/logo.png' || image === '' || image === '') {
       eventImage = require('../Images/logo.png')
-      imageStyle = {width: 150, height: 150}
+      imageStyle = { width: 150, height: 150 }
     } else {
-      eventImage = {uri: image, cache: 'web'}
+      eventImage = { uri: image, cache: 'web' }
       imageStyle = style.teaserImage
     }
 
     return (<View style={style.teaserContainer} id={eventHostName} key={eventHostName}>
-      <TouchableHighlight onPress={() => this.props.navigation.navigate('ViewEventScreen', {item})}
+      <TouchableHighlight onPress={() => this.props.navigation.navigate('ViewEventScreen', { item })}
       >
         <FastImage
           source={eventImage}

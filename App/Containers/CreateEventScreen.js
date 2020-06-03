@@ -21,7 +21,7 @@ import globalStyles from '../Themes/GlobalStyles'
 import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable'
 import CreateEventActions from '../Redux/CreateEventRedux'
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button'
 
 import { generateCalendarDates } from '../Services/DateGenerator'
 // import actions from '../../redux/actions';
@@ -43,10 +43,10 @@ const yesterday = `${today.slice(0, 8)}${priorDay}`
 
 class CreateEventScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Image source={Images.launch} style={{width: 40, height: 40}}
+    headerTitle: () => <Image source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     //
@@ -89,32 +89,32 @@ class CreateEventScreen extends Component {
     this.showAlert = this.showAlert.bind(this)
   }
 
-  handleImageSelector () {
-    this.setState({imageModal: !this.state.imageModal})
+  handleImageSelector() {
+    this.setState({ imageModal: !this.state.imageModal })
   }
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   }
 
-  selectImage () {
+  selectImage() {
     // if the user didn't select an image, skip this
     if (!this.state.selectedImage) return
 
     // set the image uri to the profile image and close the modal
-    this.setState({profileImage: this.state.selectedImage.uri})
+    this.setState({ profileImage: this.state.selectedImage.uri })
     this.handleImageSelector()
   }
 
-  getSelectedImages (images, current) {
-    this.setState({selectedImage: current})
+  getSelectedImages(images, current) {
+    this.setState({ selectedImage: current })
   }
 
   /**
    *
    * @param e
    */
-  handleChange (value, fieldName) {
+  handleChange(value, fieldName) {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
@@ -123,7 +123,7 @@ class CreateEventScreen extends Component {
   // HANDLE THE SEATS AVAILABLE
   //
   //
-  handleSeatsAvailable (option) {
+  handleSeatsAvailable(option) {
     // get the current seats available
     let currentSeats = this.state.seatsAvailable
 
@@ -133,12 +133,12 @@ class CreateEventScreen extends Component {
 
     if (currentSeats < 0) currentSeats = 0
 
-    this.setState({seatsAvailable: currentSeats})
+    this.setState({ seatsAvailable: currentSeats })
   }
 
-  checkboxChange (checkbox, checkboxOptions, checked) {
+  checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[ checkboxOptions ]
+    const options = this.state[checkboxOptions]
     let index
 
     // check if the check box is checked or unchecked
@@ -152,7 +152,7 @@ class CreateEventScreen extends Component {
     }
   }
 
-  radioButtonChange (value, group) {
+  radioButtonChange(value, group) {
     // current array of options
     let radioButtonGroup = group
     let radio = value
@@ -168,8 +168,8 @@ class CreateEventScreen extends Component {
    *
    * @param e
    */
-  submitForm () {
-    const newEvent = {...this.state}
+  submitForm() {
+    const newEvent = { ...this.state }
 
     const {
       formattedStartDate,
@@ -229,33 +229,35 @@ class CreateEventScreen extends Component {
    *
    * @returns {XML}
    */
-  render () {
+  render() {
     const { profileImage } = this.state
     let formData = {
-      'ageRange': [ '0-3', '3-6', '6-9', '9-12', '12-15' ]
+      'ageRange': ['0-3', '3-6', '6-9', '9-12', '12-15']
     }
 
     const outputCheckboxes = () => {
       let checkboxOutput = []
       for (var category in formData) {
-        { formData[category].map(item => {
-          checkboxOutput.push(
-            <CheckBox
-              label={item}
-              key={item}
-              onChange={(checked) => this.checkboxChange(item, category, checked)}
-            />
-          )
-        }) }
+        {
+          formData[category].map(item => {
+            checkboxOutput.push(
+              <CheckBox
+                label={item}
+                key={item}
+                onChange={(checked) => this.checkboxChange(item, category, checked)}
+              />
+            )
+          })
+        }
       }
       return checkboxOutput
     }
 
     // set the data structure for the frequency radio buttons group
     const frequency_radio_props = [
-      {label: 'none', value: 'none' },
-      {label: 'weekly', value: 'weekly' },
-      {label: 'monthly', value: 'monthly' }
+      { label: 'none', value: 'none' },
+      { label: 'weekly', value: 'weekly' },
+      { label: 'monthly', value: 'monthly' }
     ]
 
     // needed to ensure radio doesnt reset on privacy change
@@ -269,9 +271,9 @@ class CreateEventScreen extends Component {
 
     // set the data structure for the event type radio buttons group
     const event_type_radio_props = [
-      {label: 'inperson', value: 'inperson'},
-      {label: 'online', value: 'online'},
-      {label: 'virtual', value: 'virtual'}
+      { label: 'inperson', value: 'inperson' },
+      { label: 'online', value: 'online' },
+      { label: 'virtual', value: 'virtual' }
     ]
 
     // needed to ensure radio doesnt reset on privacy change
@@ -285,23 +287,23 @@ class CreateEventScreen extends Component {
 
     // set the data structure for the recurringDays checkbox group
     const recurringDays_checkbox_props = [
-      {label: 'Mon', value: 'M' },
-      {label: 'Tue', value: 'T' },
-      {label: 'Wed', value: 'W' },
-      {label: 'Thu', value: 'Th' },
-      {label: 'Fri', value: 'F' },
-      {label: 'Sat', value: 'S' },
-      {label: 'Sun', value: 'Su' }
+      { label: 'Mon', value: 'M' },
+      { label: 'Tue', value: 'T' },
+      { label: 'Wed', value: 'W' },
+      { label: 'Thu', value: 'Th' },
+      { label: 'Fri', value: 'F' },
+      { label: 'Sat', value: 'S' },
+      { label: 'Sun', value: 'Su' }
     ]
 
     // handle the output of the required image
     let eventImage = profileImage !== '../Images/blank-profile-pic.png'
-      ? {uri: profileImage}
+      ? { uri: profileImage }
       : require('../Images/blank-profile-pic.png')
 
     return (
       <ScrollView style={style.container}>
-        <Text style={[globalStyles.title, {color: 'white', textAlign: 'center'}]}> Add an Event! </Text>
+        <Text style={[globalStyles.title, { color: 'white', textAlign: 'center' }]}> Add an Event! </Text>
         <View className='image-uploader'>
           <View style={globalStyles.formImageContainer}>
             <PhotoUpload
@@ -320,7 +322,7 @@ class CreateEventScreen extends Component {
                   borderRadius: 50
                 }}
                 resizeMode='cover'
-                source={require('../Images/blank-profile-pic.png')}/>
+                source={require('../Images/blank-profile-pic.png')} />
             </PhotoUpload>
           </View>
           <View className='image-uploader--identification'>
@@ -332,7 +334,7 @@ class CreateEventScreen extends Component {
           </View>
         </View>
 
-        <View style={{paddingBottom: 140}}>
+        <View style={{ paddingBottom: 140 }}>
           <TextInput
             style={globalStyles.textInput}
             placeholder='Event Title'
@@ -341,7 +343,7 @@ class CreateEventScreen extends Component {
           />
 
           <TextInput
-            style={[globalStyles.textInput, {height: 90}]}
+            style={[globalStyles.textInput, { height: 90 }]}
             multiline
             numberOfLines={6}
             placeholder='Summary of the event'
@@ -349,7 +351,7 @@ class CreateEventScreen extends Component {
             onChangeText={(value) => this.handleChange(value, 'summary')}
           />
 
-          <Text style={[style.subTitle, {textAlign: 'center'}]}>Seats Available</Text>
+          <Text style={[style.subTitle, { textAlign: 'center' }]}>Seats Available</Text>
           <View style={style.seatsAvailableContainer}>
             <View style={style.seatsAvailableControls}>
               <TouchableHighlight onPress={() => this.handleSeatsAvailable('minus')}>
@@ -372,7 +374,7 @@ class CreateEventScreen extends Component {
                 />
               </TouchableHighlight>
             </View>
-            <View style={style.seatCount}><Text style={style.seatCountCopy}>{ this.state.seatsAvailable }</Text></View>
+            <View style={style.seatCount}><Text style={style.seatCountCopy}>{this.state.seatsAvailable}</Text></View>
           </View>
 
           <Text style={style.subTitle}> Start Date </Text>
@@ -428,7 +430,7 @@ class CreateEventScreen extends Component {
           />
 
           <Text style={style.subTitle}>Repeats</Text>
-          <View style={[globalStyles.radioButtonContainer, {marginTop: 5}]}>
+          <View style={[globalStyles.radioButtonContainer, { marginTop: 5 }]}>
             {
               /* custom checkbox output for the event form. This doesn't exist in the formData */
               recurringDays_checkbox_props.map((item) => {
@@ -449,11 +451,11 @@ class CreateEventScreen extends Component {
             <RadioForm
               radio_props={frequency_radio_props}
               initial={frequencySelected}
-              style={{marginTop: 5, marginBottom: 5}}
+              style={{ marginTop: 5, marginBottom: 5 }}
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={30}
-              buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
+              buttonWrapStyle={{ padding: 30, marginRight: 10 }}
+              labelStyle={{ marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15 }}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'frequency') }}
             />
@@ -466,8 +468,8 @@ class CreateEventScreen extends Component {
             color: 'rgba(0,0,0,.5)'
           }}>Age Range</Text>
 
-          <View style={[globalStyles.radioButtonContainer, {marginBottom: 30}]}>
-            { outputCheckboxes() }
+          <View style={[globalStyles.radioButtonContainer, { marginBottom: 30 }]}>
+            {outputCheckboxes()}
           </View>
 
           <View>
@@ -475,11 +477,11 @@ class CreateEventScreen extends Component {
             <RadioForm
               radio_props={event_type_radio_props}
               initial={eventTypeSelected}
-              style={{marginTop: 5, marginBottom: 5}}
+              style={{ marginTop: 5, marginBottom: 5 }}
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={30}
-              buttonWrapStyle={{padding: 30, marginRight: 10}}
-              labelStyle={{marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15}}
+              buttonWrapStyle={{ padding: 30, marginRight: 10 }}
+              labelStyle={{ marginRight: 30, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15 }}
               formHorizontal
               onPress={(value) => { this.radioButtonChange(value, 'eventType') }}
             />

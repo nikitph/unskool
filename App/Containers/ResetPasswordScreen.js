@@ -14,10 +14,10 @@ import styles from './Styles/ResetPasswordScreenStyle'
 
 class ResetPasswordScreen extends Component {
   static navigationOptions = {
-    header: null
+    headerShown: false
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.showAlert = this.showAlert.bind(this)
 
@@ -28,23 +28,23 @@ class ResetPasswordScreen extends Component {
   }
 
   handlePressResetPassword = (state) => {
-    const {email} = state
+    const { email } = state
     // this.props.attemptResetPassword(email, this.showAlert)
   }
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   };
 
-  render () {
+  render() {
     const props = this.props
     return (
-      <ScrollView style={{height: Metrics.screenHeight}}>
+      <ScrollView style={{ height: Metrics.screenHeight }}>
         <KeyboardAvoidingView behavior='height'>
-          <View style={{flex: 1}}>
-            <View style={{flex: 0.3, justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{ flex: 1 }}>
+            <View style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
               <Animatable.Image animation='rotate' duration={9000} iterationCount='infinite' source={Images.launch}
-                                style={styles.logo}/>
+                style={styles.logo} />
             </View>
             <View
               style={{
@@ -54,25 +54,25 @@ class ResetPasswordScreen extends Component {
                 borderRadius: 10,
                 flexDirection: 'row'
               }}>
-              <View style={{flexDirection: 'column', flex: 1}}>
-                <View style={{flex: 0.1}}>
+              <View style={{ flexDirection: 'column', flex: 1 }}>
+                <View style={{ flex: 0.1 }}>
                   <Text style={[styles.header]}> Reset Password </Text>
                 </View>
-                <View style={{flex: 0.7, flexDirection: 'row'}}>
-                  <View style={{flex: 0.1, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{ flex: 0.7, flexDirection: 'row' }}>
+                  <View style={{ flex: 0.1, justifyContent: 'center', alignItems: 'center' }}>
                     <Icon name='ios-arrow-back' size={50} color='#900'
-                          onPress={() => props.navigation.navigate('LoginScreen')}
+                      onPress={() => props.navigation.navigate('LoginScreen')}
                     />
                   </View>
-                  <View style={{flex: 0.9}}>
+                  <View style={{ flex: 0.9 }}>
                     <View style={styles.container}>
                       <View style={styles.form}>
                         <View style={styles.row}>
-                          <View style={{flex: 0.1}}>
+                          <View style={{ flex: 0.1 }}>
                             <Icon name='ios-mail' size={24} color='rgba(0,0,0,0.5)'
                             />
                           </View>
-                          <View style={{flex: 0.9}}>
+                          <View style={{ flex: 0.9 }}>
                             <TextInput
                               value={this.state.email}
                               keyboardType='default'
@@ -81,7 +81,7 @@ class ResetPasswordScreen extends Component {
                               autoCorrect={false}
                               underlineColorAndroid='transparent'
                               placeholder={'Email Address'}
-                              onChangeText={(email) => this.setState({email})}
+                              onChangeText={(email) => this.setState({ email })}
                             />
                           </View>
 
@@ -91,7 +91,7 @@ class ResetPasswordScreen extends Component {
 
                   </View>
                 </View>
-                <View style={{flex: 0.2}}>
+                <View style={{ flex: 0.2 }}>
                   <Button
                     onPress={() => { this.handlePressResetPassword(this.state) }}
                     type='solid'

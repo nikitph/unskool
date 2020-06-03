@@ -1,5 +1,7 @@
 import styleVariables from '../../Themes/Variables'
 import Metrics from '../../Themes/Metrics'
+import { scale } from '../../Themes/ScalingUtils';
+import { Images, Colors, Fonts } from '../../Themes';
 
 const EventTeaser = {}
 
@@ -64,6 +66,17 @@ EventTeaser.eventDays = {
   flexDirection: 'row',
   justifyContent: 'flex-start',
   marginTop: 5
+}
+
+EventTeaser.userTitle = {
+  marginLeft: scale(10),
+  fontFamily: Fonts.type.base,
+  fontSize: scale(20),
+}
+EventTeaser.br = {
+  height: 1,
+  marginVertical: scale(10),
+  backgroundColor: 'rgba(0,0,0,0.6)',
 }
 
 EventTeaser.eventDay = {

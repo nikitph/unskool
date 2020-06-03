@@ -22,9 +22,9 @@ import { Images } from '../Themes'
 
 class CreateGuardianScreen extends Component {
   static navigationOptions = {
-    header: null
+    headerShown: false
   };
-  constructor (props) {
+  constructor(props) {
     super()
 
     //
@@ -65,23 +65,23 @@ class CreateGuardianScreen extends Component {
    * @param e
    */
 
-  handleChange (value, fieldName) {
+  handleChange(value, fieldName) {
     let inputObj = {}
     inputObj[fieldName] = value
     this.setState(inputObj)
   }
 
-  capitalizeWord (str) {
+  capitalizeWord(str) {
     return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
   }
 
-  showAlert (type, title, message) {
+  showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message)
   };
 
-  checkboxChange (checkbox, checkboxOptions, checked) {
+  checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[ checkboxOptions ]
+    const options = this.state[checkboxOptions]
     let index
 
     // check if the check box is checked or unchecked
@@ -95,7 +95,7 @@ class CreateGuardianScreen extends Component {
     }
   }
 
-  radioButtonChange (value, group) {
+  radioButtonChange(value, group) {
     // current array of options
     let radioButtonGroup = group
     let radio = value
@@ -107,7 +107,7 @@ class CreateGuardianScreen extends Component {
     this.setState(newState)
   }
 
-  confirmAddress () {
+  confirmAddress() {
     if (this.state.latlong) {
       this.submitForm()
     } else {
@@ -119,13 +119,13 @@ class CreateGuardianScreen extends Component {
    *
    * @param e
    */
-  submitForm () {
+  submitForm() {
     this.props.attemptCreateGuardian(this.state, this.showAlert, this.props.navigation)
     // Send welcome email
     // this.sendWelcomeMail(data)
   }
 
-  getEmailBody (data) {
+  getEmailBody(data) {
     return 'Hi ' + data.displayName +
       '\n Welcome to My Community Classroom!' +
       '\n Thank you for taking the time to register to be a part of a new growing educational community.' +
@@ -137,20 +137,20 @@ class CreateGuardianScreen extends Component {
       '\n \n - The MC2 Founding Team'
   }
 
- /* sendWelcomeMail (data) {
-    let emailBody = this.getEmailBody(data)
-    sendEmail(data.email, 'Welcome to MC2', emailBody).then((response) => {
-    })
-  } */
+  /* sendWelcomeMail (data) {
+     let emailBody = this.getEmailBody(data)
+     sendEmail(data.email, 'Welcome to MC2', emailBody).then((response) => {
+     })
+   } */
 
   /**
    *
    * @returns {XML}
    */
-  render () {
+  render() {
     let formData = {
-      specialties: [ 'running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other' ],
-      languages_spoken: [ 'english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali' ]
+      specialties: ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other'],
+      languages_spoken: ['english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali']
     }
 
     const outputCheckboxes = () => {
@@ -178,15 +178,15 @@ class CreateGuardianScreen extends Component {
 
     // set the data structure for the radio buttons
     const radio_props = [
-      {label: 'Male', value: 'male' },
-      {label: 'Female', value: 'female' }
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' }
     ]
     let userGender = this.state.gender
     // <BackButton path="/welcome-search" />
 
     return (
       <ScrollView keyboardShouldPersistTaps='handled'>
-        <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={style.logo} />
         </View>
         <Text style={[globalStyles.formTitle]}> Help us get to know you... </Text>
@@ -199,7 +199,7 @@ class CreateGuardianScreen extends Component {
           />
 
           <TextInput
-            style={[globalStyles.textInput, {height: 90}]}
+            style={[globalStyles.textInput, { height: 90 }]}
             multiline
             numberOfLines={6}
             placeholderTextColor='rgba(0, 0, 0, 0.5)'
@@ -253,14 +253,17 @@ class CreateGuardianScreen extends Component {
               placeholderTextColor='white'
               getDefaultValue={() => ''}
               enablePoweredByContainer={false}
-              styles={{ textInput: { minHeight: 40,
-                borderRadius: 3,
-                fontSize: 12,
-                padding: 10,
-                marginTop: 4,
-                marginBottom: 4,
-                color: 'white',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)'},
+              styles={{
+                textInput: {
+                  minHeight: 40,
+                  borderRadius: 3,
+                  fontSize: 12,
+                  padding: 10,
+                  marginTop: 4,
+                  marginBottom: 4,
+                  color: 'white',
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)'
+                },
                 textInputContainer: {
                   backgroundColor: 'rgba(0,0,0,0)',
                   borderTopWidth: 0,
@@ -327,7 +330,7 @@ class CreateGuardianScreen extends Component {
             </View>
           </View>
 
-          { outputCheckboxes() }
+          {outputCheckboxes()}
 
           {/* <PrivacyForm globalStyle={globalStyles} onChange={this.radioButtonChange} privacy={this.state.privacy} */}
           {/* title={'Default Event Privacy'}/> */}

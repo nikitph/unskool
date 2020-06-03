@@ -126,6 +126,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    aaptOptions { cruncherEnabled = false }
     defaultConfig {
         applicationId "com.unskool"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -166,6 +167,7 @@ android {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             signingConfig signingConfigs.release
+            crunchPngs false // or true
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

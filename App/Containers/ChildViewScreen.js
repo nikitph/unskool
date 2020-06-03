@@ -14,16 +14,16 @@ import style from '../Components/Styles/SummaryStyle'
 
 class ChildViewScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
+    headerTitle: () => <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
     />
   };
 
-  render () {
+  render() {
     const allergies = this.props.navigation.state.params.childData.allergies || []
 
     let allergyTags = dataToTag(allergies, 'allergies')
 
-    function dataToTag (items, cat) {
+    function dataToTag(items, cat) {
       return (
         items.map((item, i) => {
           let keyId = `${cat}${item}${i}`
@@ -34,36 +34,36 @@ class ChildViewScreen extends Component {
       )
     }
     return (
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', backgroundColor: 'transparent', marginBottom: 100}}>
-        <View style={{width: '100%', backgroundColor: 'black', justifyContent: 'center'}}>
+      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', backgroundColor: 'transparent', marginBottom: 100 }}>
+        <View style={{ width: '100%', backgroundColor: 'black', justifyContent: 'center' }}>
           <Card
             title={this.props.navigation.state.params.childData.fName + ' ' + this.props.navigation.state.params.childData.lName}
-            containerStyle={{justifyContent: 'center', alignItems: 'center'}}>
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
+            containerStyle={{ justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
 
               <Avatar rounded
                 size='medium'
                 source={{
                   uri: this.props.navigation.state.params.childData.profileImage
                 }}
-                    />
+              />
             </View>
             <Divider />
-            <Text style={{marginTop: 10}}>
+            <Text style={{ marginTop: 10 }}>
               Age : {this.props.navigation.state.params.childData.age}
             </Text>
             <Divider />
 
-            <Text style={{marginTop: 10}}>
+            <Text style={{ marginTop: 10 }}>
               gender : {this.props.navigation.state.params.childData.gender}
             </Text>
             <Divider />
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', overflow: 'hidden'}}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', overflow: 'hidden' }}>
               {allergyTags}
             </View>
           </Card>
         </View>
-        <View style={{flex: 0.4, backgroundColor: '#F1E7D1', justifyContent: 'flex-start', alignItems: 'center'}}>
+        <View style={{ flex: 0.4, backgroundColor: '#F1E7D1', justifyContent: 'flex-start', alignItems: 'center' }}>
           <Text style={styles.text}>
             {this.props.navigation.state.params.childData.fname}
           </Text>
