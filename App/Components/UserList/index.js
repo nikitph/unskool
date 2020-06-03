@@ -25,7 +25,7 @@ const user = ({ item = {} }) => {
 const keyExtractor = (d, i) => i.toString();
 
 
-const UsersList = ({ title, data, addNewChild }) => {
+const UsersList = ({ title, data, addNewChild, isCurrentUser }) => {
   return (
     <View style={styles.userListContainer}>
       <Text style={styles.userTitle}>{title}</Text>
@@ -37,13 +37,17 @@ const UsersList = ({ title, data, addNewChild }) => {
         keyExtractor={keyExtractor}
         contentContainerStyle={{ paddingLeft: scale(15) }}
         ListFooterComponent={() => {
-          return (
-            <TouchableOpacity style={styles.userItemContainer} onPress={() => addNewChild()}>
-              <Image style={[styles.userImg, {
-                tintColor: 'rgba(0,0,0,0.1)'
-              }]} source={Images.more} />
-            </TouchableOpacity>
-          )
+          if (isCurrentUser) {
+            return (
+              <TouchableOpacity style={styles.userItemContainer} onPress={() => addNewChild()}>
+                <Image style={[styles.userImg, {
+                  tintColor: 'rgba(0,0,0,0.1)'
+                }]} source={Images.more} />
+              </TouchableOpacity>
+            )
+          }
+          return null
+
         }}
         showsHorizontalScrollIndicator={false}
       />

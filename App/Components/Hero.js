@@ -8,7 +8,6 @@ import {
   ImageBackground
 } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Zocial from 'react-native-vector-icons/Zocial';
 import { connect } from 'react-redux'
 
 import style from './Styles/HeroStyle'
@@ -18,8 +17,8 @@ import globalStyles from '../Themes/GlobalStyles'
 import LinearGradient from 'react-native-linear-gradient'
 import { Avatar, Badge } from 'react-native-elements'
 import FastImage from 'react-native-fast-image'
-import { Images, Metrics } from '../Themes'
-import ActionButton from 'react-native-action-button'
+import Star from './Star';
+
 import styles from '../Containers/Styles/DashboardScreenStyle'
 
 class Hero extends Component {
@@ -71,46 +70,31 @@ class Hero extends Component {
         <ImageBackground source={userImage} style={styles.imgBg}>
           <View style={styles.imgHeader}>
             <View style={styles.headerSubtitle}>
-              <Text style={styles.imgHeaderTitle}>{displayName}</Text>
+              <Text style={styles.imgHeaderTitle}>{displayName}
+              </Text>
+              <Star />
               {uid == payload.uid && (
                 <TouchableOpacity style={[styles.headerIconContainer, { marginTop: 10 }]} onPress={() => this.props.nav.navigate('EditGuardianScreen')}>
-                  <Icon name={'md-create'} size={15} color="#949BA1" />
+                  <Icon name={'md-create'} size={20} color="#949BA1" />
+                </TouchableOpacity>
+              )}
+              {uid != payload.uid && (
+                <TouchableOpacity style={[styles.headerIconContainer, { marginTop: 10 }]} onPress={() => this.props.nav.navigate('EditGuardianScreen')}>
+                  {/* <Icon name={'md-chat'} size={15} color="#949BA1" /> */}
+                  <MaterialCommunityIcons name={'chat'} size={20} color="#949BA1" />
                 </TouchableOpacity>
               )}
             </View>
           </View>
-          {uid !== payload.uid && (
+          {/* {uid !== payload.uid && (
             <>
               {this.headerIcon(MaterialCommunityIcons, "map-marker-distance", 20)}
               {this.headerIcon(Zocial, "call", 20)}
               {this.headerIcon(Zocial, "email", 20)}
               {this.headerIcon(Zocial, "googleplay", 15)}
             </>
-          )}
+          )} */}
         </ImageBackground>
-        {/* <View style={style.decoClip} /> */}
-        {/* {!this.props.bVisible && <TouchableOpacity onPress={() => this.props.nav.navigate('ChatScreen')}>
-          <LinearGradient
-            style={[style.chatButton, globalStyles.addItem]}
-            colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
-          >
-            <Image
-              source={require('../Images/chatone.png')}
-              resizeMode='cover'
-              style={style.chatIcon} />
-          </LinearGradient>
-        </TouchableOpacity>}
-        {this.props.bVisible && <ActionButton buttonColor='rgba(231,76,60,0.8)' offsetX={10}>
-          <ActionButton.Item buttonColor='#9b59b6' title='New Event' onPress={() => this.props.nav.navigate('CreateEventScreen')}>
-            <Icon name='md-calendar' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title='Add Child' onPress={() => this.props.nav.navigate('CreateChildScreen')}>
-            <Icon name='md-person-add' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor='green' title='Edit profile' onPress={() => this.props.nav.navigate('EditGuardianScreen')}>
-            <Icon name='md-create' style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-        </ActionButton>} */}
       </View>
     )
   }
