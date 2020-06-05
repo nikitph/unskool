@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import StarRating from 'react-native-star-rating';
 
-import styles from './style';
+import styles from './Styles/StartRateStyle';
 
 class StarRate extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      starCount: 4
+      starCount: 3.5
     };
   }
 

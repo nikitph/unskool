@@ -13,12 +13,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import style from './Styles/SummaryStyle'
 import Star from './Star';
 import Likes from './Likes';
+import { Colors } from '../Themes'
 import dashboardStyle from '../Containers/Styles/DashboardScreenStyle'
 import _ from 'lodash';
+import GlobalStyles from '../Themes/GlobalStyles'
+import { scale } from '../Themes/ScalingUtils';
 import UsersList from './UserList';
-import { connect } from 'react-redux'
 
-class Summary extends Component {
+export default class Summary extends Component {
   constructor(props) {
     super(props)
 
@@ -43,7 +45,7 @@ class Summary extends Component {
     // if guardianData is passed in the props, then show guardian data
     // instead of admin user data
 
-    const { greeting, uid } = userData
+    const { greeting } = userData
     const languages = userData['languages spoken'] || []
     const specialties = userData.specialties || []
     let wrapState = this.state.expandTags ? 'wrap' : 'nowrap'
@@ -89,23 +91,23 @@ class Summary extends Component {
     }
 
     const arr = _.values(userData && userData.children || {});
-    const { payload } = this.props.user
+    // check if the user wrote a greeting
     const greetingCopy = greeting
       ? <Text style={style.summaryCopy}>{'"' + greeting + '"'}</Text>
       : <Text style={[style.summaryCopy, style.summaryBodyCopy]} >It looks like you don't have a summary bio yet, you can add one by clicking the edit button (which you don't see yet, because we're developing it).</Text>
     return (
       <View style={style.container}>
-        {/* <View style={dashboardStyle.detailsContainer}>
+        <View style={dashboardStyle.detailsContainer}>
           <View style={dashboardStyle.likesContainer}>
             <Star />
-            <Likes style={{ marginLeft: scale(20) }} />
+            {/* <Likes style={{ marginLeft: scale(20) }} /> */}
           </View>
-          <LinearGradient colors={Colors.gradient} start={{ x: 0, y: 0.75 }} end={{ x: 1, y: 0.25 }} style={dashboardStyle.disconnectButton}>
+          {/* <LinearGradient colors={Colors.gradient} start={{ x: 0, y: 0.75 }} end={{ x: 1, y: 0.25 }} style={dashboardStyle.disconnectButton}>
             <TouchableOpacity>
               <Text style={dashboardStyle.disconnectTitle}>Disconnect</Text>
             </TouchableOpacity>
-          </LinearGradient>
-        </View> */}
+          </LinearGradient> */}
+        </View>
         <View style={style.greetingContainer}>{greetingCopy}</View>
         <View style={{ flexDirection: 'row', flex: 1, marginLeft: 10, marginRight: 10 }}>
           <View style={{ flex: 0.8, flexDirection: 'row', flexWrap: wrapState, overflow: 'hidden' }}>
@@ -122,16 +124,12 @@ class Summary extends Component {
             </TouchableHighlight>
           </View>
         </View>
-        <UsersList data={arr} isCurrentUser={uid === payload.uid} title="CHILDREN" addNewChild={() => this.props.nav.navigate('CreateChildScreen')} />
-
+        <UsersList data={arr} title="CHILDREN" addNewChild={() => this.props.nav.navigate('CreateChildScreen')} />
+        {/* <Text style={GlobalStyles.formSubTitle}>CHILDREN</Text>
+        <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
+          {avatars}
+        </View> */}
       </View>
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    user: state.login
-  }
-}
-
-export default connect(mapStateToProps, null)(Summary)

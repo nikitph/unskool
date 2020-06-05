@@ -19,8 +19,8 @@ const db = mapp.database()
 
 export function * chatPost (action) {
   const {data} = action
-  const {text, senderName, senderId, senderPic, receiverName, receiverId, _id} = data
-  const msgObj = Object.assign({text, senderName, senderId, senderPic, receiverName, receiverId, _id},
+  const {text, senderName, senderId, senderPic, receiverName, receiverId, receiverPic, _id} = data
+  const msgObj = Object.assign({text, senderName, senderId, senderPic, receiverName, receiverId, receiverPic, _id},
     {createdAt: data.createdAt.toJSON()}, {user: data.user}, {receiverPic: data.receiverPic || 'https://www.cmsabirmingham.org/stuff/2017/01/default-placeholder.png'})
   console.log(db)
   console.log(msgObj)

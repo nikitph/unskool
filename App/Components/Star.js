@@ -2,8 +2,8 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import { scale } from '../../Themes/ScalingUtils';
-import { Fonts } from '../../Themes';
+import { scale } from '../Themes/ScalingUtils';
+import { Fonts } from '../Themes';
 
 const Star = ({ fill = 4.8, style }) => (
   <TouchableOpacity style={[styles.container, style]} activeOpacity={1}>

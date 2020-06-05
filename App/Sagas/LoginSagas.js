@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
-import ChatActions from '../Redux/ChatRedux'
+import BrowseHostActions from '../Redux/BrowseHostsRedux'
+import GuardianActions from '../Redux/GuardianRedux'
 import { dbService } from '../Services/Firebase'
 import { NavigationActions } from 'react-navigation'
 import FastImage from 'react-native-fast-image'

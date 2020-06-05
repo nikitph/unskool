@@ -3,35 +3,32 @@ import { View } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { connect } from 'react-redux'
 import ChatPostTypes from '../Redux/ChatPostRedux'
+import { dbService, mapp } from '../Services/Firebase'
+
+const usr = mapp.auth()
 
 class ChatScreen extends Component {
   constructor (props) {
     super(props)
-    const {navigation, messages, guardian} = props
-    let receiver = {
-      receiverId: navigation.state.params.params.uid,
-      receiverName: navigation.state.params.params.displayName,
-      receiverPic: navigation.state.params.params.image
-    }
+    const {navigation, messages} = props
     let sender = {
-      senderId: guardian.uid,
-      senderName: guardian.displayName,
-      senderPic: guardian.image
+      buyerId: usr.currentUser.uid,
+      buyerName: usr.currentUser.displayName,
+      buyerPic: usr.currentUser.photoURL
     }
-    let initState = Object.assign({}, sender, receiver, messages)
+    let initState = Object.assign({}, sender, messages)
     this.state = initState
     this.onSend = this.onSend.bind(this)
-    console.log('hmmm', navigation.state.params.params)
   }
 
   componentWillMount () {
     this.setState({
-      messages: this.props.messages.filter(msg => ((msg.senderId === this.props.guardian.uid && msg.receiverId === this.props.navigation.state.params.params.uid) ||
-        (msg.receiverId === this.props.guardian.uid && msg.senderId === this.props.navigation.state.params.params.uid))).sort(function compare (a, b) {
-        let dateA = new Date(a.createdAt)
-        let dateB = new Date(b.createdAt)
-        return dateB - dateA
-      })
+      messages: this.props.messages.filter(msg => (msg.sender === usr.currentUser.uid ||
+        msg.receiver === usr.currentUser.uid)).sort(function compare (a, b) {
+          let dateA = new Date(a.createdAt)
+          let dateB = new Date(b.createdAt)
+          return dateB - dateA
+        })
     })
   }
 
@@ -49,27 +46,22 @@ class ChatScreen extends Component {
     return (
       <View style={{flex: 1, backgroundColor: 'white', paddingBottom: 30}}>
         <GiftedChat
-          messages={this.props.messages.filter(msg => ((msg.senderId === this.props.guardian.uid && msg.receiverId === this.props.navigation.state.params.params.uid) ||
-            (msg.receiverId === this.props.guardian.uid && msg.senderId === this.props.navigation.state.params.params.uid))).sort(function compare (a, b) {
-            let dateA = new Date(a.createdAt)
-            let dateB = new Date(b.createdAt)
-            return dateB - dateA
-          })}
+          messages={this.props.messages.filter(msg => (msg.sender === usr.currentUser.uid ||
+            msg.receiver === usr.currentUser.uid)).sort(function compare (a, b) {
+              let dateA = new Date(a.createdAt)
+              let dateB = new Date(b.createdAt)
+              return dateB - dateA
+            })}
           onSend={(messages) => this.onSend(messages)}
-          user={{
-            _id: this.props.guardian.uid,
-            name: this.props.guardian.displayName,
-            avatar: this.props.guardian.image
-          }}
+          user={{_id: usr.currentUser.uid, name: usr.currentUser.displayName, avatar: usr.currentUser.photoURL}}
         />
 
       </View>
     )
   };
 }
-
 const mapStateToProps = (state) => {
-  let msgArray = state.chat.payload ? Object.values(state.chat.payload) : []
+  let msgArray = state.chat ? Object.values(state.chat.payload) : []
   return {
     messages: msgArray,
     guardian: state.login.payload
@@ -85,4 +77,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatScreen)
+export default connect(mapStateToProps, mapDispatchToProps())(ChatScreen)
