@@ -25,7 +25,7 @@ const user = ({ item = {} }) => {
 const keyExtractor = (d, i) => i.toString();
 
 
-const UsersList = ({ title, data, addNewChild, isCurrentUser }) => {
+const UsersList = ({ title, data, addNewChild }) => {
   return (
     <View style={styles.userListContainer}>
       <Text style={styles.userTitle}>{title}</Text>

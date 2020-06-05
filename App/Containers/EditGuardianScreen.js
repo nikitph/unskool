@@ -231,7 +231,9 @@ class EditGuardianScreen extends Component {
                     borderRadius: 50
                   }}
                   resizeMode='cover'
-                  source={this.state.profileImage} />
+                  source={{
+                    uri: this.state.profileImage
+                  }} />
               </PhotoUpload>
             </View>
           </View>
