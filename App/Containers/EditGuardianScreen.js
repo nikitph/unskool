@@ -23,10 +23,10 @@ import PhotoUpload from '../Components/PhotoUpload'
 // import BackButton from '../components/BackButton';
 
 class EditGuardianScreen extends Component {
-  // static navigationOptions = {
-  //   headerTitle: () => <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
-  //   />
-  // }
+  static navigationOptions = {
+    headerTitle: () => <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
+    />
+  }
   constructor(props) {
     super()
 

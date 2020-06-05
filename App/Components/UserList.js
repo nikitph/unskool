@@ -7,9 +7,9 @@ import {
   Image,
 } from 'react-native';
 
-import styles from './style';
-import { scale } from '../../Themes/ScalingUtils';
-import { Images, Colors } from '../../Themes';
+import styles from './Styles/UserListStyle';
+import { scale } from '../Themes/ScalingUtils';
+import { Images, Colors } from '../Themes';
 
 const user = ({ item = {} }) => {
   const { fName = "", profileImage = "" } = item;
@@ -47,7 +47,6 @@ const UsersList = ({ title, data, addNewChild, isCurrentUser }) => {
             )
           }
           return null
-
         }}
         showsHorizontalScrollIndicator={false}
       />

@@ -2,8 +2,10 @@ import { StyleSheet } from 'react-native';
 
 import { scale } from '../../Themes/ScalingUtils';
 import { Fonts } from '../../Themes';
+import { ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
+  ...ApplicationStyles.screen,
   container: {
     flexGrow: 1,
     backgroundColor: "#fff",
@@ -116,4 +118,4 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.base,
     color: 'rgba(0,0,0,0.3)',
   },
-});
+})

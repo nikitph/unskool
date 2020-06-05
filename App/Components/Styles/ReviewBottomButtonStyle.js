@@ -1,8 +1,6 @@
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet } from 'react-native'
 import { scale } from '../../Themes/ScalingUtils';
 import { Fonts, Colors } from '../../Themes';
-
 export default StyleSheet.create({
   container: {
     paddingVertical: scale(10),

@@ -1,9 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 import { scale } from '../../Themes/ScalingUtils';
 import { Fonts } from '../../Themes';
 
 export default StyleSheet.create({
+  container: {
+    flex: 1
+  },
   scene: {
     flex: 1,
   },

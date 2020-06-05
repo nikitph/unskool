@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import styleVariables from '../../Themes/Variables';
-import styles from './style';
+import styles from './Styles/ReviewBottomButtonStyle'
 
 const ReviewBottomButton = ({ title, onPress }) => (
   <LinearGradient

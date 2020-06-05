@@ -13,10 +13,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import style from './Styles/SummaryStyle'
 import Star from './Star';
 import Likes from './Likes';
+import { Colors } from '../Themes'
 import dashboardStyle from '../Containers/Styles/DashboardScreenStyle'
 import _ from 'lodash';
-import UsersList from './UserList';
+import GlobalStyles from '../Themes/GlobalStyles'
 import { connect } from 'react-redux'
+import { scale } from '../Themes/ScalingUtils';
+import UsersList from './UserList';
 
 class Summary extends Component {
   constructor(props) {
@@ -90,6 +93,7 @@ class Summary extends Component {
 
     const arr = _.values(userData && userData.children || {});
     const { payload } = this.props.user
+    // check if the user wrote a greeting
     const greetingCopy = greeting
       ? <Text style={style.summaryCopy}>{'"' + greeting + '"'}</Text>
       : <Text style={[style.summaryCopy, style.summaryBodyCopy]} >It looks like you don't have a summary bio yet, you can add one by clicking the edit button (which you don't see yet, because we're developing it).</Text>
@@ -123,7 +127,6 @@ class Summary extends Component {
           </View>
         </View>
         <UsersList data={arr} isCurrentUser={uid === payload.uid} title="CHILDREN" addNewChild={() => this.props.nav.navigate('CreateChildScreen')} />
-
       </View>
     )
   }
