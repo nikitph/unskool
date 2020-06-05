@@ -105,7 +105,7 @@ class Summary extends Component {
               <Text style={dashboardStyle.disconnectTitle}>Disconnect</Text>
             </TouchableOpacity>
           </LinearGradient>
-        </View> */}
+        </View>  */}
         <View style={style.greetingContainer}>{greetingCopy}</View>
         <View style={{ flexDirection: 'row', flex: 1, marginLeft: 10, marginRight: 10 }}>
           <View style={{ flex: 0.8, flexDirection: 'row', flexWrap: wrapState, overflow: 'hidden' }}>

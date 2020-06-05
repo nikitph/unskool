@@ -2,8 +2,8 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import { scale } from '../../Themes/ScalingUtils';
-import { Fonts } from '../../Themes';
+import { scale } from '../Themes/ScalingUtils';
+import { Fonts } from '../Themes';
 
 const Likes = ({ likes = 12, style, name = "like2", color = "#6F6F6F" }) => (
   <TouchableOpacity style={[styles.container, style]} activeOpacity={1}>

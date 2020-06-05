@@ -7,9 +7,9 @@ import {
   Image,
 } from 'react-native';
 
-import styles from './style';
-import { scale } from '../../Themes/ScalingUtils';
-import { Images, Colors } from '../../Themes';
+import styles from './Styles/UserListStyle';
+import { scale } from '../Themes/ScalingUtils';
+import { Images, Colors } from '../Themes';
 
 const user = ({ item = {} }) => {
   const { fName = "", profileImage = "" } = item;
@@ -25,7 +25,7 @@ const user = ({ item = {} }) => {
 const keyExtractor = (d, i) => i.toString();
 
 
-const UsersList = ({ title, data, addNewChild, isCurrentUser }) => {
+const UsersList = ({ title, data, addNewChild }) => {
   return (
     <View style={styles.userListContainer}>
       <Text style={styles.userTitle}>{title}</Text>
@@ -37,17 +37,13 @@ const UsersList = ({ title, data, addNewChild, isCurrentUser }) => {
         keyExtractor={keyExtractor}
         contentContainerStyle={{ paddingLeft: scale(15) }}
         ListFooterComponent={() => {
-          if (isCurrentUser) {
-            return (
-              <TouchableOpacity style={styles.userItemContainer} onPress={() => addNewChild()}>
-                <Image style={[styles.userImg, {
-                  tintColor: 'rgba(0,0,0,0.1)'
-                }]} source={Images.more} />
-              </TouchableOpacity>
-            )
-          }
-          return null
-
+          return (
+            <TouchableOpacity style={styles.userItemContainer} onPress={() => addNewChild()}>
+              <Image style={[styles.userImg, {
+                tintColor: 'rgba(0,0,0,0.1)'
+              }]} source={Images.more} />
+            </TouchableOpacity>
+          )
         }}
         showsHorizontalScrollIndicator={false}
       />

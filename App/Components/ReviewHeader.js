@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import styles from './style';
+import styles from './Styles/ReviewHeaderStyle'
 
 const ReviewHeader = () => (
   <View style={styles.container}>

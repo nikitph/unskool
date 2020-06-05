@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -11,18 +11,22 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import LinearGradient from 'react-native-linear-gradient';
-import Entypo from 'react-native-vector-icons/Entypo';
+import { connect } from 'react-redux'
 
-import styles from './style';
-import { Images, Colors } from '../../Themes';
-import Star from '../../Components/Star';
-import Likes from '../../Components/Likes';
-import { scale } from '../../Themes/ScalingUtils';
-import FriendsTabs from '../../Components/FriendsTabs';
+import { Images, Colors } from '../Themes';
+import Star from '../Components/Star';
+import Likes from '../Components/Likes';
+import { scale } from '../Themes/ScalingUtils';
+import FriendsTabs from '../Components/FriendsTabs';
 
 const DATA = ["English", "Mandarian", "Piano"];
+// Add Actions - replace 'Your' with whatever your reducer is called :)
+// import YourActions from '../Redux/YourRedux'
 
-export default class FriendReview extends React.Component {
+// Styles
+import styles from './Styles/FriendReviewScreenStyle'
+
+class FriendReviewScreen extends Component {
 
   skills = ({ item }) => (
     <TouchableOpacity style={styles.skillList}>
@@ -77,7 +81,6 @@ export default class FriendReview extends React.Component {
   keyExtractor = (d, i) => i.toString();
 
   render() {
-
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <ImageBackground source={Images.family} style={styles.imgBg}>
@@ -118,3 +121,15 @@ export default class FriendReview extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FriendReviewScreen)

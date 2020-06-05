@@ -1,5 +1,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation'
+import ReviewsScreen from '../Containers/ReviewsScreen'
+import FriendReviewScreen from '../Containers/FriendReviewScreen'
 import { createStackNavigator } from 'react-navigation-stack';
 import ResetPasswordScreen from '../Containers/ResetPasswordScreen'
 import ConversationsScreen from '../Containers/ConversationsScreen'
@@ -21,13 +23,14 @@ import DashboardScreen from '../Containers/DashboardScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
-import Reviews from '../Containers/Reviews';
-import FriendReview from '../Containers/FriendReview';
+
 import SplashScreen from '../Containers/SplashScreen';
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  ReviewsScreen: { screen: ReviewsScreen },
+  FriendReviewScreen: { screen: FriendReviewScreen },
   SplashScreen: { screen: SplashScreen },
   ResetPasswordScreen: { screen: ResetPasswordScreen },
   ConversationsScreen: { screen: ConversationsScreen },
@@ -49,8 +52,6 @@ const PrimaryNav = createStackNavigator({
   SignUpScreen: { screen: SignUpScreen },
   LoginScreen: { screen: LoginScreen },
   LaunchScreen: { screen: LaunchScreen },
-  Reviews: { screen: Reviews, navigationOptions: { headerShown: false } },
-  FriendReview: { screen: FriendReview, navigationOptions: { headerShown: false } },
 }, {
   // Default config for all screens
   headerMode: 'screen',
