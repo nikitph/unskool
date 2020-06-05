@@ -16,12 +16,13 @@ import ChatPostActions from '../Redux/ChatPostRedux'
 import { mapp } from '../Services/Firebase'
 
 const db = mapp.database()
+const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/my-community-classroom-app.appspot.com/o/app-images%2Fblank-profile-pic.png?alt=media&token=ddf9cff0-ad81-4105-85b1-6f5498e16686'
 
-export function * chatPost (action) {
-  const {data} = action
-  const {text, senderName, senderId, senderPic, receiverName, receiverId, receiverPic, _id} = data
-  const msgObj = Object.assign({text, senderName, senderId, senderPic, receiverName, receiverId, receiverPic, _id},
-    {createdAt: data.createdAt.toJSON()}, {user: data.user}, {receiverPic: data.receiverPic || 'https://www.cmsabirmingham.org/stuff/2017/01/default-placeholder.png'})
+export function* chatPost(action) {
+  const { data } = action
+  const { text, senderName, senderId, senderPic, receiverName, receiverId, _id } = data
+  const msgObj = Object.assign({ text, senderName, senderId, senderPic, receiverName, receiverId, _id },
+    { createdAt: data.createdAt.toJSON() }, { user: data.user }, { receiverPic: data.receiverPic || defaultImage })
   console.log(db)
   console.log(msgObj)
 
@@ -41,13 +42,13 @@ export function * chatPost (action) {
     let id = data.user._id === data.senderId ? data.receiverId : data.senderId
     let notifRef =
       db.ref(`notifications/${id}`)
-        .push(Object.assign({}, msgObj, {read: false}))
+        .push(Object.assign({}, msgObj, { read: false }))
     const notifKey = notifRef.key
     console.log(msgObj)
 
-    yield put(ChatPostActions.chatPostSuccess({receiverMsgKey, senderMsgKey, notifKey}))
+    yield put(ChatPostActions.chatPostSuccess({ receiverMsgKey, senderMsgKey, notifKey }))
   } catch (error) {
     console.log(error)
-    yield put(ChatPostActions.chatPostFailure({error}))
+    yield put(ChatPostActions.chatPostFailure({ error }))
   }
 }
