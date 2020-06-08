@@ -271,9 +271,7 @@ class CreateChildScreen extends Component {
                   borderRadius: 50
                 }}
                 resizeMode='cover'
-                source={{
-                  uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
-                }} />
+                source={require('../Images/blank-profile-pic.png')} />
             </PhotoUpload>
           </View>
         </View>
