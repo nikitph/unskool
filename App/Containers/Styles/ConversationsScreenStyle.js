@@ -12,18 +12,18 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(116,100,78,0.4)',
     margin: Metrics.smallMargin,
-    marginHorizontal:20,
-    flexDirection:'row',
+    marginHorizontal: 20,
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems:'center',
-    borderRadius:20
+    alignItems: 'center',
+    borderRadius: 20,
   },
   boldLabel: {
     fontWeight: 'bold',
     alignSelf: 'center',
     color: Colors.snow,
     textAlign: 'center',
-    marginBottom: Metrics.smallMargin
+    marginBottom: Metrics.smallMargin,
   },
   conContainer: {
     display: 'flex',
@@ -34,10 +34,10 @@ export default StyleSheet.create({
   label: {
     textAlign: 'center',
     color: 'rgb(79, 18, 34)',
-    fontSize:16,
-    fontFamily:'Avenir'
+    fontSize: 16,
+    fontFamily: 'Avenir',
   },
   listContent: {
-    marginTop: 5
-  }
-})
+    marginTop: 5,
+  },
+});

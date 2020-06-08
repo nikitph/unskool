@@ -11,11 +11,11 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import LinearGradient from 'react-native-linear-gradient';
 import _ from "lodash";
 
-import styles from './style';
-import Star from '../Star';
-import Likes from '../Likes';
-import { Images, Colors } from '../../Themes';
-import { scale } from '../../Themes/ScalingUtils';
+import styles from './Styles/FriendsTabsStyle'
+import Star from './Star';
+import Likes from './Likes';
+import { Images } from '../Themes';
+import { scale } from '../Themes/ScalingUtils';
 
 const DATA = ["1", "2", "3", "4"];
 
