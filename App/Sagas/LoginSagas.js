@@ -21,6 +21,7 @@ export function* login({ email, password, alertfunc, nav }) {
         }])
     }
     // const location = yield call(dbService.database.read, `users/${uid}/location`)
+    yield put(ChatActions.chatRequest());
     yield put(LoginActions.loginSuccess({ uid, displayName, photoURL, ...guardian }))
     AsyncStorage.setItem('user', JSON.stringify({ uid, displayName, photoURL, ...guardian }))
 

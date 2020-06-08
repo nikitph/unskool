@@ -79,7 +79,7 @@ class Hero extends Component {
                 </TouchableOpacity>
               )}
               {uid != payload.uid && (
-                <TouchableOpacity style={[styles.headerIconContainer, { marginTop: 10 }]} onPress={() => this.props.nav.navigate('EditGuardianScreen')}>
+                <TouchableOpacity style={[styles.headerIconContainer, { marginTop: 10 }]} onPress={ () => this.props.nav.navigate('ChatScreen',{params: this.props.guardian}) }>
                   {/* <Icon name={'md-chat'} size={15} color="#949BA1" /> */}
                   <MaterialCommunityIcons name={'chat'} size={20} color="#949BA1" />
                 </TouchableOpacity>
