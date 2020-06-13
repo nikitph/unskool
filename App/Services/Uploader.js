@@ -54,6 +54,7 @@ export function genericFileUpload (uri, name, storageRef, mime = 'image/jpeg') {
   return new Promise((resolve, reject) => {
     const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
     let uploadBlob = null
+    name = name ? name : (Math.random().toString(36).substring(2, 16) + Math.random().toString(36).substring(2, 16)).toLowerCase()
 
     const imageRef = storageRef.child(name)
 
