@@ -29,7 +29,7 @@ class DashboardScreen extends Component {
                 guardian={this.props.guardian} nav={this.props.navigation} bVisible />
               <Summary guardian={this.props.guardian} nav={this.props.navigation} bVisible />
               <EventTeaser guardian={this.props.guardian} events={this.props.events} nav={this.props.navigation} />
-              {/*<FriendsTabs />*/}
+              <FriendsTabs />
             </>
           )}
 
