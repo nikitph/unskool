@@ -6,7 +6,8 @@ import {
   TouchableHighlight,
   Text,
   Image,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient'
@@ -144,7 +145,7 @@ export default class EventTeaser extends Component {
             Want to host? Add an event here
           </Text>
           <View style={{ top: -6, right: 0 }}>
-            <TouchableHighlight onPress={() => { }}>
+            <TouchableHighlight>
               <LinearGradient
                 colors={[styleVariables.mc2purpleElectric, styleVariables.mc2BlueElectric]}
                 style={[globalStyles.addItem, style.addItem]}
@@ -262,9 +263,12 @@ export default class EventTeaser extends Component {
 
     return (
       <View style={style.teaserContainer}>
-        <Text style={{ textAlign: 'center', paddingBottom: 20 }}>My Events</Text>
-        {/* <Text style={style.userTitle}>My Events</Text> */}
-        {/* <View style={style.br} /> */}
+        <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+          <Text style={{ textAlign: 'center', paddingBottom: 20 }}>My Events</Text>
+          <TouchableOpacity onPress={() => this.props.nav.navigate('EditEventScreen')}>
+            <Icon name={'md-create'} size={20} color="#949BA1" />
+          </TouchableOpacity>
+        </View>
         <Carousel
           ref={(carousel) => { this._carousel = carousel }}
           data={carData}
@@ -276,7 +280,7 @@ export default class EventTeaser extends Component {
           sliderWidth={deviceWidth - 40} // make the sliderWidth and itemWidth equivalent to make it left align
           itemWidth={deviceWidth - 100} // subtract 40 for item's left and right padding
         />
-      </View>
+      </View >
     )
   }
 }
