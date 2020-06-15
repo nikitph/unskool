@@ -96,6 +96,7 @@ class EditEventScreen extends Component {
   }
 
   showAlert(type, title, message) {
+    this.refs._scrollView.scrollTo(0);
     this.dropdown.alertWithType(type, title, message)
   }
 
@@ -317,7 +318,7 @@ class EditEventScreen extends Component {
       : require('../Images/blank-profile-pic.png')
 
     return (
-      <ScrollView style={style.container}>
+      <ScrollView style={style.container} ref='_scrollView'>
         <Text style={[globalStyles.title, { color: 'white', textAlign: 'center' }]}> Add an Event! </Text>
         <View className='image-uploader'>
           <View style={globalStyles.formImageContainer}>

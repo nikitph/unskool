@@ -109,7 +109,7 @@ class LoginScreen extends Component {
                     </View>
                     <View>
                       <Text style={[styles.forgot]} onPress={() => this.props.navigation.navigate('ResetPasswordScreen')}
-                      > Forgot Password </Text>
+                      > Forgot Password ? </Text>
                     </View>
 
                   </View>

@@ -30,7 +30,7 @@
     "get-ios-details": "code-push deployment ls unskool-ios -k",
     "get-android-details": "code-push deployment ls unskool-Android -k",
     "release-android-appcenter": "appcenter codepush release-react -a unskool12-outlook.com/unskool-android -d Staging",
-    "release-ios-appcenter": "appcenter codepush release-react -a unskool12-outlook.com/unskool-ios -d Staging",
+    "release-ios-appcenter": "appcenter codepush release-react -a unskool12-outlook.com/unskool-ios -d Production",
     "postinstall": "node ./android-release-gradle-fix.js",
     "r-a": "cd android && ./gradlew clean && ./gradlew ap:assembleRelease",
     "android-build-release": "cd ./android && rm -rf app/src/main/res/drawable* && ./gradlew app:assembleRelease"
