@@ -224,7 +224,7 @@ class EditGuardianScreen extends Component {
                     this.setState({ profileImage: avatar })
                   }
                 }}>
-                <FastImage
+                <Image
                   style={{
                     paddingVertical: 10,
                     width: 100,
@@ -232,7 +232,7 @@ class EditGuardianScreen extends Component {
                     borderRadius: 50
                   }}
                   resizeMode='cover'
-                  source={this.state.profileImage} />
+                  source={require('../Images/blank-profile-pic.png')}/>
               </PhotoUpload>
             </View>
           </View>

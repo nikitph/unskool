@@ -56,27 +56,25 @@ export default class PhotoUpload extends React.Component {
       let { height, width, quality, format } = this.state
 
       // resize image
-      const resizedImageUri = await ImageResizer.createResizedImage(
-        `data:image/jpeg;base64,${response.data}`,
-        height,
-        width,
-        format,
-        quality
-      )
-      const filePath = resizedImageUri.uri
-        ? resizedImageUri.uri.replace('file:', '')
-        : resizedImageUri.uri
+      // const resizedImageUri = await ImageResizer.createResizedImage(
+      //   `data:image/jpeg;base64,${response.data}`,
+      //   height,
+      //   width,
+      //   format,
+      //   quality
+      // )
+      const filePath = response.uri
 
       // convert image back to base64 string
       const photoData = await RNFS.readFile(filePath, 'base64')
-      let source = { uri: resizedImageUri }
+      let source = {uri: response}
       this.setState({
         avatarSource: source
       })
 
       // handle photo in props functions as data string
       if (this.props.onPhotoSelect) {
-        this.props.onPhotoSelect(resizedImageUri)
+        this.props.onPhotoSelect(response)
       }
     })
   }
