@@ -263,10 +263,10 @@ export default class EventTeaser extends Component {
 
     return (
       <View style={style.teaserContainer}>
-        <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+        <View style={{ justifyContent: 'space-between', flexDirection: 'row', marginRight: 20 }}>
           <Text style={{ textAlign: 'center', paddingBottom: 20 }}>My Events</Text>
-          <TouchableOpacity onPress={() => this.props.nav.navigate('EditEventScreen')}>
-            <Icon name={'md-create'} size={20} color="#949BA1" />
+          <TouchableOpacity onPress={() => this.props.nav.navigate('CreateEventScreen')}>
+            <Icon name={'md-add'} size={30} color="#949BA1" />
           </TouchableOpacity>
         </View>
         <Carousel
