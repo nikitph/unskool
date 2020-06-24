@@ -30,7 +30,7 @@ export function * createChild ({cdata, alertfunc, nav}) {
 
   try {
     let childImageLoc = 'https://www.cmsabirmingham.org/stuff/2017/01/default-placeholder.png'
-    if (profileImage) {
+    if (profileImage.uri) {
       const uploadUri = Platform.OS === 'ios' ? profileImage.uri.replace('file://', '') : profileImage.uri
       childImageLoc = yield call(genericFileUpload, uploadUri, profileImage.name, storageRef)
     }

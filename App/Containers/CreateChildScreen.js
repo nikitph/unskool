@@ -27,7 +27,8 @@ import DropdownAlert from 'react-native-dropdownalert'
 class CreateChildScreen extends Component {
   static navigationOptions = {
     headerTitle: () => <Image source={Images.launch} style={{ width: 40, height: 40 }}
-    />
+    />,
+    headerBackTitleVisible: false
   };
   constructor(props) {
     super(props)
