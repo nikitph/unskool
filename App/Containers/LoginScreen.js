@@ -24,8 +24,8 @@ class LoginScreen extends Component {
     this.showAlert = this.showAlert.bind(this)
 
     this.state = {
-      email: 'n@n.com',
-      password: '123456',
+      email: '',
+      password: '',
       invalidEmail: false,
       invalidPassword: false,
       incorrectPassword: false,
