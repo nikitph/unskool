@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, TextInput } from 'react-native'
+import { ScrollView, Text, View, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import CreateGuardianActions from '../Redux/CreateGuardianRedux'
@@ -187,7 +187,7 @@ class CreateGuardianScreen extends Component {
     return (
       <ScrollView keyboardShouldPersistTaps='handled'>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
-          <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={style.logo} />
+          <Image source={Images.launch} style={style.logo}/>
         </View>
         <Text style={[globalStyles.formTitle]}> Help us get to know you... </Text>
         <View style={style.formContainer}>

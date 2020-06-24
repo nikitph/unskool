@@ -106,7 +106,7 @@ STYLE.formContainer = {
 }
 
 STYLE.formTitle = {
-  color: 'white',
+  color: 'black',
   fontSize: 25,
   marginBottom: 10,
   textAlign: 'center'
