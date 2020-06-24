@@ -85,7 +85,13 @@ class SignUpScreen extends Component {
                           returnKeyType='next'
                           autoCapitalize='none'
                           autoCorrect={false}
-                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
+                          style={{
+                            fontFamily: 'AvenirNext-UltraLight',
+                            textAlign: 'left',
+                            color: 'rgba(0,0,0,0.8)',
+                            fontSize: 18,
+                            fontWeight: '400'
+                          }}
                           underlineColorAndroid='transparent'
                           placeholder={'Email Address'}
                           onChangeText={(email) => this.setState({ email })}
@@ -109,7 +115,13 @@ class SignUpScreen extends Component {
                           returnKeyType='go'
                           autoCapitalize='none'
                           autoCorrect={false}
-                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
+                          style={{
+                            fontFamily: 'AvenirNext-UltraLight',
+                            textAlign: 'left',
+                            color: 'rgba(0,0,0,0.8)',
+                            fontSize: 18,
+                            fontWeight: '400'
+                          }}
                           secureTextEntry
                           underlineColorAndroid='transparent'
                           placeholder={'Password'}
@@ -131,7 +143,13 @@ class SignUpScreen extends Component {
                           returnKeyType='go'
                           autoCapitalize='none'
                           autoCorrect={false}
-                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
+                          style={{
+                            fontFamily: 'AvenirNext-UltraLight',
+                            textAlign: 'left',
+                            color: 'rgba(0,0,0,0.8)',
+                            fontSize: 18,
+                            fontWeight: '400'
+                          }}
                           secureTextEntry
                           underlineColorAndroid='transparent'
                           placeholder={'Confirm Password'}
