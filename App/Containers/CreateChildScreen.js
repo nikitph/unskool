@@ -39,7 +39,7 @@ class CreateChildScreen extends Component {
     this.state = {
       gid: props.guardian.uid,
       fName: '',
-      lName: '',
+      lName: ' ',
       age: '',
       profileImage: '../Images/blank-profile-pic.png',
       gender: null,

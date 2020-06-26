@@ -16,6 +16,7 @@ import { dbService, mapp } from '../Services/Firebase'
 import { NavigationActions } from 'react-navigation'
 import { Platform } from 'react-native'
 import { genericFileUpload } from '../Services/Uploader'
+import LoginActions from '../Redux/LoginRedux'
 
 export function * createChild ({cdata, alertfunc, nav}) {
   const { gid,
@@ -46,6 +47,8 @@ export function * createChild ({cdata, alertfunc, nav}) {
     })
 
     yield put(CreateChildActions.createChildSuccess({childKey}))
+    const guardian = yield call(dbService.database.read, `guardians/${gid}`)
+    yield put(LoginActions.loginSuccess({uid: gid, displayName: guardian.displayName, ...guardian}))
     const resetAction = nav.reset([NavigationActions.navigate({routeName: 'DashboardScreen'})], 0)
     yield call(nav.dispatch, resetAction)
   } catch (error) {
