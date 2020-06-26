@@ -16,8 +16,18 @@ import ChatActions from '../Redux/ChatRedux'
 
 const usr = mapp.auth()
 
-export function * getChat () {
-  const channel = yield call(dbService.database.channel, `messages/${usr.currentUser.uid}`)
+export function * getChat ({data}) {
+
+  let gid
+
+  if (usr.currentUser) {
+    gid = usr.currentUser.uid
+  }
+
+  if (data) {
+    gid = data.uid
+  }
+  const channel = yield call(dbService.database.channel, `messages/${gid}`)
 
   while (true) {
     const {value: messages} = yield take(channel)

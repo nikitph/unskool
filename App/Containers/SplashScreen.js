@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux';
+import ChatActions from '../Redux/ChatRedux'
 
 class SplashScreen extends React.Component {
     static navigationOptions = {
@@ -26,6 +27,7 @@ class SplashScreen extends React.Component {
         let userData = JSON.parse(user)
         if (userData) {
             this.props.navigation.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' }, { guardian: userData })], 0)
+          this.props.postChat({uid: userData.uid})
         } else {
             this.props.navigation.reset([NavigationActions.navigate({ routeName: 'LaunchScreen' })], 0)
         }
@@ -53,8 +55,11 @@ const mapStateToProps = state => ({
     user: state.login,
 });
 
-
-const mapDispatchToProps = dispatch => ({
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postChat: (data) =>
+      dispatch(ChatActions.chatRequest(data))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
