@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.facebook.react.ReactInstanceManager;
 // import com.RNFetchBlob.RNFetchBlobPackage;
 // import com.rnfs.RNFSPackage;
@@ -39,6 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
     // protected List<ReactPackage> getPackages() {
     //   return Arrays.<ReactPackage>asList(
     //       new MainReactPackage(),
+            new ReactNativeOneSignalPackage(),
     //         new RNFetchBlobPackage(),
     //         new RNFSPackage(),
     //         new ImageResizerPackage(),
