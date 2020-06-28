@@ -69,6 +69,8 @@ target 'unskool' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
   target 'unskoolTests' do
     inherit! :complete
     # Pods for testing
@@ -83,6 +85,11 @@ target 'unskool' do
     flipper_post_install(installer)
   end
 end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignal', '>= 2.9.3', '< 3.0'
+end
+
 target 'unskool-tvOS' do
   # Pods for unskool-tvOS
   target 'unskool-tvOSTests' do
