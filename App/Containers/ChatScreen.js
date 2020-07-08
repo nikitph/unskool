@@ -1,10 +1,46 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Button, TouchableOpacity, View, Alert } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { connect } from 'react-redux'
 import ChatPostTypes from '../Redux/ChatPostRedux'
+import { Images } from '../Themes'
+import * as Animatable from 'react-native-animatable'
+import styles from './Styles/ViewGuardianScreenStyle'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 class ChatScreen extends Component {
+  static navigationOptions = ({navigation}) => {
+    return {
+      headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{width: 40, height: 40}}
+      />,
+      headerRight: <TouchableOpacity style={[styles.headerIconContainer, {margin: 10}]}
+                                     onPress={() => {
+                                       Alert.alert(
+                                         'Are you sure you want to block this user?',
+                                         'You will no longer be able to communicate with this person',
+                                         [
+                                           {
+                                             text: 'Yes I am sure',
+                                             onPress: () => navigation.navigate('DashboardScreen')
+                                           },
+                                           {
+                                             text: 'No, Cancel',
+                                             onPress: () => console.log('Cancel Pressed'),
+                                             style: 'cancel'
+                                           },
+                                         ],
+                                         {cancelable: false}
+                                       )
+                                     }
+                                     }>
+        {/* <Icon name={'md-chat'} size={15} color="#949BA1" /> */}
+        <MaterialCommunityIcons name={'alert-octagon-outline'} size={28} color="#BF4342"/>
+      </TouchableOpacity>
+      ,
+      headerBackTitle: ' '
+    }
+  }
+
   constructor (props) {
     super(props)
     const {navigation, messages, guardian} = props
