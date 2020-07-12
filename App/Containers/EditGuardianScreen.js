@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
+import _ from 'lodash';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import EditGuardianActions from '../Redux/EditGuardianRedux'
 import * as Animatable from 'react-native-animatable'
@@ -48,7 +49,7 @@ class EditGuardianScreen extends Component {
       specialties,
       languages_spoken,
       latlong
-    } = props.guardian
+    } = props.guardian;
     this.state = {
       uid,
       displayName,
@@ -95,20 +96,20 @@ class EditGuardianScreen extends Component {
     this.dropdown.alertWithType(type, title, message)
   };
 
-  checkboxChange(checkbox, checkboxOptions, checked) {
+  async checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[checkboxOptions]
-    let index
-
+    let options = [...this.state[checkboxOptions]];
     // check if the check box is checked or unchecked
     if (checked) {
       // add the numerical value of the checkbox to options array
-      options.push(checkbox)
+      options.push(checkbox);
     } else {
       // or remove the value from the unchecked checkbox from the array
-      index = options.indexOf(checkbox)
-      options.splice(index, 1)
+      const index = options.indexOf(checkbox);
+      options.splice(index, 1);
     }
+    // options = _.uniq(options);
+    this.setState({[checkboxOptions]: options});
   }
 
   radioButtonChange(value, group) {
@@ -184,14 +185,14 @@ class EditGuardianScreen extends Component {
                     label={item}
                     checked
                     key={item}
-                    onChange={(checked) => this.checkboxChange(item, category, checked)}
+                    onChange={(checked) => this.checkboxChange(item, 'specialties', checked)}
                   />
               } else {
                 checkbox =
                   <CheckBox
                     label={item}
                     key={item}
-                    onChange={(checked) => this.checkboxChange(item, category, checked)}
+                    onChange={(checked) => this.checkboxChange(item, 'specialties', checked)}
                   />
               }
 
@@ -212,7 +213,7 @@ class EditGuardianScreen extends Component {
     // <BackButton path="/welcome-search" />
 
     return (
-      <ScrollView>
+      <ScrollView style={{flexGrow: 1}}>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <View className='image-uploader'>
             <View style={globalStyles.formImageContainer}>
@@ -269,7 +270,7 @@ class EditGuardianScreen extends Component {
           </View> */}
 
           <View>
-            <Text style={globalStyles.formSubTitle}>Address</Text>
+            {/* <Text style={globalStyles.formSubTitle}>Address</Text> */}
             <GooglePlacesAutocomplete
               placeholder='Start typing your address here'
               minLength={2} // minimum length of text to search
