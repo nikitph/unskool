@@ -168,7 +168,7 @@ class ViewGuardianScreen extends Component {
           <Hero
             guardian={guardian} nav={this.props.navigation} bVisible={false} />
         </View>
-        <ScrollView>
+        <ScrollView style={{flexGrow: 1}}>
           <View style={{ flex: 0.3 }}>
             <Summary guardian={guardian} nav={this.props.navigation} bVisible={false} />
           </View>

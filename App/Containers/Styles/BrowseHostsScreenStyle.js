@@ -8,7 +8,8 @@ const deviceWidth = Metrics.screenWidth
 const BrosweHosts = {}
 
 BrosweHosts.container = {
-  marginBottom: 65
+  marginBottom: 65,
+  flexGrow: 1,
 }
 
 BrosweHosts.teaserContainer = {

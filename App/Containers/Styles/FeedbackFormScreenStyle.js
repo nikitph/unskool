@@ -2,7 +2,7 @@ const FeedbackForm = {}
 
 FeedbackForm.container = {
   width: '100%',
-  flex: 1,
+  flexGrow: 1,
   flexDirection: 'column',
   marginBottom: 90
 }

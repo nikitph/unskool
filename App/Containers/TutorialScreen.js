@@ -29,7 +29,7 @@ class TutorialScreen extends Component {
         borderRadius: 2.5,
         margin: 5,
         borderWidth: 1,
-        borderColor: '#74bcf7)',
+        borderColor: '#74bcf7',
         backgroundColor: '#74bcf7'
       }} />
   }

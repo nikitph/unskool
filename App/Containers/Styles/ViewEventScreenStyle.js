@@ -8,7 +8,8 @@ const deviceWidth = Metrics.screenWidth
 const ViewEvent = {}
 
 ViewEvent.container = {
-  marginBottom: 65
+  marginBottom: 65,
+  flexGrow: 1,
 }
 
 ViewEvent.teaserContainer = {

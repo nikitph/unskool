@@ -108,7 +108,7 @@ class APIResult extends React.Component {
 
   renderView () {
     return (
-      <ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
+      <ScrollView style={{ flexGrow: 1, top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
         <TouchableOpacity
           style={{backgroundColor: 'white', padding: 20}}
           onPress={this.onApiPress}
