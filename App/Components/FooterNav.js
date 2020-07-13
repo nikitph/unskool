@@ -54,7 +54,7 @@ class FooterNav extends Component {
           <Link
             extraStyle={style.footerLink}
             textStyles={style.footerLinkCopy}
-            onClick={() => navigation.navigate('DashboardScreen')}
+            onClick={() => navigation.navigate('CalendarScreen')}
             iconTop={{url: checkScene('Calendar'), dimensions: iconStyles }}
             text='CALENDAR' />
           <Link

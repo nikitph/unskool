@@ -1,5 +1,6 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation'
+import CalendarScreen from '../Containers/CalendarScreen'
 import ReviewsScreen from '../Containers/ReviewsScreen'
 import FriendReviewScreen from '../Containers/FriendReviewScreen'
 import { createStackNavigator } from 'react-navigation-stack';
@@ -29,6 +30,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  CalendarScreen: {screen: CalendarScreen},
   ReviewsScreen: { screen: ReviewsScreen },
   FriendReviewScreen: { screen: FriendReviewScreen },
   SplashScreen: { screen: SplashScreen },
