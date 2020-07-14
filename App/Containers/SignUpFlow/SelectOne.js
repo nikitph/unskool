@@ -17,7 +17,7 @@ import globalStyles from '../../Themes/GlobalStyles';
 import {Images} from '../../Themes';
 
 
-class Select1 extends React.Component {
+class ScreenOne extends React.Component {
   static navigationOptions = {
     title: 'Select 1',
   };
@@ -68,7 +68,7 @@ class Select1 extends React.Component {
       return null;
     } else {
       navigation.navigate(
-        'Select2',
+        'ScreenTwo',
         {displayName: `${fName} ${lName}`, languages_spoken: selectedLanguages},
       );
     }
@@ -167,4 +167,4 @@ class Select1 extends React.Component {
   }
 }
 
-export default connect(null, null)(Select1);
+export default connect(null, null)(ScreenOne);

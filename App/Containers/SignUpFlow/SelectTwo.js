@@ -14,7 +14,7 @@ import styles from '../Styles/CreateGuardianScreenStyle';
 import globalStyles from '../../Themes/GlobalStyles';
 import {Images} from '../../Themes';
 
-class Select2 extends React.Component {
+class ScreenTwo extends React.Component {
   static navigationOptions = {
     title: 'Select 2',
   };
@@ -56,7 +56,7 @@ class Select2 extends React.Component {
       const displayName = navigation.getParam('displayName', '');
       const languagesSpoken = navigation.getParam('languages_spoken', '');
       navigation.navigate(
-        'Select3',
+        'ScreenThree',
         {displayName, languages_spoken: languagesSpoken, city, state, zipCode, street, latlong},
       );
     }
@@ -166,4 +166,4 @@ class Select2 extends React.Component {
   }
 }
 
-export default connect(null, null)(Select2);
+export default connect(null, null)(ScreenTwo);

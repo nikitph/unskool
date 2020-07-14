@@ -103,7 +103,7 @@ class EditGuardianScreen extends Component {
     this.dropdown.alertWithType(type, title, message)
   };
 
-  async checkboxChange(checkbox, checkboxOptions, checked) {
+  checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
     let options = [...this.state[checkboxOptions]];
     // check if the check box is checked or unchecked

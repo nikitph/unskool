@@ -18,7 +18,7 @@ import globalStyles from '../../Themes/GlobalStyles';
 import CreateGuardianActions from '../../Redux/CreateGuardianRedux'
 
 
-class Select3 extends React.Component {
+class ScreenThree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -182,4 +182,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Select3);
+export default connect(mapStateToProps, mapDispatchToProps)(ScreenThree);
