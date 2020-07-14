@@ -19,6 +19,9 @@ import CreateGuardianActions from '../../Redux/CreateGuardianRedux'
 
 
 class ScreenThree extends React.Component {
+  static navigationOptions = {
+    title: 'Step 3',
+  };
   constructor(props) {
     super(props);
     this.state = {

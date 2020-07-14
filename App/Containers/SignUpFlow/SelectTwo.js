@@ -16,7 +16,7 @@ import {Images} from '../../Themes';
 
 class ScreenTwo extends React.Component {
   static navigationOptions = {
-    title: 'Select 2',
+    title: 'Step 2',
   };
 
   constructor(props) {

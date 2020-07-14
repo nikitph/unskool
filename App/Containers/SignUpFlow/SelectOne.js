@@ -19,7 +19,7 @@ import {Images} from '../../Themes';
 
 class ScreenOne extends React.Component {
   static navigationOptions = {
-    title: 'Select 1',
+    title: 'Step 1',
   };
 
   constructor(props) {
