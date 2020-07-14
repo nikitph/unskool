@@ -25,6 +25,10 @@ export default StyleSheet.create({
     width: Metrics.images.logo,
     resizeMode: 'contain',
     opacity: 0.6
+  },
+  addSpecialtiesCon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 5,
   }
-
 })

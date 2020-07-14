@@ -5,7 +5,8 @@ import { Images } from '../Themes'
 import Icon from 'react-native-vector-icons/Ionicons'
 import * as Animatable from 'react-native-animatable'
 import DropdownAlert from 'react-native-dropdownalert'
-import { Button } from 'react-native-elements'
+import { Button } from 'react-native-elements';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import SignUpActions from '../Redux/SignUpRedux'
 // Styles
@@ -53,7 +54,7 @@ class SignUpScreen extends Component {
     const props = this.props
 
     return (
-      <View style={{ flex: 1 }}>
+      <KeyboardAwareScrollView extraScrollHeight={10} contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
           <Animatable.Image animation='rotate' duration={9000} iterationCount='infinite' source={Images.launch} style={styles.logo} />
         </View>
@@ -182,7 +183,7 @@ class SignUpScreen extends Component {
           errorColor={'rgba(250,50,50,1)'}
           closeInterval={6000}
         />
-      </View>
+      </KeyboardAwareScrollView>
     )
   }
 }

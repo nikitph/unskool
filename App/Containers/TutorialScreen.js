@@ -1,4 +1,6 @@
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -27,7 +29,7 @@ class TutorialScreen extends Component {
         borderRadius: 2.5,
         margin: 5,
         borderWidth: 1,
-        borderColor: '#74bcf7)',
+        borderColor: '#74bcf7',
         backgroundColor: '#74bcf7'
       }} />
   }
@@ -49,7 +51,11 @@ class TutorialScreen extends Component {
           <View><Image source={Images.tut2} resizeMode='contain' style={imageDimensions} /></View>
           <View><Image source={Images.tut3} resizeMode='contain' style={imageDimensions} /></View>
           <View><Image source={Images.tut4} resizeMode='contain' style={imageDimensions} />
-            <View style={{ margin: 20 }}><Button title='Get Started' onPress={() => this.props.navigation.navigate('DashboardScreen')} /></View>
+            <View style={{ margin: 20 }}><Button title='Get Started' onPress={() => {
+                this.props.navigation.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' })], 0)
+              }}
+            />
+            </View>
           </View>
         </IndicatorViewPager>
       </View>

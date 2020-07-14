@@ -241,7 +241,7 @@ class EditChildScreen extends Component {
       : require('../Images/blank-profile-pic.png')
 
     return (
-      <ScrollView style={globalStyles.formContainer}>
+      <ScrollView style={[globalStyles.formContainer, {flexGrow: 1}]}>
         <Text style={[globalStyles.formTitle, style.title]}> Add your child here! </Text>
 
         <View className='image-uploader'>

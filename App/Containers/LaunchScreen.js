@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Image, View } from 'react-native'
+import { Text, Image, View, ScrollView } from 'react-native'
 import { Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -14,7 +14,7 @@ export default class LaunchScreen extends Component {
   }
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <ScrollView style={{flexGrow: 1}}>
         <View style={styles.container}>
           <View style={styles.centered}>
             <Image source={Images.launch} style={styles.logo} />
@@ -75,7 +75,7 @@ export default class LaunchScreen extends Component {
 
         </View>
 
-      </View>
+      </ScrollView>
     )
   }
 }

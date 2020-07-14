@@ -9,7 +9,7 @@ export function * signUp ({email, password, alertfunc, nav}) {
     const {uid, displayName, photoURL} = response.user
     if (uid) {
       yield put(SignUpActions.signUpSuccess({uid, displayName, photoURL}))
-      const resetAction = nav.reset([NavigationActions.navigate({routeName: 'CreateGuardianScreen'}, {uid})], 0)
+      const resetAction = nav.reset([NavigationActions.navigate({routeName: 'ScreenOne'}, {uid})], 0)
       yield call(nav.dispatch, resetAction)
     } else { yield put(SignUpActions.signUpFailure('unknown Error')) }
   } catch (error) {

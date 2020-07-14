@@ -24,6 +24,9 @@ import DashboardScreen from '../Containers/DashboardScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
+import ScreenOne from '../Containers/SignUpFlow/ScreenOne';
+import ScreenTwo from '../Containers/SignUpFlow/ScreenTwo';
+import ScreenThree from '../Containers/SignUpFlow/ScreenThree';
 
 import SplashScreen from '../Containers/SplashScreen';
 import styles from './Styles/NavigationStyles'
@@ -54,6 +57,9 @@ const PrimaryNav = createStackNavigator({
   SignUpScreen: { screen: SignUpScreen },
   LoginScreen: { screen: LoginScreen },
   LaunchScreen: { screen: LaunchScreen },
+  ScreenOne: {screen: ScreenOne},
+  ScreenTwo: {screen: ScreenTwo},
+  ScreenThree: {screen: ScreenThree},
 }, {
   // Default config for all screens
   headerMode: 'screen',

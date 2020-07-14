@@ -185,7 +185,7 @@ class CreateGuardianScreen extends Component {
     // <BackButton path="/welcome-search" />
 
     return (
-      <ScrollView keyboardShouldPersistTaps='handled'>
+      <ScrollView style={{flexGrow: 1}} keyboardShouldPersistTaps='handled'>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <Image source={Images.launch} style={style.logo}/>
         </View>
@@ -223,7 +223,7 @@ class CreateGuardianScreen extends Component {
             <GooglePlacesAutocomplete
               placeholder='Start typing your address here'
               minLength={2} // minimum length of text to search
-              autoFocus
+              // autoFocus
               returnKeyType={'default'}
               listViewDisplayed='true'    // true/false/undefined
               fetchDetails

@@ -228,7 +228,7 @@ class CreateChildScreen extends Component {
       : require('../Images/blank-profile-pic.png')
 
     return (
-      <ScrollView style={globalStyles.formContainer}>
+      <ScrollView style={[globalStyles.formContainer, {flexGrow: 1}]}>
         {
           /* page overlay for the image selection
              rendered based on the state per the open/close */

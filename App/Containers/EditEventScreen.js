@@ -14,7 +14,7 @@ import {
   ScrollView,
   Image
 } from 'react-native'
-
+import _ from 'lodash';
 import moment from 'moment'
 import globalStyles from '../Themes/GlobalStyles'
 import DatePicker from 'react-native-datepicker'
@@ -47,9 +47,8 @@ class EditEventScreen extends Component {
   };
   constructor(props) {
     super(props)
-
-    let event = props.navigation.state.params.eventData
-    let ekey = props.navigation.state.params.ekey
+    let event = this.props.navigation.state.params.eventData
+    let ekey = this.props.navigation.state.params.ekey
 
     //
     // STATE OBJECT
@@ -77,7 +76,6 @@ class EditEventScreen extends Component {
       formattedFinishDate,
       sponsored
     } = event
-
     this.state = { ekey, ...event }
 
     // FILE UPLOAD
@@ -132,18 +130,17 @@ class EditEventScreen extends Component {
 
   checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[checkboxOptions]
-    let index
-
+    let options = _.uniq([...this.state[checkboxOptions]]);
     // check if the check box is checked or unchecked
     if (checked) {
-      // add the value of the checkbox to options array
-      options.push(checkbox)
+      // add the numerical value of the checkbox to options array
+      options.push(checkbox);
     } else {
       // or remove the value from the unchecked checkbox from the array
-      index = options.indexOf(checkbox)
-      options.splice(index, 1)
+      const ind = options.indexOf(checkbox);
+      options.splice(ind, 1);
     }
+    this.setState({[checkboxOptions]: options});
   }
 
   radioButtonChange(value, group) {
@@ -165,7 +162,7 @@ class EditEventScreen extends Component {
   submitForm() {
     const newEvent = { ...this.state }
 
-    const {
+    let {
       formattedStartDate,
       formattedFinishDate,
       recurringDays,
@@ -173,11 +170,25 @@ class EditEventScreen extends Component {
     } = newEvent
 
     // generate a collection of formatted dates from the recurring event days and place that collection into the newEvent obj
-    newEvent.calendarDates = generateCalendarDates(formattedStartDate, formattedFinishDate, recurringDays, frequency)
+    let recurringDaysSequence = [
+      { sortNo: 1, value: 'M' },
+      { sortNo: 2, value: 'T' },
+      { sortNo: 3, value: 'W' },
+      { sortNo: 4, value: 'Th' },
+      { sortNo: 5, value: 'F' },
+      { sortNo: 6, value: 'S' },
+      { sortNo: 7, value: 'Su' }
+    ];
+    const newRecurDays = _.sortBy(
+      _.filter(
+        recurringDaysSequence, (day) => recurringDays.includes(day.value)),
+        'sortNo'
+      ).map(d => d.value);
+    newEvent['recurringDays'] = newRecurDays
+    newEvent.calendarDates = generateCalendarDates(formattedStartDate, formattedFinishDate, newRecurDays, frequency)
 
     // store the selected image's url
     const { selectedImage, profileImage } = this.state
-
     let imageUri
     selectedImage
       ? imageUri = selectedImage.uri
@@ -243,7 +254,7 @@ class EditEventScreen extends Component {
               {formData[category].map(item => {
                 let checkbox = ''
                 // pre-check any items that were selected and saved
-                if (this.state[category].indexOf(item) > -1) {
+                if (this.state[category] && this.state[category].indexOf(item) > -1) {
                   checkbox =
                     <CheckBox
                       label={item}
@@ -447,11 +458,13 @@ class EditEventScreen extends Component {
             {
               /* custom checkbox output for the event form. This doesn't exist in the formData */
               recurringDays_checkbox_props.map((item) => {
-                let { label, value } = item
+                let { label, value } = item;
+                const isChecked = (this.state.recurringDays && this.state.recurringDays.indexOf(item.value) > -1);
                 return (
                   <CheckBox
                     label={label}
                     key={label}
+                    checked={isChecked}
                     onChange={(checked) => this.checkboxChange(value, 'recurringDays', checked)}
                   />
                 )

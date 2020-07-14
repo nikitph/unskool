@@ -2,7 +2,8 @@
 const CreateEventForm = {}
 
 CreateEventForm.container = {
-  padding: 10
+  padding: 10,
+  flexGrow: 1,
 }
 
 CreateEventForm.subTitle = {

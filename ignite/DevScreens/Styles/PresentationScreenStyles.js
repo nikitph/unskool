@@ -5,7 +5,8 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     marginBottom: 36,
-    paddingTop: Metrics.section
+    paddingTop: Metrics.section,
+    flexGrow: 1,
   },
   logo: {
     height: Metrics.images.logo,

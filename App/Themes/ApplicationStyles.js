@@ -19,7 +19,7 @@ const ApplicationStyles = {
       right: 0
     },
     container: {
-      flex: 1,
+      flexGrow: 1,
       paddingTop: Metrics.baseMargin,
       backgroundColor: Colors.transparent
     },

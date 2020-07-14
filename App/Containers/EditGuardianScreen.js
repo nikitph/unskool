@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
+import _ from 'lodash';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import EditGuardianActions from '../Redux/EditGuardianRedux'
 import * as Animatable from 'react-native-animatable'
@@ -48,7 +49,8 @@ class EditGuardianScreen extends Component {
       specialties,
       languages_spoken,
       latlong
-    } = props.guardian
+    } = props.guardian;
+    const newSpecialties = _.uniq([...specialties, ...['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work']])
     this.state = {
       uid,
       displayName,
@@ -63,9 +65,15 @@ class EditGuardianScreen extends Component {
       gender,
       privacy,
       sponsored,
-      specialties,
+      specialties: newSpecialties,
       languages_spoken,
-      latlong
+      latlong,
+      showAddSpecialties: false,
+      formData: {
+        specialties: newSpecialties,
+        languages_spoken: ['english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali']
+      },
+      newSpeciality: '',
     }
 
     this.radioButtonChange = this.radioButtonChange.bind(this)
@@ -97,19 +105,21 @@ class EditGuardianScreen extends Component {
 
   checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[checkboxOptions]
-    let index
-
+    let options = [...this.state[checkboxOptions]];
     // check if the check box is checked or unchecked
     if (checked) {
       // add the numerical value of the checkbox to options array
-      options.push(checkbox)
+      options.push(checkbox);
     } else {
       // or remove the value from the unchecked checkbox from the array
-      index = options.indexOf(checkbox)
-      options.splice(index, 1)
+      const index = options.indexOf(checkbox);
+      options.splice(index, 1);
     }
+    // options = _.uniq(options);
+    this.setState({[checkboxOptions]: options});
   }
+
+  showAddSpecialties = () => this.setState({showAddSpecialties: true});
 
   radioButtonChange(value, group) {
     // current array of options
@@ -136,7 +146,11 @@ class EditGuardianScreen extends Component {
    * @param e
    */
   submitForm() {
-    this.props.attemptEditGuardian(this.state, this.showAlert, this.props.navigation)
+    const guardianData = {...this.state};
+    delete guardianData['showAddSpecialties'];
+    delete guardianData['formData'];
+    delete guardianData['newSpeciality'];
+    this.props.attemptEditGuardian(guardianData, this.showAlert, this.props.navigation)
     // Send welcome email
     // this.sendWelcomeMail(data)
   }
@@ -153,6 +167,24 @@ class EditGuardianScreen extends Component {
       '\n \n - The MC2 Founding Team'
   }
 
+  handleAddSpecilities = async () => {
+    const {specialties, newSpeciality, formData} = this.state;
+    if (!newSpeciality) {
+      this.showAlert('error', 'Error', 'Please Enter Speciality!');
+      return null;
+    }
+    let newSpecialties = _.uniq([...specialties, newSpeciality]);
+    this.setState({
+      showAddSpecialties: false,
+      newSpeciality: '',
+      specialties: newSpecialties,
+      formData: {
+        ...formData,
+        specialties: _.uniq([...formData.specialties,...newSpecialties]),
+      },
+    });
+  }
+
   /* sendWelcomeMail (data) {
      let emailBody = this.getEmailBody(data)
      sendEmail(data.email, 'Welcome to MC2', emailBody).then((response) => {
@@ -164,39 +196,63 @@ class EditGuardianScreen extends Component {
    * @returns {XML}
    */
   render() {
-    let formData = {
-      specialties: ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work', 'Other'],
-      languages_spoken: ['english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali']
-    }
+    const {formData, showAddSpecialties, newSpeciality} = this.state;
 
     const outputCheckboxes = () => {
       let checkboxOutput = []
       for (let category in formData) {
         checkboxOutput.push(
-          <View key={category} style={[globalStyles.checkboxContainer, style.checkboxContainer]}>
-            <Text style={globalStyles.checkboxSubTitle}>{this.capitalizeWord(category)}</Text>
-            {formData[category].map(item => {
-              let checkbox = ''
-              // pre-check any items that were selected and saved
-              if (this.state.specialties.indexOf(item) > -1) {
-                checkbox =
-                  <CheckBox
-                    label={item}
-                    checked
-                    key={item}
-                    onChange={(checked) => this.checkboxChange(item, category, checked)}
-                  />
-              } else {
-                checkbox =
-                  <CheckBox
-                    label={item}
-                    key={item}
-                    onChange={(checked) => this.checkboxChange(item, category, checked)}
-                  />
-              }
+          <View key={category}>
+            <View style={[globalStyles.checkboxContainer, style.checkboxContainer]}>
+              <Text style={globalStyles.checkboxSubTitle}>{this.capitalizeWord(category)}</Text>
+              {formData[category].map(item => {
+                let checkbox = ''
+                // pre-check any items that were selected and saved
+                if (this.state.specialties.indexOf(item) > -1) {
+                  checkbox =
+                    <CheckBox
+                      label={item}
+                      checked
+                      key={item}
+                      onChange={(checked) => this.checkboxChange(item, 'specialties', checked)}
+                    />
+                } else {
+                  checkbox =
+                    <CheckBox
+                      checked={item === 'Other'}
+                      label={item}
+                      key={item}
+                      onChange={(checked) => this.checkboxChange(item, 'specialties', checked)}
+                    />
+                }
 
-              return checkbox
-            })}
+                return checkbox
+              })}
+            </View>
+            {
+              category === 'specialties' && (
+                <Button
+                  onPress={this.showAddSpecialties}
+                  type='solid'
+                  title='Other'
+                />
+              )
+            } 
+            {showAddSpecialties && category === 'specialties' && (
+              <View style={style.addSpecialtiesCon}>
+                <TextInput
+                  style={[globalStyles.textInput, {flex: 1, height: 30, marginRight: 10}]}
+                  placeholder="Enter Speciality*"
+                  value={newSpeciality}
+                  onChangeText={(text) => this.setState({newSpeciality: text})}
+                />
+                <Button
+                  onPress={this.handleAddSpecilities}
+                  type='solid'
+                  title='Add'
+                />
+              </View>
+            )}
           </View>
         )
       }
@@ -212,7 +268,7 @@ class EditGuardianScreen extends Component {
     // <BackButton path="/welcome-search" />
 
     return (
-      <ScrollView>
+      <ScrollView style={{flexGrow: 1}}>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <View className='image-uploader'>
             <View style={globalStyles.formImageContainer}>
@@ -269,11 +325,11 @@ class EditGuardianScreen extends Component {
           </View> */}
 
           <View>
-            <Text style={globalStyles.formSubTitle}>Address</Text>
+            {/* <Text style={globalStyles.formSubTitle}>Address</Text> */}
             <GooglePlacesAutocomplete
               placeholder='Start typing your address here'
               minLength={2} // minimum length of text to search
-              autoFocus
+              // autoFocus
               returnKeyType={'default'}
               listViewDisplayed='auto'    // true/false/undefined
               fetchDetails
