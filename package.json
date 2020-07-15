@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/toolbar-android": "0.1.0-rc.2",
     "apisauce": "^1.1.1",
     "firebase": "^7.14.3",
     "format-json": "^1.0.3",
@@ -87,7 +88,7 @@
     "react-native-star-rating": "^1.1.0",
     "react-native-swiper": "^1.6.0",
     "react-native-tab-view": "^2.14.2",
-    "react-native-vector-icons": "^6.6.0",
+    "react-native-vector-icons": "6.6.0",
     "react-navigation": "3.13.0",
     "react-navigation-fluid-transitions": "^0.3.2",
     "react-navigation-redux-helpers": "^4.0.1",

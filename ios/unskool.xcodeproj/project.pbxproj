@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* unskoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* unskoolTests.m */; };
+		08E3C03B07796DA555E2317A /* libPods-unskool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5249418DF7F0E63FF7AFD0D /* libPods-unskool.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -16,14 +17,13 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* unskoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* unskoolTests.m */; };
+		2F06FB29A526FC32F4F8A763 /* libPods-unskool-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2783532C18AA569969218F6D /* libPods-unskool-tvOS.a */; };
 		5032B0D324A86F570084F76B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5032B0D224A86F570084F76B /* NotificationService.swift */; };
 		5032B0D724A86F570084F76B /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5032B0D024A86F570084F76B /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7F1019B5DD36DADB092A794C /* libPods-unskool-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7D713AE20161B0B18A1C68 /* libPods-unskool-tvOS.a */; };
+		82829DDD5562CA315097EECE /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A3532131ABC26A6B193AB7 /* libPods-OneSignalNotificationServiceExtension.a */; };
 		84E677B67B8345C1B2000E0B /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 574F2359A6234F2F893927E4 /* libRNVectorIcons-tvOS.a */; };
-		A4D5D221DC4A1AC74BE0658E /* libPods-unskool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9C5BF3C7C58CEB276DB3AB /* libPods-unskool.a */; };
-		D98BB54F2C75A45FC6B10B25 /* libPods-unskool-unskoolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0265F83A135C5D67E157921F /* libPods-unskool-unskoolTests.a */; };
-		DD09D791E1C9C6954552B309 /* libPods-unskool-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1D034F905E9ED5DE7F9DDE /* libPods-unskool-tvOSTests.a */; };
-		F6BFD04FA9B6F293059CFFE9 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D41D2A7BAEF91A0AE17476 /* libPods-OneSignalNotificationServiceExtension.a */; };
+		9FE78939E8C2294423ED1871 /* libPods-unskool-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE15096F736B7822E907F5F0 /* libPods-unskool-tvOSTests.a */; };
+		B03B8A57389A0E9493FDB872 /* libPods-unskool-unskoolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 525EDB0C3D0EE63EBF168480 /* libPods-unskool-unskoolTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,9 +69,9 @@
 		00E356EE1AD99517003FC87E /* unskoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = unskoolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* unskoolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = unskoolTests.m; sourceTree = "<group>"; };
-		0265F83A135C5D67E157921F /* libPods-unskool-unskoolTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool-unskoolTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B584AE84745C2C48EF1D99A /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		0C43258379CE424AB2FA4DFF /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
-		0F0ED8F6FA5E0AF2AB0422DC /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		10FF68944FCB38D4B671C5DB /* Pods-unskool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool.release.xcconfig"; path = "Target Support Files/Pods-unskool/Pods-unskool.release.xcconfig"; sourceTree = "<group>"; };
 		12BCC9AE2469C35E0056BADC /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		12BCC9AF2469C35E0056BADC /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		12BCC9B02469C35E0056BADC /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -98,47 +98,47 @@
 		155320EE2FDE4F9A8D1CCBA9 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		21E5CD0826004334B08031F9 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		24ABCB016962475584C7C81A /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		2783532C18AA569969218F6D /* libPods-unskool-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4A614CBC8548BBBB21B100 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		2BEA9190987EA1C67374787A /* Pods-unskool-unskoolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-unskoolTests.release.xcconfig"; path = "Target Support Files/Pods-unskool-unskoolTests/Pods-unskool-unskoolTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* unskool-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "unskool-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* unskool-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "unskool-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A10FB433CE373C62069176 /* Pods-unskool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool.debug.xcconfig"; path = "Target Support Files/Pods-unskool/Pods-unskool.debug.xcconfig"; sourceTree = "<group>"; };
 		36E126D661A240D782FDB1A4 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
-		3714C67FD301F59CFBC46C9B /* Pods-unskool-unskoolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-unskoolTests.debug.xcconfig"; path = "Target Support Files/Pods-unskool-unskoolTests/Pods-unskool-unskoolTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3B9F4B0C7BAE9759FDAF83A4 /* Pods-unskool-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-unskool-tvOSTests/Pods-unskool-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3E3ED231FD692AA5ED00DFAE /* Pods-unskool-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOS.release.xcconfig"; path = "Target Support Files/Pods-unskool-tvOS/Pods-unskool-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		46FE8090322E49C39E433719 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		47D663F592F34177A2653D31 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		4D9C5BF3C7C58CEB276DB3AB /* libPods-unskool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E0E3E8B40182D461C61CE75 /* Pods-unskool-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-unskool-tvOSTests/Pods-unskool-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		4FAAAD9EC80F67A451F4CE68 /* Pods-unskool-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-unskool-tvOSTests/Pods-unskool-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5032B0CB24A86EE40084F76B /* unskool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = unskool.entitlements; path = unskool/unskool.entitlements; sourceTree = "<group>"; };
 		5032B0D024A86F570084F76B /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5032B0D224A86F570084F76B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		5032B0D424A86F570084F76B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50EAC66624A871CB0057BD93 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		525EDB0C3D0EE63EBF168480 /* libPods-unskool-unskoolTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool-unskoolTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		574F2359A6234F2F893927E4 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
 		5DCCB34B22B54CB48B5505CB /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		5FF697BE517B42448B029D87 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		63F67592B6603F88CCD16CE3 /* Pods-unskool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool.release.xcconfig"; path = "Target Support Files/Pods-unskool/Pods-unskool.release.xcconfig"; sourceTree = "<group>"; };
-		75A3BB1901A9007A9D31CCC2 /* Pods-unskool-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-unskool-tvOS/Pods-unskool-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		66A3532131ABC26A6B193AB7 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71935D9F155F065B030B20F0 /* Pods-unskool-unskoolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-unskoolTests.release.xcconfig"; path = "Target Support Files/Pods-unskool-unskoolTests/Pods-unskool-unskoolTests.release.xcconfig"; sourceTree = "<group>"; };
 		76210D78CADD43668B8BBA05 /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
-		766F21899193E7144650E475 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		7A659DAFCD5F4B6782428990 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		7B5BD3DA3ACE49BDA00BF1CE /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		7BA41C07BA5C48088855E09F /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		7E31C5FE64FD4722B0E855F2 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		8F03CDA8C7834F73A3BE4EBF /* libRCTImageResizer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTImageResizer.a; sourceTree = "<group>"; };
 		8FE33BDC3C6B4E418E865915 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		9D1D034F905E9ED5DE7F9DDE /* libPods-unskool-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8A0C98E0124876886AF4EF /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
-		A621020D1A654A06AB2470A6 /* Pods-unskool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool.debug.xcconfig"; path = "Target Support Files/Pods-unskool/Pods-unskool.debug.xcconfig"; sourceTree = "<group>"; };
+		A04636982C0191ADE5907F2D /* Pods-unskool-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-unskool-tvOS/Pods-unskool-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AEBDE1CF48674D42BDEF7F45 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
+		B26ACA0E7E994FCB2629225A /* Pods-unskool-unskoolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-unskoolTests.debug.xcconfig"; path = "Target Support Files/Pods-unskool-unskoolTests/Pods-unskool-unskoolTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CCBEE2BEFEAC421E8C9CACB8 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		D129CC78E1944BA5BF666512 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		DC7D713AE20161B0B18A1C68 /* libPods-unskool-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE15096F736B7822E907F5F0 /* libPods-unskool-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF49867E8A17664BB259A6F3 /* Pods-unskool-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOS.release.xcconfig"; path = "Target Support Files/Pods-unskool-tvOS/Pods-unskool-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		E245E18DBB04763EFA44A93F /* Pods-unskool-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unskool-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-unskool-tvOSTests/Pods-unskool-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E86DD9ADDA19559FBACE2A79 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EF90604C062D4EED9336E2E3 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		F5D41D2A7BAEF91A0AE17476 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5249418DF7F0E63FF7AFD0D /* libPods-unskool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unskool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EA200844E447389DB150E4 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		FE2BE8E807EF4CFF98466615 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,7 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D98BB54F2C75A45FC6B10B25 /* libPods-unskool-unskoolTests.a in Frameworks */,
+				B03B8A57389A0E9493FDB872 /* libPods-unskool-unskoolTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4D5D221DC4A1AC74BE0658E /* libPods-unskool.a in Frameworks */,
+				08E3C03B07796DA555E2317A /* libPods-unskool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E677B67B8345C1B2000E0B /* libRNVectorIcons-tvOS.a in Frameworks */,
-				7F1019B5DD36DADB092A794C /* libPods-unskool-tvOS.a in Frameworks */,
+				2F06FB29A526FC32F4F8A763 /* libPods-unskool-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD09D791E1C9C6954552B309 /* libPods-unskool-tvOSTests.a in Frameworks */,
+				9FE78939E8C2294423ED1871 /* libPods-unskool-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6BFD04FA9B6F293059CFFE9 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+				82829DDD5562CA315097EECE /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,11 +249,11 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				F5D41D2A7BAEF91A0AE17476 /* libPods-OneSignalNotificationServiceExtension.a */,
-				4D9C5BF3C7C58CEB276DB3AB /* libPods-unskool.a */,
-				DC7D713AE20161B0B18A1C68 /* libPods-unskool-tvOS.a */,
-				9D1D034F905E9ED5DE7F9DDE /* libPods-unskool-tvOSTests.a */,
-				0265F83A135C5D67E157921F /* libPods-unskool-unskoolTests.a */,
+				66A3532131ABC26A6B193AB7 /* libPods-OneSignalNotificationServiceExtension.a */,
+				F5249418DF7F0E63FF7AFD0D /* libPods-unskool.a */,
+				2783532C18AA569969218F6D /* libPods-unskool-tvOS.a */,
+				DE15096F736B7822E907F5F0 /* libPods-unskool-tvOSTests.a */,
+				525EDB0C3D0EE63EBF168480 /* libPods-unskool-unskoolTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,18 +261,17 @@
 		45EA693BE5648941F6E0E68E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				766F21899193E7144650E475 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				0F0ED8F6FA5E0AF2AB0422DC /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
-				A621020D1A654A06AB2470A6 /* Pods-unskool.debug.xcconfig */,
-				63F67592B6603F88CCD16CE3 /* Pods-unskool.release.xcconfig */,
-				75A3BB1901A9007A9D31CCC2 /* Pods-unskool-tvOS.debug.xcconfig */,
-				3E3ED231FD692AA5ED00DFAE /* Pods-unskool-tvOS.release.xcconfig */,
-				3B9F4B0C7BAE9759FDAF83A4 /* Pods-unskool-tvOSTests.debug.xcconfig */,
-				4E0E3E8B40182D461C61CE75 /* Pods-unskool-tvOSTests.release.xcconfig */,
-				3714C67FD301F59CFBC46C9B /* Pods-unskool-unskoolTests.debug.xcconfig */,
-				2BEA9190987EA1C67374787A /* Pods-unskool-unskoolTests.release.xcconfig */,
+				0B584AE84745C2C48EF1D99A /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				E86DD9ADDA19559FBACE2A79 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+				30A10FB433CE373C62069176 /* Pods-unskool.debug.xcconfig */,
+				10FF68944FCB38D4B671C5DB /* Pods-unskool.release.xcconfig */,
+				A04636982C0191ADE5907F2D /* Pods-unskool-tvOS.debug.xcconfig */,
+				DF49867E8A17664BB259A6F3 /* Pods-unskool-tvOS.release.xcconfig */,
+				E245E18DBB04763EFA44A93F /* Pods-unskool-tvOSTests.debug.xcconfig */,
+				4FAAAD9EC80F67A451F4CE68 /* Pods-unskool-tvOSTests.release.xcconfig */,
+				B26ACA0E7E994FCB2629225A /* Pods-unskool-unskoolTests.debug.xcconfig */,
+				71935D9F155F065B030B20F0 /* Pods-unskool-unskoolTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -370,11 +369,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "unskoolTests" */;
 			buildPhases = (
-				7FA9A1E8C65C6E297003D695 /* [CP] Check Pods Manifest.lock */,
+				E34F117462CB9BE139504BC6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				288495B2117289FE8AD119A7 /* [CP] Copy Pods Resources */,
+				0C45289AC37FEB0601AA2FEC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,14 +389,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "unskool" */;
 			buildPhases = (
-				C3838A9A87B0D86F3CA03589 /* [CP] Check Pods Manifest.lock */,
+				6EBC236DE875533BDA5AFADC /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5032B0DB24A86F570084F76B /* Embed App Extensions */,
-				A0ABF33EFBD6A345097A4FFD /* [CP] Copy Pods Resources */,
+				68670F8B078A9BCCC8D4D7E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -413,7 +412,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "unskool-tvOS" */;
 			buildPhases = (
-				56713992B59A986FC75B8E3C /* [CP] Check Pods Manifest.lock */,
+				037111B7384D299BD34263BF /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -433,7 +432,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "unskool-tvOSTests" */;
 			buildPhases = (
-				48E3C91655D867CFD810164B /* [CP] Check Pods Manifest.lock */,
+				6074547F1E59D0EC2750C353 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -452,7 +451,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5032B0D824A86F570084F76B /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				7492159119D86067BD19031C /* [CP] Check Pods Manifest.lock */,
+				325EEE7DDBC3FC777120F3ED /* [CP] Check Pods Manifest.lock */,
 				5032B0CC24A86F570084F76B /* Sources */,
 				5032B0CD24A86F570084F76B /* Frameworks */,
 				5032B0CE24A86F570084F76B /* Resources */,
@@ -580,7 +579,29 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		288495B2117289FE8AD119A7 /* [CP] Copy Pods Resources */ = {
+		037111B7384D299BD34263BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-unskool-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0C45289AC37FEB0601AA2FEC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -642,51 +663,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		48E3C91655D867CFD810164B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-unskool-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		56713992B59A986FC75B8E3C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-unskool-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7492159119D86067BD19031C /* [CP] Check Pods Manifest.lock */ = {
+		325EEE7DDBC3FC777120F3ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -708,7 +685,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7FA9A1E8C65C6E297003D695 /* [CP] Check Pods Manifest.lock */ = {
+		6074547F1E59D0EC2750C353 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -723,14 +700,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-unskool-unskoolTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-unskool-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A0ABF33EFBD6A345097A4FFD /* [CP] Copy Pods Resources */ = {
+		68670F8B078A9BCCC8D4D7E1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -778,7 +755,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-unskool/Pods-unskool-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C3838A9A87B0D86F3CA03589 /* [CP] Check Pods Manifest.lock */ = {
+		6EBC236DE875533BDA5AFADC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -794,6 +771,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-unskool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E34F117462CB9BE139504BC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-unskool-unskoolTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -918,7 +917,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3714C67FD301F59CFBC46C9B /* Pods-unskool-unskoolTests.debug.xcconfig */;
+			baseConfigurationReference = B26ACA0E7E994FCB2629225A /* Pods-unskool-unskoolTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = ZEK585AJ67;
@@ -956,7 +955,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BEA9190987EA1C67374787A /* Pods-unskool-unskoolTests.release.xcconfig */;
+			baseConfigurationReference = 71935D9F155F065B030B20F0 /* Pods-unskool-unskoolTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -991,7 +990,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A621020D1A654A06AB2470A6 /* Pods-unskool.debug.xcconfig */;
+			baseConfigurationReference = 30A10FB433CE373C62069176 /* Pods-unskool.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1006,9 +1005,9 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = unskool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1024,7 +1023,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63F67592B6603F88CCD16CE3 /* Pods-unskool.release.xcconfig */;
+			baseConfigurationReference = 10FF68944FCB38D4B671C5DB /* Pods-unskool.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1034,9 +1033,9 @@
 				DEVELOPMENT_TEAM = ZEK585AJ67;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = unskool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1051,7 +1050,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75A3BB1901A9007A9D31CCC2 /* Pods-unskool-tvOS.debug.xcconfig */;
+			baseConfigurationReference = A04636982C0191ADE5907F2D /* Pods-unskool-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1093,7 +1092,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E3ED231FD692AA5ED00DFAE /* Pods-unskool-tvOS.release.xcconfig */;
+			baseConfigurationReference = DF49867E8A17664BB259A6F3 /* Pods-unskool-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1135,7 +1134,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B9F4B0C7BAE9759FDAF83A4 /* Pods-unskool-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = E245E18DBB04763EFA44A93F /* Pods-unskool-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1176,7 +1175,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E0E3E8B40182D461C61CE75 /* Pods-unskool-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 4FAAAD9EC80F67A451F4CE68 /* Pods-unskool-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1217,7 +1216,7 @@
 		};
 		5032B0D924A86F570084F76B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 766F21899193E7144650E475 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 0B584AE84745C2C48EF1D99A /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1231,9 +1230,9 @@
 				DEVELOPMENT_TEAM = ZEK585AJ67;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.unschool.unschool.OneSignalNotificationServiceExtension;
@@ -1248,7 +1247,7 @@
 		};
 		5032B0DA24A86F570084F76B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F0ED8F6FA5E0AF2AB0422DC /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = E86DD9ADDA19559FBACE2A79 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1263,9 +1262,9 @@
 				DEVELOPMENT_TEAM = ZEK585AJ67;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.0.14;
+				MARKETING_VERSION = 1.0.15;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.unschool.unschool.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1323,7 +1322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
@@ -1376,7 +1375,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
