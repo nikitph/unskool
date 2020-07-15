@@ -16428,6 +16428,15 @@
       "resolved": "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz",
       "integrity": "sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ=="
     },
+    "react-native-keyboard-aware-scroll-view": {
+      "version": "0.9.1",
+      "resolved": "https://registry.npmjs.org/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.9.1.tgz",
+      "integrity": "sha512-tBZ8rmjELN0F6t5UBp5CW3NYmZXgVnJSzVCssv/OqG2t6kiB+OUTqxNvUP24K+HARX4H+XaW0aEJSFQkQCv6KA==",
+      "requires": {
+        "prop-types": "^15.6.2",
+        "react-native-iphone-x-helper": "^1.0.3"
+      }
+    },
     "react-native-lightbox": {
       "version": "0.8.1",
       "resolved": "https://registry.npmjs.org/react-native-lightbox/-/react-native-lightbox-0.8.1.tgz",
@@ -16451,9 +16460,9 @@
       }
     },
     "react-native-onesignal": {
-      "version": "3.9.0",
-      "resolved": "https://registry.npmjs.org/react-native-onesignal/-/react-native-onesignal-3.9.0.tgz",
-      "integrity": "sha512-Ux2S+MlPb6+RUg1clmgUcwHIM4XhF0DrZTWcrBPxue3PJkuoIhtsNbxbQJA9fGSNeAMHScxr2RTofuVDp2puSw==",
+      "version": "3.8.1",
+      "resolved": "https://registry.npmjs.org/react-native-onesignal/-/react-native-onesignal-3.8.1.tgz",
+      "integrity": "sha512-ugyS0sJsU1KJp40BKYHnwGQUSESjITZpOH4E8qTusxCUmIxXqETlM6LHV2TyvSN8Rtj2EC/R6YEIGT3tFb6hiQ==",
       "requires": {
         "invariant": "^2.2.2"
       }
