@@ -21,7 +21,7 @@ class CalendarScreen extends Component {
     const today = moment().format('YYYY-MM-DD')
 
     return (
-      <View style={{backgroundColor: 'white', flex: 1}}>
+      <View style={{backgroundColor: 'transparent', flex: 0.4}}>
         <Agenda
           items={{}}
           selected={today}
@@ -48,6 +48,8 @@ class CalendarScreen extends Component {
           }}
           style={{}}
         />
+        <Text style={{textAlign: 'center', fontSize: 24, fontWeight: '100'}}>Calendar functionality is coming
+          soon!</Text>
 
       </View>
     )
