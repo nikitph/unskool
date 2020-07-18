@@ -4,10 +4,17 @@ import { connect } from 'react-redux'
 import { Agenda } from 'react-native-calendars'
 import * as AgendaItem from '../Components/AgendaItem'
 import moment from 'moment'
+import { Images } from '../Themes'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 class CalendarScreen extends Component {
+  static navigationOptions = {
+    headerTitle: 'Calendar',
+    headerBackTitleVisible: false
+
+  }
+
   constructor (props) {
     super(props)
     this.state = {
