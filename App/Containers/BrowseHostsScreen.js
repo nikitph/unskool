@@ -4,10 +4,12 @@ import {
   Text,
   Image,
   TouchableHighlight,
-  ScrollView
+  ScrollView, TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
 import FastImage from 'react-native-fast-image'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -21,12 +23,23 @@ import SingleGuardianActions from '../Redux/SingleGuardianRedux'
 import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay'
 import { Images } from '../Themes'
 import * as Animatable from 'react-native-animatable'
+import styles from './Styles/ViewGuardianScreenStyle'
 
 class BrowseHostsScreen extends Component {
-  static navigationOptions = {
-    headerTitle: () => <Animatable.Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }}
-    />
-  };
+  static navigationOptions = ({navigation}) => {
+    return {
+      headerTitle: <Animatable.Image animation='fadeIn' source={Images.launch} style={{width: 40, height: 40}}
+      />,
+      headerRight: <TouchableOpacity style={[styles.headerIconContainer, {margin: 10}]}
+
+                                     onPress={() => navigation.navigate('SearchScreen')}>
+        <MaterialCommunityIcons name={'account-search-outline'} size={24} color="grey"/>
+
+      </TouchableOpacity>
+      ,
+      headerBackTitle: ' '
+    }
+  }
   render() {
     const props = this.props
     const deviceWidth = Metrics.screenWidth
