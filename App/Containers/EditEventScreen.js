@@ -130,7 +130,11 @@ class EditEventScreen extends Component {
 
   checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    let options = _.uniq([...this.state[checkboxOptions]]);
+    let options = [];
+    if(this.state[checkboxOptions]){
+      options = _.uniq([...this.state[checkboxOptions]]);
+    }
+
     // check if the check box is checked or unchecked
     if (checked) {
       // add the numerical value of the checkbox to options array
@@ -179,11 +183,15 @@ class EditEventScreen extends Component {
       { sortNo: 6, value: 'S' },
       { sortNo: 7, value: 'Su' }
     ];
-    const newRecurDays = _.sortBy(
-      _.filter(
-        recurringDaysSequence, (day) => recurringDays.includes(day.value)),
-        'sortNo'
-      ).map(d => d.value);
+    let newRecurDays = [];
+
+    if(recurringDays){
+      newRecurDays = _.sortBy(
+        _.filter(
+          recurringDaysSequence, (day) => recurringDays.includes(day.value)),
+          'sortNo'
+        ).map(d => d.value);
+    }
     newEvent['recurringDays'] = newRecurDays
     newEvent.calendarDates = generateCalendarDates(formattedStartDate, formattedFinishDate, newRecurDays, frequency)
 
