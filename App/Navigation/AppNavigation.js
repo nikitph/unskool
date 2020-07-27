@@ -1,5 +1,6 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation'
+import { View, TouchableOpacity, Text} from 'react-native'
+import { createAppContainer, createDrawerNavigator, createSwitchNavigator } from 'react-navigation'
 import SearchScreen from '../Containers/SearchScreen'
 import CalendarScreen from '../Containers/CalendarScreen'
 import ReviewsScreen from '../Containers/ReviewsScreen'
@@ -28,7 +29,7 @@ import LaunchScreen from '../Containers/LaunchScreen'
 import ScreenOne from '../Containers/SignUpFlow/ScreenOne';
 import ScreenTwo from '../Containers/SignUpFlow/ScreenTwo';
 import ScreenThree from '../Containers/SignUpFlow/ScreenThree';
-
+import CustomSideBarScreen from '../Containers/CustomSideBarScreen'
 import SplashScreen from '../Containers/SplashScreen';
 import styles from './Styles/NavigationStyles'
 
@@ -71,4 +72,13 @@ const PrimaryNav = createStackNavigator({
   }
 })
 
-export default createAppContainer(PrimaryNav)
+const DrawerNavigator = createDrawerNavigator(
+  {
+    PrimaryNav: PrimaryNav,
+  },
+  {
+    contentComponent: CustomSideBarScreen,
+  }
+);
+
+export default createAppContainer(DrawerNavigator);

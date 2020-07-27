@@ -89,12 +89,13 @@ export default class EventTeaser extends Component {
             // develop the view for recurring days ex: M/W/F
             // if there are no recurring days, show the date of the event
             recurringDays.map((item, index) => {
+
               if (recurringDays.length === 1 && item === ' ') {
                 let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
                 return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>{stringDate}</Text></View>
-              } else if (index === 0 || index === 1) {
+              } else if (index === 0 ) {
                 return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>{item}</Text></View>
-              } else {
+              }  else {
                 return <View key={`${teaserData.title}${item}`}><Text style={style.eventDay}>/{item}</Text></View>
               }
             })

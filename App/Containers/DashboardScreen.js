@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, View, Image } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View, Image } from 'react-native'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/Ionicons'
+
 import { Images } from '../Themes'
 import * as Animatable from 'react-native-animatable'
 import Hero from '../Components/Hero'
@@ -16,8 +18,21 @@ import styles from './Styles/DashboardScreenStyle'
 import { scale } from '../Themes/ScalingUtils'
 
 class DashboardScreen extends Component {
-  static navigationOptions = {
-    headerTitle: <Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }} />
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <Image animation='fadeIn' source={Images.launch} style={{ width: 40, height: 40 }} />,
+      headerLeft: <TouchableOpacity style={[styles.headerIconContainer, { margin: 10 }]}
+        onPress={() => {
+          navigation.toggleDrawer();
+        }
+        }>
+        <Icon
+          name='ios-menu'
+          size={24}
+          color='grey'
+        />
+      </TouchableOpacity>
+    }
   };
   render() {
     return (
