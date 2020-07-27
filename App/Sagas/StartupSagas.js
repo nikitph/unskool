@@ -36,6 +36,7 @@ export function* startup(action) {
   }
   const avatar = yield select(selectAvatar)
   yield put(BrowseHostActions.browseHostsRequest())
+  yield put(GuardianActions.guardianRequest())
   // only get if we don't have it yet
   if (!is(String, avatar)) {
     yield put(GithubActions.userRequest('GantMan'))

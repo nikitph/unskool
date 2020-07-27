@@ -20,7 +20,6 @@ export function * getGuardians () {
 
   while (true) {
     const { value: guardians } = yield take(channel)
-    console.log(guardians)
     yield put(GuardianActions.guardianSuccess(guardians))
   }
 }

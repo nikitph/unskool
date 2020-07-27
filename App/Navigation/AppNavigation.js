@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text} from 'react-native'
 import { createAppContainer, createDrawerNavigator, createSwitchNavigator } from 'react-navigation'
+import SearchScreen from '../Containers/SearchScreen'
 import CalendarScreen from '../Containers/CalendarScreen'
 import ReviewsScreen from '../Containers/ReviewsScreen'
 import FriendReviewScreen from '../Containers/FriendReviewScreen'
@@ -34,6 +35,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  SearchScreen: {screen: SearchScreen},
   CalendarScreen: {screen: CalendarScreen},
   ReviewsScreen: { screen: ReviewsScreen },
   FriendReviewScreen: { screen: FriendReviewScreen },
