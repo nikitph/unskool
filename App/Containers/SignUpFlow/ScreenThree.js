@@ -6,12 +6,12 @@ import {
   TextInput,
 } from 'react-native';
 import _ from 'lodash';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropdownAlert from 'react-native-dropdownalert';
 
-import {Images} from '../../Themes';
+import { Images } from '../../Themes';
 import CheckBox from '../../Components/CheckBox';
 import styles from '../Styles/CreateGuardianScreenStyle';
 import globalStyles from '../../Themes/GlobalStyles';
@@ -37,12 +37,19 @@ class ScreenThree extends React.Component {
     };
   }
 
+  handleChange = (value, key) => {
+    this.setState({ [key]: value });
+  }
+
   showAlert(type, title, message) {
     this.dropdown.alertWithType(type, title, message);
   };
 
   handleSpecialties(value, checked) {
-    let options = [...this.state['selectedSpecialties']];
+    let options = [];
+    if (this.state['selectedSpecialties']) {
+      options = [...this.state['selectedSpecialties']];
+    }
     if (checked) {
       options.push(value);
     } else {
@@ -50,13 +57,13 @@ class ScreenThree extends React.Component {
       options.splice(index, 1);
     }
 
-    this.setState({selectedSpecialties: options});
+    this.setState({ selectedSpecialties: options });
   }
 
-  showAddSpecialty = () => this.setState({showAddSpecialty: true});
+  showAddSpecialty = () => this.setState({ showAddSpecialty: true });
 
   handleAddSpecilities = () => {
-    const {newSpecialty, specialties} = this.state;
+    const { newSpecialty, specialties } = this.state;
     if (!newSpecialty) {
       this.showAlert('error', 'Error', 'Please Enter Speciality!');
       return null;
@@ -69,8 +76,8 @@ class ScreenThree extends React.Component {
   }
 
   submitData = () => {
-    const {uid, photoURL, email, attemptCreateGuardian, navigation} = this.props;
-    const {greeting, selectedSpecialty, children, gender, privacy, sponsored} = this.state;
+    const { uid, photoURL, email, attemptCreateGuardian, navigation } = this.props;
+    const { greeting, selectedSpecialty, children, gender, privacy, sponsored } = this.state;
     const guardianData = {
       uid, photoURL, email, greeting,
       children, gender, privacy, sponsored,
@@ -89,11 +96,11 @@ class ScreenThree extends React.Component {
   }
 
   render() {
-    const {newSpecialty, specialties, showAddSpecialty} = this.state;
+    const { newSpecialty, specialties, showAddSpecialty } = this.state;
     return (
-      <KeyboardAwareScrollView keyboardShouldPersistTaps="always" extraScrollHeight={10} contentContainerStyle={{flexGrow: 1, paddingBottom: 10}}>
+      <KeyboardAwareScrollView keyboardShouldPersistTaps="always" extraScrollHeight={10} contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}>
         <View style={styles.logoContainer}>
-          <Image source={Images.launch} style={styles.logo}/>
+          <Image source={Images.launch} style={styles.logo} />
         </View>
         <View style={styles.formContainer}>
           <TextInput
@@ -124,15 +131,15 @@ class ScreenThree extends React.Component {
             onPress={this.showAddSpecialty}
             type='solid'
             title='Other'
-            containerStyle={{marginVertical: 10}}
+            containerStyle={{ marginVertical: 10 }}
           />
           {showAddSpecialty && (
             <View style={styles.addSpecialtiesCon}>
               <TextInput
-                style={[globalStyles.textInput, {flex: 1, height: 30, marginRight: 10}]}
+                style={[globalStyles.textInput, { flex: 1, height: 30, marginRight: 10 }]}
                 placeholder="Enter Specialty*"
                 value={newSpecialty}
-                onChangeText={(text) => this.setState({newSpecialty: text})}
+                onChangeText={(text) => this.setState({ newSpecialty: text })}
               />
               <Button
                 onPress={this.handleAddSpecilities}
@@ -141,20 +148,20 @@ class ScreenThree extends React.Component {
               />
             </View>
           )}
-          <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <Button
               onPress={this.submitData}
               type='solid'
               title='Submit'
               loading={this.props.fetching}
-              containerStyle={{flex: 0.48}}
+              containerStyle={{ flex: 0.48 }}
             />
             <Button
               onPress={this.submitData}
               type='solid'
               title='Skip'
               loading={this.props.fetching}
-              containerStyle={{flex: 0.48}}
+              containerStyle={{ flex: 0.48 }}
             />
           </View>
         </View>

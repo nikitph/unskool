@@ -6,13 +6,13 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropdownAlert from 'react-native-dropdownalert';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import styles from '../Styles/CreateGuardianScreenStyle';
 import globalStyles from '../../Themes/GlobalStyles';
-import {Images} from '../../Themes';
+import { Images } from '../../Themes';
 
 class ScreenTwo extends React.Component {
   static navigationOptions = {
@@ -31,12 +31,12 @@ class ScreenTwo extends React.Component {
   }
 
   handleChange = (value, key) => {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   }
 
   handleNext = () => {
-    const {navigation} = this.props;
-    const {city, state, zipCode, street, latlong} = this.state;
+    const { navigation } = this.props;
+    const { city, state, zipCode, street, latlong } = this.state;
     if (!street) {
       this.dropdown.alertWithType('error', 'Error', 'Please Enter Street Address!');
       return null;
@@ -57,17 +57,17 @@ class ScreenTwo extends React.Component {
       const languagesSpoken = navigation.getParam('languages_spoken', '');
       navigation.navigate(
         'ScreenThree',
-        {displayName, languages_spoken: languagesSpoken, city, state, zipCode, street, latlong},
+        { displayName, languages_spoken: languagesSpoken, city, state, zipCode, street, latlong },
       );
     }
   }
 
   render() {
-    const {state, city, street, zipCode} = this.state;
+    const { state, city, street, zipCode } = this.state;
     return (
-      <KeyboardAwareScrollView keyboardShouldPersistTaps="always" extraScrollHeight={10} contentContainerStyle={{flexGrow: 1, paddingBottom: 10}}>
+      <KeyboardAwareScrollView keyboardShouldPersistTaps="always" extraScrollHeight={10} contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}>
         <View style={styles.logoContainer}>
-          <Image source={Images.launch} style={styles.logo}/>
+          <Image source={Images.launch} style={styles.logo} />
         </View>
         <View style={styles.formContainer}>
           <GooglePlacesAutocomplete
@@ -103,7 +103,7 @@ class ScreenTwo extends React.Component {
               textInputContainer: styles.textInputContainer,
               row: styles.row,
               description: styles.description,
-              listView: {zIndex: 10000}
+              listView: { zIndex: 10000 }
             }}
 
             query={{
