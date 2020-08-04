@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import _ from 'lodash';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import EditGuardianActions from '../Redux/EditGuardianRedux'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 import * as Animatable from 'react-native-animatable'
 
 // Styles
@@ -50,7 +52,13 @@ class EditGuardianScreen extends Component {
       languages_spoken,
       latlong
     } = props.guardian;
-    const newSpecialties = _.uniq([...specialties, ...['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work']])
+    let newSpecialties;
+    let _specialties = ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work']
+    if(specialties){
+      newSpecialties = _.uniq([...specialties, ..._specialties])
+    } else {
+      newSpecialties = _specialties
+    }
     this.state = {
       uid,
       displayName,
@@ -268,7 +276,7 @@ class EditGuardianScreen extends Component {
     // <BackButton path="/welcome-search" />
 
     return (
-      <ScrollView style={{flexGrow: 1}}>
+      <KeyboardAwareScrollView extraScrollHeight={10} contentContainerStyle={{flexGrow: 1}}>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <View className='image-uploader'>
             <View style={globalStyles.formImageContainer}>
@@ -455,7 +463,7 @@ class EditGuardianScreen extends Component {
           errorColor={'rgba(250,50,50,1)'}
           closeInterval={6000}
         />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }

@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import * as Animatable from 'react-native-animatable'
 import DropdownAlert from 'react-native-dropdownalert'
 import { Button } from 'react-native-elements';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import SignUpActions from '../Redux/SignUpRedux'
 // Styles
@@ -197,7 +197,7 @@ type SignUpScreenProps = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: false
+    fetching: state.signup.fetching
   }
 }
 

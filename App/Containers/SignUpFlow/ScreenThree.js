@@ -27,7 +27,7 @@ class ScreenThree extends React.Component {
     this.state = {
       greeting: '',
       specialties: ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work'],
-      selectedSpecialty: [],
+      selectedSpecialties: [],
       showAddSpecialty: false,
       newSpecialty: '',
       children: [' '],
@@ -77,11 +77,11 @@ class ScreenThree extends React.Component {
 
   submitData = () => {
     const { uid, photoURL, email, attemptCreateGuardian, navigation } = this.props;
-    const { greeting, selectedSpecialty, children, gender, privacy, sponsored } = this.state;
+    const { greeting, selectedSpecialties, children, gender, privacy, sponsored } = this.state;
     const guardianData = {
       uid, photoURL, email, greeting,
       children, gender, privacy, sponsored,
-      specialties: selectedSpecialty,
+      specialties: selectedSpecialties,
       displayName: navigation.getParam('displayName', ''),
       languages_spoken: navigation.getParam('languages_spoken', ''),
       city: navigation.getParam('city', ''),
