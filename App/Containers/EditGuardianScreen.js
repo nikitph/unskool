@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import EditGuardianActions from '../Redux/EditGuardianRedux'
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import * as Animatable from 'react-native-animatable'
 
@@ -27,7 +27,7 @@ import PhotoUpload from '../Components/PhotoUpload'
 
 class EditGuardianScreen extends Component {
   static navigationOptions = {
-    headerTitle: () => <Image source={Images.launch} style={{width: 40, height: 40}}
+    headerTitle: () => <Image source={Images.launch} style={{ width: 40, height: 40 }}
     />,
     headerBackTitleVisible: false
   }
@@ -54,7 +54,7 @@ class EditGuardianScreen extends Component {
     } = props.guardian;
     let newSpecialties;
     let _specialties = ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work']
-    if(specialties){
+    if (specialties) {
       newSpecialties = _.uniq([...specialties, ..._specialties])
     } else {
       newSpecialties = _specialties
@@ -73,7 +73,7 @@ class EditGuardianScreen extends Component {
       gender,
       privacy,
       sponsored,
-      specialties: newSpecialties,
+      specialties: specialties,
       languages_spoken,
       latlong,
       showAddSpecialties: false,
@@ -124,10 +124,10 @@ class EditGuardianScreen extends Component {
       options.splice(index, 1);
     }
     // options = _.uniq(options);
-    this.setState({[checkboxOptions]: options});
+    this.setState({ [checkboxOptions]: options });
   }
 
-  showAddSpecialties = () => this.setState({showAddSpecialties: true});
+  showAddSpecialties = () => this.setState({ showAddSpecialties: true });
 
   radioButtonChange(value, group) {
     // current array of options
@@ -154,7 +154,7 @@ class EditGuardianScreen extends Component {
    * @param e
    */
   submitForm() {
-    const guardianData = {...this.state};
+    const guardianData = { ...this.state };
     delete guardianData['showAddSpecialties'];
     delete guardianData['formData'];
     delete guardianData['newSpeciality'];
@@ -176,7 +176,7 @@ class EditGuardianScreen extends Component {
   }
 
   handleAddSpecilities = async () => {
-    const {specialties, newSpeciality, formData} = this.state;
+    const { specialties, newSpeciality, formData } = this.state;
     if (!newSpeciality) {
       this.showAlert('error', 'Error', 'Please Enter Speciality!');
       return null;
@@ -188,7 +188,7 @@ class EditGuardianScreen extends Component {
       specialties: newSpecialties,
       formData: {
         ...formData,
-        specialties: _.uniq([...formData.specialties,...newSpecialties]),
+        specialties: _.uniq([...formData.specialties, ...newSpecialties]),
       },
     });
   }
@@ -204,7 +204,7 @@ class EditGuardianScreen extends Component {
    * @returns {XML}
    */
   render() {
-    const {formData, showAddSpecialties, newSpeciality} = this.state;
+    const { formData, showAddSpecialties, newSpeciality } = this.state;
 
     const outputCheckboxes = () => {
       let checkboxOutput = []
@@ -245,14 +245,14 @@ class EditGuardianScreen extends Component {
                   title='Other'
                 />
               )
-            } 
+            }
             {showAddSpecialties && category === 'specialties' && (
               <View style={style.addSpecialtiesCon}>
                 <TextInput
-                  style={[globalStyles.textInput, {flex: 1, height: 30, marginRight: 10}]}
+                  style={[globalStyles.textInput, { flex: 1, height: 30, marginRight: 10 }]}
                   placeholder="Enter Speciality*"
                   value={newSpeciality}
-                  onChangeText={(text) => this.setState({newSpeciality: text})}
+                  onChangeText={(text) => this.setState({ newSpeciality: text })}
                 />
                 <Button
                   onPress={this.handleAddSpecilities}
@@ -276,7 +276,7 @@ class EditGuardianScreen extends Component {
     // <BackButton path="/welcome-search" />
 
     return (
-      <KeyboardAwareScrollView extraScrollHeight={10} contentContainerStyle={{flexGrow: 1}}>
+      <KeyboardAwareScrollView extraScrollHeight={10} contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <View className='image-uploader'>
             <View style={globalStyles.formImageContainer}>
@@ -296,7 +296,7 @@ class EditGuardianScreen extends Component {
                     borderRadius: 50
                   }}
                   resizeMode='cover'
-                  source={require('../Images/blank-profile-pic.png')}/>
+                  source={require('../Images/blank-profile-pic.png')} />
               </PhotoUpload>
             </View>
           </View>
