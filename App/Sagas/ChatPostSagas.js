@@ -21,7 +21,14 @@ const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/my-community-c
 export function * chatPost (action) {
   const {data} = action
   const {text, senderName, senderId, senderPic, receiverName, receiverId, _id} = data
-  const msgObj = Object.assign({text, senderName, senderId, senderPic, receiverName, receiverId, _id},
+  const msgObj = Object.assign({
+      text,
+      senderName,
+      senderId,
+      receiverName,
+      receiverId,
+      _id
+    }, {senderPic: data.senderPic || defaultImage},
     {createdAt: data.createdAt.toJSON()}, {user: data.user}, {receiverPic: data.receiverPic || defaultImage})
   console.log(db)
   console.log(msgObj)

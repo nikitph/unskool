@@ -82,6 +82,8 @@ class ChatScreen extends Component {
   }
 
   render () {
+    const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/my-community-classroom-app.appspot.com/o/app-images%2Fblank-profile-pic.png?alt=media&token=ddf9cff0-ad81-4105-85b1-6f5498e16686'
+
     return (
       <View style={{flex: 1, backgroundColor: 'white', paddingBottom: 30}}>
         <GiftedChat
@@ -95,7 +97,7 @@ class ChatScreen extends Component {
           user={{
             _id: this.props.guardian.uid,
             name: this.props.guardian.displayName,
-            avatar: this.props.guardian.image
+            avatar: this.props.guardian.image || defaultImage
           }}
         />
 
