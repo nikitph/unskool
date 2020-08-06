@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput } from 'react-native'
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Images } from '../Themes'
@@ -32,11 +34,25 @@ class LoginScreen extends Component {
       noMatch: false,
       buttonstate: props.fetching
     }
+
+   
   }
 
   handlePressLogin = () => {
     const { email, password } = this.state
     this.props.attemptLogin(email, password, this.showAlert, this.props.navigation)
+  }
+
+  handlePressGoogleLogin = async () => {
+    await GoogleSignin.configure({
+      iosClientId: '161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com',
+      offlineAccess: false,
+    }).then(() => {
+      // you can now call currentUserAsync()
+    });
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    console.log("=======userInfo", userInfo)
   }
 
   showAlert(type, title, message) {
@@ -124,7 +140,23 @@ class LoginScreen extends Component {
                 type='solid'
                 title='Submit'
                 loading={this.props.fetching}
-              /></View>
+              />
+            </View>
+            <View style={{ marginVertical: 20}}>
+              <Button
+                onPress={() => { this.handlePressGoogleLogin() }}
+                type='solid'
+                title='Login with Google'
+                loading={this.props.fetching}
+              />
+              <Button
+                style={{marginTop: 10}}
+                onPress={() => { this.handlePressLogin() }}
+                type='solid'
+                title='Login with Facebook'
+                loading={this.props.fetching}
+              />
+            </View>
           </View>
         </View>
         <DropdownAlert

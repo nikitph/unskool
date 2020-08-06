@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "161095567640",
+    "firebase_url": "https://my-community-classroom-app.firebaseio.com",
+    "project_id": "my-community-classroom-app",
+    "storage_bucket": "my-community-classroom-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161095567640:android:3a723f914e4be6d522b66d",
+        "android_client_info": {
+          "package_name": "com.unschool.unschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161095567640-8sq0dhtkd5kefbisjl6ltc9gcbfui4fa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0RR1PWshs-v71sagMOLArvDjlq0pQ9uU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161095567640-8sq0dhtkd5kefbisjl6ltc9gcbfui4fa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.unschool.unschool"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
