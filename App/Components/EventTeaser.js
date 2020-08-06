@@ -242,7 +242,7 @@ export default class EventTeaser extends Component {
                     if (recurringDays.length === 1 && item === ' ') {
                       let stringDate = teaserData[teaser].startDate.split(' ').slice(0, 3).join(' ')
                       return <View key={`${teaser}${item}`}><Text style={style.eventDay}>{stringDate}</Text></View>
-                    } else if (index === 0 || index === 1) {
+                    } else if (index === 0 ) {
                       return <View key={`${teaser}${item}`}><Text style={style.eventDay}>{item}</Text></View>
                     } else {
                       return <View key={`${teaser}${item}`}><Text style={style.eventDay}>/{item}</Text></View>
