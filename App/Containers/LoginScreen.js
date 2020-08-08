@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, AsyncStorage } from 'react-native'
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 
 import PropTypes from 'prop-types'
@@ -35,7 +35,21 @@ class LoginScreen extends Component {
       buttonstate: props.fetching
     }
 
-   
+
+  }
+
+  componentDidMount() {
+    this._bootstrapAsync();
+  }
+
+  _bootstrapAsync = async () => {
+    await GoogleSignin.configure({
+      iosClientId: '161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com',
+      offlineAccess: false,
+    })
+    let emailPassword = await AsyncStorage.getItem('emailPassword');
+    const { email, password } = JSON.parse(emailPassword)
+    this.setState({ email, password })
   }
 
   handlePressLogin = () => {
@@ -44,15 +58,15 @@ class LoginScreen extends Component {
   }
 
   handlePressGoogleLogin = async () => {
-    await GoogleSignin.configure({
-      iosClientId: '161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com',
-      offlineAccess: false,
-    }).then(() => {
-      // you can now call currentUserAsync()
-    });
+    // const authProvider = new firebase.auth.GoogleAuthProvider()
+
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
-    console.log("=======userInfo", userInfo)
+    this.props.attemptGoogleLogin(userInfo.idToken, this.showAlert, this.props.navigation)
+  }
+
+  handlePressFacebookLogin = async () => {
+
   }
 
   showAlert(type, title, message) {
@@ -66,7 +80,7 @@ class LoginScreen extends Component {
           <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={styles.logo} />
         </View>
         <View
-          style={{ flex: 0.4, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
+          style={{ flex: 0.5, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
           <View style={{ flexDirection: 'column', flex: 1 }}>
             <View style={{ flex: 0.1 }}>
               <Text style={styles.header}> Login </Text>
@@ -142,22 +156,23 @@ class LoginScreen extends Component {
                 loading={this.props.fetching}
               />
             </View>
-            <View style={{ marginVertical: 20}}>
+            <View >
               <Button
                 onPress={() => { this.handlePressGoogleLogin() }}
                 type='solid'
                 title='Login with Google'
-                loading={this.props.fetching}
+                loading={this.props.googleFetching}
               />
               <Button
-                style={{marginTop: 10}}
-                onPress={() => { this.handlePressLogin() }}
+                style={{ marginTop: 10 }}
+                onPress={() => { this.handlePressFacebookLogin() }}
                 type='solid'
                 title='Login with Facebook'
-                loading={this.props.fetching}
+              // loading={this.props.fetching}
               />
             </View>
           </View>
+
         </View>
         <DropdownAlert
           ref={(ref) => this.dropdown = ref}
@@ -174,19 +189,22 @@ class LoginScreen extends Component {
 type LoginScreenProps = {
   dispatch: PropTypes.func,
   fetching: PropTypes.object,
+  googleFetching: PropTypes.object,
   attemptLogin: PropTypes.func,
   error: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.login.fetching
+    fetching: state.login.fetching,
+    googleFetching: state.login.googleFetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (email, password, alertfunc, nav) => dispatch(LoginActions.loginRequest(email, password, alertfunc, nav))
+    attemptLogin: (email, password, alertfunc, nav) => dispatch(LoginActions.loginRequest(email, password, alertfunc, nav)),
+    attemptGoogleLogin: (token, alertfunc, nav) => dispatch(LoginActions.googleLoginRequest(token, alertfunc, nav))
   }
 }
 

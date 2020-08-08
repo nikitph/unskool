@@ -5,6 +5,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   loginRequest: ['email', 'password', 'alertfunc', 'nav'],
+  googleLoginRequest: ['token', 'alertfunc', 'nav'],
   loginSuccess: ['payload'],
   loginFailure: ['payload']
 })
@@ -17,6 +18,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   data: null,
   fetching: null,
+  googleFetching: null,
   payload: null,
   error: null
 })
@@ -27,12 +29,14 @@ export const INITIAL_STATE = Immutable({
 export const request = (state, { data }) =>
   state.merge({ fetching: true, data, payload: null })
 
+export const requestGoogle = (state, { data }) =>
+  state.merge({ googleFetching: true, data, payload: null })
 // successful api lookup
 export const success = (state, action) => {
   console.log("state", state);
   console.log("action", action);
   const { payload } = action
-  return state.merge({ fetching: false, error: null, payload })
+  return state.merge({ fetching: false, googleFetching: false, error: null, payload })
 }
 
 // Something went wrong somewhere.
@@ -44,5 +48,6 @@ export const failure = (state, error) =>
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
-  [Types.LOGIN_FAILURE]: failure
+  [Types.LOGIN_FAILURE]: failure,
+  [Types.GOOGLE_LOGIN_REQUEST]: requestGoogle,
 })

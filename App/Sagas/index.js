@@ -26,7 +26,7 @@ import { ChatTypes } from '../Redux/ChatRedux'
 
 import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
-import { login } from './LoginSagas'
+import { login, googleLogin } from './LoginSagas'
 import { signUp } from './SignUpSagas'
 import { createGuardian } from './CreateGuardianSagas'
 import { editGuardian } from './EditGuardianSagas'
@@ -49,11 +49,12 @@ const api = DebugConfig.useFixtures ? FixtureAPI : API.create()
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function * root () {
+export default function* root() {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
     takeLatest(LoginTypes.LOGIN_REQUEST, login),
+    takeLatest(LoginTypes.GOOGLE_LOGIN_REQUEST, googleLogin),
     takeLatest(SignUpTypes.SIGN_UP_REQUEST, signUp),
     takeLatest(CreateGuardianTypes.CREATE_GUARDIAN_REQUEST, createGuardian),
     takeLatest(EditGuardianTypes.EDIT_GUARDIAN_REQUEST, editGuardian),
