@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:161095567640:android:3a723f914e4be6d522b66d",
         "android_client_info": {
-          "package_name": "com.unschool.unschool"
+          "package_name": "com.unkool"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.unschool.unschool"
+                "bundle_id": "com.unkool"
               }
             }
           ]

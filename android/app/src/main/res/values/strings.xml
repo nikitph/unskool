@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">unskool</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">IfUZOoBrhMzfy6rDSn6f3VS60hgDQ0pxohoBe</string>
+    <string name="facebook_app_id">344830953578709</string>
 </resources>

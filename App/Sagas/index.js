@@ -26,7 +26,7 @@ import { ChatTypes } from '../Redux/ChatRedux'
 
 import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
-import { login, googleLogin } from './LoginSagas'
+import { login, socialLogin } from './LoginSagas'
 import { signUp } from './SignUpSagas'
 import { createGuardian } from './CreateGuardianSagas'
 import { editGuardian } from './EditGuardianSagas'
@@ -54,7 +54,7 @@ export default function* root() {
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
     takeLatest(LoginTypes.LOGIN_REQUEST, login),
-    takeLatest(LoginTypes.GOOGLE_LOGIN_REQUEST, googleLogin),
+    takeLatest(LoginTypes.SOCIAL_LOGIN_REQUEST, socialLogin),
     takeLatest(SignUpTypes.SIGN_UP_REQUEST, signUp),
     takeLatest(CreateGuardianTypes.CREATE_GUARDIAN_REQUEST, createGuardian),
     takeLatest(EditGuardianTypes.EDIT_GUARDIAN_REQUEST, editGuardian),

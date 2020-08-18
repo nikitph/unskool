@@ -38,12 +38,12 @@ export function* login({ email, password, alertfunc, nav }) {
   }
 }
 // login with google
-export function* googleLogin({ token, alertfunc, nav }) {
+export function* socialLogin({ token, alertfunc, nav }) {
   try {
-    const provider = firebase.auth.GoogleAuthProvider;
-    const credential = provider.credential(token);
+    // const provider = firebase.auth.GoogleAuthProvider;
+    // const credential = provider.credential(token);
+    const response = yield call(dbService.auth.signInWithCredential, token, function () { });
 
-    const response = yield call(dbService.auth.signInWithCredential, credential, function () { });
     const { uid, displayName, photoURL } = response.user
 
     const guardian = yield call(dbService.database.read, `guardians/${uid}`)
