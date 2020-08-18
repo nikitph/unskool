@@ -127,7 +127,7 @@ class BrowseHostsScreen extends Component {
                       if (recurringDays.length === 1 && item === ' ') {
                         let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
                         return <Text style={style.dayText} key={`${teaser}${item}`}>{stringDate}</Text>
-                      } else if (index === 0 || index === 1) {
+                      } else if (index === 0) {
                         return <Text style={style.dayText} key={`${teaser}${item}`}>{item}</Text>
                       } else {
                         return <Text style={style.dayText} key={`${teaser}${item}`}>/{item}</Text>
@@ -281,7 +281,7 @@ class BrowseHostsScreen extends Component {
                 if (recurringDays.length === 1 && item === ' ') {
                   let stringDate = teaserData.startDate.split(' ').slice(0, 3).join(' ')
                   return <Text style={style.dayText} key={`${eventHostName}${item}`}>{stringDate}</Text>
-                } else if (index === 0 || index === 1) {
+                } else if (index === 0 ) {
                   return <Text style={style.dayText} key={`${eventHostName}${item}`}>{item}</Text>
                 } else {
                   return <Text style={style.dayText} key={`${eventHostName}${item}`}>/{item}</Text>

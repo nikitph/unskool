@@ -2353,6 +2353,11 @@
         }
       }
     },
+    "@react-native-community/google-signin": {
+      "version": "4.0.3",
+      "resolved": "https://registry.npmjs.org/@react-native-community/google-signin/-/google-signin-4.0.3.tgz",
+      "integrity": "sha512-0RyMHAPTOejxXuHkcrVLJ9Co1hxG/b1shmtn29QSjZ9W8oLj23gyLhJI4jjca389jToVjr2HsXsDXfNU4CA2Uw=="
+    },
     "@react-native-community/masked-view": {
       "version": "0.1.10",
       "resolved": "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.10.tgz",
@@ -16346,6 +16351,11 @@
       "resolved": "https://registry.npmjs.org/react-native-fast-image/-/react-native-fast-image-8.1.5.tgz",
       "integrity": "sha512-DoAWGLeQ2hbllummrpXH9B38OgM0TFmNYCF34F90/hdHZirqUtYHzF4QDdb/NV7ebSijHmM3mpkzct8PXtcYyg=="
     },
+    "react-native-fbsdk": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/react-native-fbsdk/-/react-native-fbsdk-2.0.0.tgz",
+      "integrity": "sha512-CyPKoBVt9Y+KznALcnN4lkh6dUNqZjyFS6GbkXXTFf72wR9Dl8bXF2dDj56w/o5/TFoCnNCmQlZgh7P/NiElZQ=="
+    },
     "react-native-fs": {
       "version": "2.16.6",
       "resolved": "https://registry.npmjs.org/react-native-fs/-/react-native-fs-2.16.6.tgz",
@@ -16463,9 +16473,9 @@
       }
     },
     "react-native-onesignal": {
-      "version": "3.8.1",
-      "resolved": "https://registry.npmjs.org/react-native-onesignal/-/react-native-onesignal-3.8.1.tgz",
-      "integrity": "sha512-ugyS0sJsU1KJp40BKYHnwGQUSESjITZpOH4E8qTusxCUmIxXqETlM6LHV2TyvSN8Rtj2EC/R6YEIGT3tFb6hiQ==",
+      "version": "3.9.0",
+      "resolved": "https://registry.npmjs.org/react-native-onesignal/-/react-native-onesignal-3.9.0.tgz",
+      "integrity": "sha512-Ux2S+MlPb6+RUg1clmgUcwHIM4XhF0DrZTWcrBPxue3PJkuoIhtsNbxbQJA9fGSNeAMHScxr2RTofuVDp2puSw==",
       "requires": {
         "invariant": "^2.2.2"
       }

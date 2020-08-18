@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, AsyncStorage } from 'react-native'
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk'
+
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Images } from '../Themes'
@@ -7,6 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import DropdownAlert from 'react-native-dropdownalert'
 import * as Animatable from 'react-native-animatable'
 import { Button } from 'react-native-elements'
+import firebase from 'firebase'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions from '../Redux/LoginRedux'
 // Styles
@@ -32,11 +36,70 @@ class LoginScreen extends Component {
       noMatch: false,
       buttonstate: props.fetching
     }
+
+
+  }
+
+  componentDidMount() {
+    this._bootstrapAsync();
+  }
+
+  _bootstrapAsync = async () => {
+    await GoogleSignin.configure({
+      iosClientId: '161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com',
+      offlineAccess: false,
+    })
+    let emailPassword = await AsyncStorage.getItem('emailPassword');
+    const { email, password } = JSON.parse(emailPassword)
+    this.setState({ email, password })
   }
 
   handlePressLogin = () => {
     const { email, password } = this.state
     this.props.attemptLogin(email, password, this.showAlert, this.props.navigation)
+  }
+
+  handlePressGoogleLogin = async () => {
+    // const authProvider = new firebase.auth.GoogleAuthProvider()
+
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    const provider = firebase.auth.GoogleAuthProvider;
+    const credential = provider.credential(userInfo.idToken);
+    this.props.attemptSocialLogin(credential, this.showAlert, this.props.navigation)
+
+  }
+
+  facebookLogin = () => {
+    return LoginManager.logInWithPermissions(['public_profile']).then(
+      (result) => {
+        if (result.isCancelled) {
+          alert('Login was cancelled');
+          return null
+        } else {
+          return AccessToken.getCurrentAccessToken().then(
+            (data) => {
+              const provider = firebase.auth.FacebookAuthProvider;
+              const credential = provider.credential(data.accessToken);
+              return credential
+            }
+          )
+        }
+      },
+      (error) => {
+        alert('Login failed with error: ' + error);
+        return null
+      }
+    );
+
+  }
+
+  handlePressFacebookLogin = async () => {
+    // if(Platform.OS=='android'){
+    //   LoginManager.setLoginBehavior('WEB_ONLY');
+    // }
+    let credential = await this.facebookLogin();
+    this.props.attemptSocialLogin(credential, this.showAlert, this.props.navigation)
   }
 
   showAlert(type, title, message) {
@@ -50,7 +113,7 @@ class LoginScreen extends Component {
           <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={styles.logo} />
         </View>
         <View
-          style={{ flex: 0.4, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
+          style={{ flex: 0.5, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
           <View style={{ flexDirection: 'column', flex: 1 }}>
             <View style={{ flex: 0.1 }}>
               <Text style={styles.header}> Login </Text>
@@ -124,8 +187,25 @@ class LoginScreen extends Component {
                 type='solid'
                 title='Submit'
                 loading={this.props.fetching}
-              /></View>
+              />
+            </View>
+            <View >
+              <Button
+                onPress={() => { this.handlePressGoogleLogin() }}
+                type='solid'
+                title='Login with Google'
+                loading={this.props.googleFetching}
+              />
+              <Button
+                style={{ marginTop: 10 }}
+                onPress={() => { this.handlePressFacebookLogin() }}
+                type='solid'
+                title='Login with Facebook'
+              loading={this.props.facebookFetching}
+              />
+            </View>
           </View>
+
         </View>
         <DropdownAlert
           ref={(ref) => this.dropdown = ref}
@@ -142,19 +222,24 @@ class LoginScreen extends Component {
 type LoginScreenProps = {
   dispatch: PropTypes.func,
   fetching: PropTypes.object,
+  googleFetching: PropTypes.object,
+  facebookFetching: PropTypes.object,
   attemptLogin: PropTypes.func,
   error: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.login.fetching
+    fetching: state.login.fetching,
+    googleFetching: state.login.googleFetching,
+    facebookFetching: state.login.facebookFetching
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (email, password, alertfunc, nav) => dispatch(LoginActions.loginRequest(email, password, alertfunc, nav))
+    attemptLogin: (email, password, alertfunc, nav) => dispatch(LoginActions.loginRequest(email, password, alertfunc, nav)),
+    attemptSocialLogin: (token, alertfunc, nav) => dispatch(LoginActions.socialLoginRequest(token, alertfunc, nav))
   }
 }
 
