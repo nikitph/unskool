@@ -36,9 +36,14 @@
     "android-build-release": "cd ./android && rm -rf app/src/main/res/drawable* && ./gradlew app:assembleRelease"
   },
   "dependencies": {
+    "@feathersjs/authentication-client": "^4.5.8",
+    "@feathersjs/feathers": "^4.5.8",
+    "@feathersjs/hooks": "^0.5.0",
+    "@feathersjs/socketio-client": "^4.5.8",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/toolbar-android": "0.1.0-rc.2",
     "apisauce": "^1.1.1",
+    "feathers-authentication-client": "^0.3.3",
     "firebase": "^7.14.3",
     "format-json": "^1.0.3",
     "identity-obj-proxy": "^3.0.0",
@@ -100,7 +105,8 @@
     "redux-saga-firebase": "^0.15.0",
     "reduxsauce": "^1.1.2",
     "rn-fetch-blob": "^0.12.0",
-    "seamless-immutable": "^7.1.4"
+    "seamless-immutable": "^7.1.4",
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
