@@ -1,31 +1,47 @@
-import React, { Component } from 'react'
-import { View, Text, TextInput, AsyncStorage } from 'react-native'
-import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
-import { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk'
+import React, {Component} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  AsyncStorage,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  GoogleSigninButton,
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-community/google-signin';
+import {
+  LoginButton,
+  LoginManager,
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager,
+} from 'react-native-fbsdk';
 
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Images } from '../Themes'
-import Icon from 'react-native-vector-icons/Ionicons'
-import DropdownAlert from 'react-native-dropdownalert'
-import * as Animatable from 'react-native-animatable'
-import { Button } from 'react-native-elements'
-import firebase from 'firebase'
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Images} from '../Themes';
+import Icon from 'react-native-vector-icons/Ionicons';
+import DropdownAlert from 'react-native-dropdownalert';
+import * as Animatable from 'react-native-animatable';
+import {Button} from 'react-native-elements';
+import firebase from 'firebase';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-import LoginActions from '../Redux/LoginRedux'
+import LoginActions from '../Redux/LoginRedux';
 // Styles
-import styles from './Styles/LoginScreenStyle'
+import styles from './Styles/LoginScreenStyle';
 
 class LoginScreen extends Component {
   static navigationOptions = {
-    headerShown: false
+    headerShown: false,
   };
 
   props: LoginScreenProps;
 
   constructor(props: LoginScreenProps) {
-    super(props)
-    this.showAlert = this.showAlert.bind(this)
+    super(props);
+    this.showAlert = this.showAlert.bind(this);
 
     this.state = {
       email: '',
@@ -34,10 +50,8 @@ class LoginScreen extends Component {
       invalidPassword: false,
       incorrectPassword: false,
       noMatch: false,
-      buttonstate: props.fetching
-    }
-
-
+      buttonstate: props.fetching,
+    };
   }
 
   componentDidMount() {
@@ -46,18 +60,24 @@ class LoginScreen extends Component {
 
   _bootstrapAsync = async () => {
     await GoogleSignin.configure({
-      iosClientId: '161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com',
+      iosClientId:
+        '161095567640-nr41700p1s4cbr6jken5t4bgft9gqhj4.apps.googleusercontent.com',
       offlineAccess: false,
-    })
+    });
     let emailPassword = await AsyncStorage.getItem('emailPassword');
-    const { email, password } = JSON.parse(emailPassword)
-    this.setState({ email, password })
-  }
+    const {email, password} = JSON.parse(emailPassword);
+    this.setState({email, password});
+  };
 
   handlePressLogin = () => {
-    const { email, password } = this.state
-    this.props.attemptLogin(email, password, this.showAlert, this.props.navigation)
-  }
+    const {email, password} = this.state;
+    this.props.attemptLogin(
+      email,
+      password,
+      this.showAlert,
+      this.props.navigation,
+    );
+  };
 
   handlePressGoogleLogin = async () => {
     // const authProvider = new firebase.auth.GoogleAuthProvider()
@@ -66,156 +86,223 @@ class LoginScreen extends Component {
     const userInfo = await GoogleSignin.signIn();
     const provider = firebase.auth.GoogleAuthProvider;
     const credential = provider.credential(userInfo.idToken);
-    this.props.attemptSocialLogin(credential, this.showAlert, this.props.navigation)
-
-  }
+    this.props.attemptSocialLogin(
+      credential,
+      this.showAlert,
+      this.props.navigation,
+    );
+  };
 
   facebookLogin = () => {
     return LoginManager.logInWithPermissions(['public_profile']).then(
-      (result) => {
+      result => {
         if (result.isCancelled) {
           alert('Login was cancelled');
-          return null
+          return null;
         } else {
-          return AccessToken.getCurrentAccessToken().then(
-            (data) => {
-              const provider = firebase.auth.FacebookAuthProvider;
-              const credential = provider.credential(data.accessToken);
-              return credential
-            }
-          )
+          return AccessToken.getCurrentAccessToken().then(data => {
+            const provider = firebase.auth.FacebookAuthProvider;
+            const credential = provider.credential(data.accessToken);
+            return credential;
+          });
         }
       },
-      (error) => {
+      error => {
         alert('Login failed with error: ' + error);
-        return null
-      }
+        return null;
+      },
     );
-
-  }
+  };
 
   handlePressFacebookLogin = async () => {
     // if(Platform.OS=='android'){
     //   LoginManager.setLoginBehavior('WEB_ONLY');
     // }
     let credential = await this.facebookLogin();
-    this.props.attemptSocialLogin(credential, this.showAlert, this.props.navigation)
-  }
+    this.props.attemptSocialLogin(
+      credential,
+      this.showAlert,
+      this.props.navigation,
+    );
+  };
 
   showAlert(type, title, message) {
-    this.dropdown.alertWithType(type, title, message)
-  };
+    this.dropdown.alertWithType(type, title, message);
+  }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
-          <Animatable.Image animation='rotate' duration='9000' iterationCount='infinite' source={Images.launch} style={styles.logo} />
+      <View style={{flex: 1}}>
+        <View
+          style={{flex: 0.3, justifyContent: 'center', alignItems: 'center'}}>
+          <Animatable.Image
+            animation="rotate"
+            duration="9000"
+            iterationCount="infinite"
+            source={Images.launch}
+            style={styles.logo}
+          />
         </View>
         <View
-          style={{ flex: 0.5, backgroundColor: 'white', margin: 20, borderRadius: 10, flexDirection: 'row' }}>
-          <View style={{ flexDirection: 'column', flex: 1 }}>
-            <View style={{ flex: 0.1 }}>
+          style={{
+            flex: 0.5,
+            backgroundColor: 'white',
+            margin: 20,
+            borderRadius: 10,
+            flexDirection: 'row',
+          }}>
+          <View style={{flexDirection: 'column', flex: 1}}>
+            <View style={{flex: 0.1}}>
               <Text style={styles.header}> Login </Text>
             </View>
-            <View style={{ flex: 0.7, flexDirection: 'row' }}>
-              <View style={{ flex: 0.1, justifyContent: 'center', alignItems: 'center' }}>
-                <Icon name='ios-arrow-back' size={50} color='#900'
+            <View style={{flex: 0.8, flexDirection: 'row'}}>
+              <View
+                style={{
+                  flex: 0.1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Icon
+                  name="ios-arrow-back"
+                  size={50}
+                  color="#900"
                   onPress={() => this.props.navigation.navigate('LaunchScreen')}
                 />
               </View>
-              <View style={{ flex: 0.9 }}>
+              <View style={{flex: 0.9}}>
                 <View style={styles.container}>
                   <View style={styles.form}>
                     <View style={styles.row}>
-                      <View style={{ flex: 0.1 }}>
-                        <Icon name='ios-mail' size={24} color='rgba(0,0,0,0.5)'
+                      <View style={{flex: 0.1}}>
+                        <Icon
+                          name="ios-mail"
+                          size={24}
+                          color="rgba(0,0,0,0.5)"
                         />
                       </View>
-                      <View style={{ flex: 0.9 }}>
+                      <View style={{flex: 0.9}}>
                         <TextInput
                           value={this.state.email}
-                          keyboardType='default'
-                          returnKeyType='next'
-                          autoCapitalize='none'
+                          keyboardType="default"
+                          returnKeyType="next"
+                          autoCapitalize="none"
                           autoCorrect={false}
-                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
-                          underlineColorAndroid='transparent'
+                          style={{
+                            fontFamily: 'AvenirNext-UltraLight',
+                            textAlign: 'left',
+                            color: 'rgba(0,0,0,0.8)',
+                            fontSize: 18,
+                            fontWeight: '200',
+                          }}
+                          underlineColorAndroid="transparent"
                           placeholder={'Email Address'}
-                          onChangeText={(email) => this.setState({ email })}
+                          onChangeText={email => this.setState({email})}
                           onSubmitEditing={() => this.refs.password.focus()}
                         />
                       </View>
-
                     </View>
 
                     <View style={styles.row}>
-                      <View style={{ flex: 0.1 }}>
-                        <Icon name='ios-key' size={24} color='rgba(0,0,0,0.5)'
+                      <View style={{flex: 0.1}}>
+                        <Icon
+                          name="ios-key"
+                          size={24}
+                          color="rgba(0,0,0,0.5)"
                         />
                       </View>
-                      <View style={{ flex: 0.9 }}>
+                      <View style={{flex: 0.9}}>
                         <TextInput
-                          ref='password'
+                          ref="password"
                           value={this.state.password}
-                          keyboardType='default'
-                          returnKeyType='go'
-                          autoCapitalize='none'
-                          style={{ fontFamily: 'AvenirNext-UltraLight', textAlign: 'left', color: 'rgba(0,0,0,0.8)', fontSize: 18, fontWeight: '200' }}
+                          keyboardType="default"
+                          returnKeyType="go"
+                          autoCapitalize="none"
+                          style={{
+                            fontFamily: 'AvenirNext-UltraLight',
+                            textAlign: 'left',
+                            color: 'rgba(0,0,0,0.8)',
+                            fontSize: 18,
+                            fontWeight: '200',
+                          }}
                           autoCorrect={false}
                           secureTextEntry
-                          underlineColorAndroid='transparent'
+                          underlineColorAndroid="transparent"
                           placeholder={'Password'}
-                          onChangeText={(password) => this.setState({ password })}
+                          onChangeText={password => this.setState({password})}
                         />
                       </View>
                     </View>
                     <View>
-                      <Text style={[styles.forgot]} onPress={() => this.props.navigation.navigate('ResetPasswordScreen')}
-                      > Forgot Password ? </Text>
+                      <Text
+                        style={[styles.forgot]}
+                        onPress={() =>
+                          this.props.navigation.navigate('ResetPasswordScreen')
+                        }>
+                        {' '}
+                        Forgot Password ?{' '}
+                      </Text>
                     </View>
-
                   </View>
-
                 </View>
-
               </View>
             </View>
-            <View style={{ flex: 0.2 }}>
+            <View style={{flex: 0.2}}>
               <Button
-                onPress={() => { this.handlePressLogin() }}
-                type='solid'
-                title='Submit'
+                onPress={() => {
+                  this.handlePressLogin();
+                }}
+                type="solid"
+                title="Submit"
                 loading={this.props.fetching}
               />
             </View>
-            <View >
-              <Button
-                onPress={() => { this.handlePressGoogleLogin() }}
-                type='solid'
-                title='Login with Google'
+            <View>
+              {/* <Button
+                onPress={() => {
+                  this.handlePressGoogleLogin();
+                }}
+                type="solid"
+                title="Login with Google"
                 loading={this.props.googleFetching}
+              /> */}
+              <GoogleSigninButton
+                style={styles.socialLoginbutton}
+                size={GoogleSigninButton.Size.Wide}
+                color={GoogleSigninButton.Color.Light}
+                onPress={() => {
+                  this.handlePressGoogleLogin();
+                }}
               />
-              <Button
-                style={{ marginTop: 10 }}
-                onPress={() => { this.handlePressFacebookLogin() }}
-                type='solid'
-                title='Login with Facebook'
-              loading={this.props.facebookFetching}
-              />
+              <TouchableOpacity
+                style={[styles.socialLoginbutton, {backgroundColor: '#3B5998'}]}
+                onPress={() => {
+                  this.handlePressFacebookLogin();
+                }}>
+                <Icon name="logo-facebook" size={30} color="white" />
+                <Text style={styles.facebookText}>Sign in with Facebook</Text>
+              </TouchableOpacity>
+
+              {/* <Button
+                style={{marginTop: 10}}
+                onPress={() => {
+                  this.handlePressFacebookLogin();
+                }}
+                type="solid"
+                title="Login with Facebook"
+                loading={this.props.facebookFetching}
+              /> */}
             </View>
           </View>
-
         </View>
         <DropdownAlert
-          ref={(ref) => this.dropdown = ref}
+          ref={ref => (this.dropdown = ref)}
           showCancel
           translucent
           errorColor={'rgba(250,50,50,1)'}
           closeInterval={6000}
         />
       </View>
-    )
+    );
   }
 }
 
@@ -225,22 +312,27 @@ type LoginScreenProps = {
   googleFetching: PropTypes.object,
   facebookFetching: PropTypes.object,
   attemptLogin: PropTypes.func,
-  error: PropTypes.object
-}
+  error: PropTypes.object,
+};
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     fetching: state.login.fetching,
     googleFetching: state.login.googleFetching,
-    facebookFetching: state.login.facebookFetching
-  }
-}
+    facebookFetching: state.login.facebookFetching,
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    attemptLogin: (email, password, alertfunc, nav) => dispatch(LoginActions.loginRequest(email, password, alertfunc, nav)),
-    attemptSocialLogin: (token, alertfunc, nav) => dispatch(LoginActions.socialLoginRequest(token, alertfunc, nav))
-  }
-}
+    attemptLogin: (email, password, alertfunc, nav) =>
+      dispatch(LoginActions.loginRequest(email, password, alertfunc, nav)),
+    attemptSocialLogin: (token, alertfunc, nav) =>
+      dispatch(LoginActions.socialLoginRequest(token, alertfunc, nav)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginScreen);

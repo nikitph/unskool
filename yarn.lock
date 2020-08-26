@@ -11530,6 +11530,11 @@ react-native-google-places-autocomplete@^1.4.2:
     prop-types "^15.5.10"
     qs "~6.9.1"
 
+react-native-google-signin@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.1.1.tgz#4281940eee88602b0181dd49affdf8c92980c85c"
+  integrity sha512-6l3fiLdX/bfhh0BoxGq+jGkagFsO+mrE/eRV4+3/0k8+FDxO90vdPpQdDiwlM5vWXRxWthTzMM09/jHw+4cvNw==
+
 react-native-hero@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-hero/-/react-native-hero-0.3.1.tgz#8822a64bed1890fdad252647dcfa50ab3e7b1aa0"
@@ -11588,10 +11593,10 @@ react-native-modal@^11.5.6:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-react-native-onesignal@^3.9.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.0.tgz#8f67a8f3c95096adcd179db556cc2838afead914"
-  integrity sha512-Ux2S+MlPb6+RUg1clmgUcwHIM4XhF0DrZTWcrBPxue3PJkuoIhtsNbxbQJA9fGSNeAMHScxr2RTofuVDp2puSw==
+react-native-onesignal@^3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.1.tgz#b47c2ab61e84dcc7fce63cd565574760c01b1f46"
+  integrity sha512-m511mn6Kgh6AbU8TiGvA5u1yp7od1b/0rVK4m3pz13Yp8PDceGEBd8IxoghLSZRR1/HHBxxe+CWZS9Tsa/IKsg==
   dependencies:
     invariant "^2.2.2"
 

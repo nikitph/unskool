@@ -1,76 +1,78 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-import EditChildActions from '../Redux/EditChildRedux'
-import * as Animatable from 'react-native-animatable'
+import EditChildActions from '../Redux/EditChildRedux';
+import * as Animatable from 'react-native-animatable';
 // Styles
-import style from './Styles/CreateChildScreenStyle'
-import { Images } from '../Themes'
+import style from './Styles/CreateChildScreenStyle';
+import {Images} from '../Themes';
 import {
   View,
   Text,
   TextInput,
   AsyncStorage,
   ScrollView,
-  Image
-} from 'react-native'
+  Image,
+} from 'react-native';
 
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button'
-import CheckBox from '../Components/CheckBox'
-import { Button } from 'react-native-elements'
-import globalStyles from '../Themes/GlobalStyles'
-import PhotoUpload from '../Components/PhotoUpload'
-import DropdownAlert from 'react-native-dropdownalert'
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from 'react-native-simple-radio-button';
+import CheckBox from '../Components/CheckBox';
+import {Button} from 'react-native-elements';
+import globalStyles from '../Themes/GlobalStyles';
+import PhotoUpload from '../Components/PhotoUpload';
+import DropdownAlert from 'react-native-dropdownalert';
 
 class EditChildScreen extends Component {
   static navigationOptions = {
-    headerTitle: () => <Animatable.Image animation='rotate' duration='9000' source={Images.launch} style={{ width: 40, height: 40 }}
-    />
+    headerTitle: () => (
+      <Animatable.Image
+        animation="rotate"
+        duration="9000"
+        source={Images.launch}
+        style={{width: 40, height: 40}}
+      />
+    ),
   };
   constructor(props) {
-    super(props)
-    let child = props.navigation.state.params.childData
-    let ckey = props.navigation.state.params.ckey
+    super(props);
+    let child = props.navigation.state.params.childData;
+    let ckey = props.navigation.state.params.ckey;
 
-    console.log(ckey)
+    console.log(ckey);
 
-    const {
-      gid,
-      fName,
-      lName,
-      age,
-      profileImage,
-      gender,
-      allergies
-    } = child
+    const {gid, fName, lName, age, profileImage, gender, allergies} = child;
 
     //
     // STATE OBJECT
     //
-    this.state = { ckey, ...child }
+    this.state = {ckey, ...child};
     // bind functions
-    this.radioButtonChange = this.radioButtonChange.bind(this)
-    this.checkboxChange = this.checkboxChange.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.submitForm = this.submitForm.bind(this)
-    this.showAlert = this.showAlert.bind(this)
+    this.radioButtonChange = this.radioButtonChange.bind(this);
+    this.checkboxChange = this.checkboxChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.showAlert = this.showAlert.bind(this);
   }
 
   handleImageSelector() {
-    this.setState({ imageModal: !this.state.imageModal })
+    this.setState({imageModal: !this.state.imageModal});
   }
 
   selectImage() {
     // if the user didn't select an image, skip this
-    if (!this.state.selectedImage) return
+    if (!this.state.selectedImage) return;
 
     // set the image uri to the profile image and close the modal
-    this.setState({ profileImage: this.state.selectedImage.uri })
-    this.handleImageSelector()
+    this.setState({profileImage: this.state.selectedImage.uri});
+    this.handleImageSelector();
   }
 
   getSelectedImages(images, current) {
-    this.setState({ selectedImage: current })
+    this.setState({selectedImage: current});
   }
 
   /**
@@ -78,38 +80,41 @@ class EditChildScreen extends Component {
    * @param e
    */
   handleChange(value, fieldName) {
-    let inputObj = {}
-    inputObj[fieldName] = value
-    this.setState(inputObj)
+    let inputObj = {};
+    inputObj[fieldName] = value;
+    this.setState(inputObj);
   }
 
   showAlert(type, title, message) {
-    this.dropdown.alertWithType(type, title, message)
+    this.dropdown.alertWithType(type, title, message);
   }
 
   checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
-    const options = this.state[checkboxOptions]
-    let index
+    const options = this.state[checkboxOptions];
+    let index;
 
     // check if the check box is checked or unchecked
     if (checked) {
       // add the numerical value of the checkbox to options array
-      options.push(checkbox)
+      options.push(checkbox);
     } else {
       // or remove the value from the unchecked checkbox from the array
-      index = options.indexOf(checkbox)
-      options.splice(index, 1)
+      index = options.indexOf(checkbox);
+      options.splice(index, 1);
     }
+    let y = options.sort(function(a, b) {
+      return a.split('-')[0] - b.split('-')[0];
+    });
   }
 
   radioButtonChange(value, group) {
     // current array of options
-    const newState = {}
-    newState[group] = value
+    const newState = {};
+    newState[group] = value;
 
     // update the state with the new array of options
-    this.setState(newState)
+    this.setState(newState);
   }
 
   /**
@@ -117,7 +122,11 @@ class EditChildScreen extends Component {
    * @param e
    */
   submitForm() {
-    this.props.attemptEditChild(this.state, this.showAlert, this.props.navigation)
+    this.props.attemptEditChild(
+      this.state,
+      this.showAlert,
+      this.props.navigation,
+    );
 
     /* const props = this.props
     const { fName, lName, selectedImage, profileImage } = this.state
@@ -171,87 +180,107 @@ class EditChildScreen extends Component {
    * @returns {XML}
    */
   render() {
-    const props = this.props
-    let formData = { allergies: ['Pollen', 'Asthma', 'Pet', 'Dairy', 'Gluten', 'eggs', 'Other'] }
-    const { profileImage } = this.state
-    let allergyList = this.state.allergies || ['']
+    const props = this.props;
+    let formData = {
+      allergies: [
+        'Pollen',
+        'Asthma',
+        'Pet',
+        'Dairy',
+        'Gluten',
+        'eggs',
+        'Other',
+      ],
+    };
+    const {profileImage} = this.state;
+    let allergyList = this.state.allergies || [''];
 
     const outputCheckboxes = () => {
-      let checkboxOutput = []
+      let checkboxOutput = [];
       for (let category in formData) {
         checkboxOutput.push(
           <View>
             <Text style={globalStyles.formSubTitle}>{category}</Text>
-            <View style={[globalStyles.checkboxContainer, { marginBottom: 30 }]}>
+            <View style={[globalStyles.checkboxContainer, {marginBottom: 30}]}>
               {formData[category].map(item => {
-                let checkbox = ''
+                let checkbox = '';
                 // pre-check any items that were selected and saved
                 if (allergyList.indexOf(item) > -1) {
-                  checkbox =
+                  checkbox = (
                     <CheckBox
                       label={item}
                       checked
                       key={item}
-                      onChange={(checked) => this.checkboxChange(item, category, checked)}
+                      onChange={checked =>
+                        this.checkboxChange(item, category, checked)
+                      }
                     />
+                  );
                 } else {
-                  checkbox =
+                  checkbox = (
                     <CheckBox
                       label={item}
                       key={item}
-                      onChange={(checked) => this.checkboxChange(item, category, checked)}
+                      onChange={checked =>
+                        this.checkboxChange(item, category, checked)
+                      }
                     />
+                  );
                 }
 
-                return checkbox
+                return checkbox;
               })}
             </View>
-          </View>
-        )
+          </View>,
+        );
       }
-      return checkboxOutput
-    }
+      return checkboxOutput;
+    };
 
     const age_radio_props = [
-      { label: '0-3', value: '03' },
-      { label: '3-6', value: '36' },
-      { label: '6-9', value: '69' },
-      { label: '9-12', value: '912' },
-      { label: '12-15', value: '1215' }
-    ]
+      {label: '0-3', value: '03'},
+      {label: '3-6', value: '36'},
+      {label: '6-9', value: '69'},
+      {label: '9-12', value: '912'},
+      {label: '12-15', value: '1215'},
+    ];
 
-    let ageSelected
+    let ageSelected;
     age_radio_props.map((option, i) => {
       // if there's a match, return the index of the matching item
       if (this.state.age === option.value) {
-        ageSelected = i
+        ageSelected = i;
       }
-    })
+    });
 
     // set the data structure for the radio buttons
     const radio_props = [
-      { label: 'Male', value: 'male' },
-      { label: 'Female', value: 'female' }
-    ]
-    let userGender = this.state.gender
+      {label: 'Male', value: 'male'},
+      {label: 'Female', value: 'female'},
+    ];
+    let userGender = this.state.gender;
 
     // handle the output of the required image
-    let userImage = profileImage !== '../Images/blank-profile-pic.png'
-      ? { uri: profileImage }
-      : require('../Images/blank-profile-pic.png')
+    let userImage =
+      profileImage !== '../Images/blank-profile-pic.png'
+        ? {uri: profileImage}
+        : require('../Images/blank-profile-pic.png');
 
     return (
       <ScrollView style={[globalStyles.formContainer, {flexGrow: 1}]}>
-        <Text style={[globalStyles.formTitle, style.title]}> Add your child here! </Text>
+        <Text style={[globalStyles.formTitle, style.title]}>
+          {' '}
+          Add your child here!{' '}
+        </Text>
 
-        <View className='image-uploader'>
+        <View className="image-uploader">
           <View style={globalStyles.formImageContainer}>
             <PhotoUpload
               width={100}
               height={100}
               onPhotoSelect={avatar => {
                 if (avatar) {
-                  this.setState({ profileImage: avatar })
+                  this.setState({profileImage: avatar});
                 }
               }}>
               <Image
@@ -259,12 +288,13 @@ class EditChildScreen extends Component {
                   paddingVertical: 10,
                   width: 100,
                   height: 100,
-                  borderRadius: 50
+                  borderRadius: 50,
                 }}
-                resizeMode='cover'
+                resizeMode="cover"
                 source={{
-                  uri: this.state.profileImage
-                }} />
+                  uri: this.state.profileImage,
+                }}
+              />
             </PhotoUpload>
           </View>
         </View>
@@ -273,26 +303,28 @@ class EditChildScreen extends Component {
           <TextInput
             style={globalStyles.textInput}
             placeholder={this.state.fName}
-            placeholderTextColor='white'
-            onChangeText={(value) => this.handleChange(value, 'fName')}
+            placeholderTextColor="white"
+            onChangeText={value => this.handleChange(value, 'fName')}
           />
 
           <TextInput
             style={globalStyles.textInput}
             placeholder={this.state.lName}
-            placeholderTextColor='white'
-            onChangeText={(value) => this.handleChange(value, 'lName')}
+            placeholderTextColor="white"
+            onChangeText={value => this.handleChange(value, 'lName')}
           />
 
           <View>
             <RadioForm
               radio_props={radio_props}
               initial={userGender === 'male' ? 0 : 1}
-              style={{ padding: 30, marginRight: 10 }}
-              buttonWrapStyle={{ padding: 30, marginRight: 10 }}
-              labelStyle={{ marginRight: 30, color: 'gray' }}
+              style={{padding: 30, marginRight: 10}}
+              buttonWrapStyle={{padding: 30, marginRight: 10}}
+              labelStyle={{marginRight: 30, color: 'gray'}}
               formHorizontal
-              onPress={(value) => { this.radioButtonChange(value, 'gender') }}
+              onPress={value => {
+                this.radioButtonChange(value, 'gender');
+              }}
             />
           </View>
 
@@ -303,47 +335,54 @@ class EditChildScreen extends Component {
             <RadioForm
               radio_props={age_radio_props}
               initial={ageSelected}
-              style={{ marginTop: 5, marginBottom: 5 }}
+              style={{marginTop: 5, marginBottom: 5}}
               buttonColor={'rgba(0, 0, 0, 0.3)'}
               buttonSize={10}
-              buttonWrapStyle={{ padding: 10, marginRight: 10 }}
-              labelStyle={{ marginRight: 10, color: 'gray', fontSize: 14 }}
+              buttonWrapStyle={{padding: 10, marginRight: 10}}
+              labelStyle={{marginRight: 10, color: 'gray', fontSize: 14}}
               formHorizontal
-              onPress={(value) => { this.radioButtonChange(value, 'age') }}
+              onPress={value => {
+                this.radioButtonChange(value, 'age');
+              }}
             />
           </View>
 
           <Button
-            onPress={() => { this.submitForm() }}
-            type='solid'
-            title='Submit'
+            onPress={() => {
+              this.submitForm();
+            }}
+            type="solid"
+            title="Submit"
             loading={this.props.fetching}
           />
         </View>
         <DropdownAlert
-          ref={(ref) => this.dropdown = ref}
+          ref={ref => (this.dropdown = ref)}
           showCancel
           translucent
           errorColor={'rgba(250,50,50,1)'}
           closeInterval={6000}
         />
       </ScrollView>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     guardian: state.login.payload,
-    fetching: state.editchild.fetching
-  }
-}
+    fetching: state.editchild.fetching,
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     attemptEditChild: (cdata, alertfunc, nav) =>
-      dispatch(EditChildActions.editChildRequest(cdata, alertfunc, nav))
-  }
-}
+      dispatch(EditChildActions.editChildRequest(cdata, alertfunc, nav)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditChildScreen)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EditChildScreen);

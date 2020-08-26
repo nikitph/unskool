@@ -1,31 +1,24 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 
 import styles from './Styles/UserListStyle';
-import { scale } from '../Themes/ScalingUtils';
-import { Images, Colors } from '../Themes';
+import {scale} from '../Themes/ScalingUtils';
+import {Images, Colors} from '../Themes';
 
-const user = ({ item = {} }) => {
-  const { fName = "", profileImage = "" } = item;
+const user = ({item = {}}) => {
+  const {fName = '', profileImage = ''} = item;
 
   return (
     <TouchableOpacity style={styles.userItemContainer}>
-      <Image style={styles.userImg} source={{ uri: profileImage }} />
+      <Image style={styles.userImg} source={{uri: profileImage}} />
       <Text style={styles.userName}>{fName}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const keyExtractor = (d, i) => i.toString();
 
-
-const UsersList = ({ title, data, addNewChild }) => {
+const UsersList = ({title, data, addNewChild, addChildren}) => {
   return (
     <View style={styles.userListContainer}>
       <Text style={styles.userTitle}>{title}</Text>
@@ -35,20 +28,28 @@ const UsersList = ({ title, data, addNewChild }) => {
         horizontal
         renderItem={user}
         keyExtractor={keyExtractor}
-        contentContainerStyle={{ paddingLeft: scale(15) }}
+        contentContainerStyle={{paddingLeft: scale(15)}}
         ListFooterComponent={() => {
-          return (
-            <TouchableOpacity style={styles.userItemContainer} onPress={() => addNewChild()}>
-              <Image style={[styles.userImg, {
-                tintColor: 'rgba(0,0,0,0.1)'
-              }]} source={Images.more} />
+          return addChildren == false ? null : (
+            <TouchableOpacity
+              style={styles.userItemContainer}
+              onPress={() => addNewChild()}>
+              <Image
+                style={[
+                  styles.userImg,
+                  {
+                    tintColor: 'rgba(0,0,0,0.1)',
+                  },
+                ]}
+                source={Images.more}
+              />
             </TouchableOpacity>
-          )
+          );
         }}
         showsHorizontalScrollIndicator={false}
       />
     </View>
-  )
-}
+  );
+};
 
 export default UsersList;

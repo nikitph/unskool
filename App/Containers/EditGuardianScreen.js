@@ -1,38 +1,39 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, View, TextInput, Image } from 'react-native'
-import { connect } from 'react-redux'
+import React, {Component} from 'react';
+import {ScrollView, Text, View, TextInput, Image} from 'react-native';
+import {connect} from 'react-redux';
 import _ from 'lodash';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-import EditGuardianActions from '../Redux/EditGuardianRedux'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import EditGuardianActions from '../Redux/EditGuardianRedux';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable';
 
 // Styles
-import style from './Styles/EditGuardianScreenStyle'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
-import RadioForm from 'react-native-simple-radio-button'
-import colorsVariables from '../Themes/Variables'
-import DropdownAlert from 'react-native-dropdownalert'
-import globalStyles from '../Themes/GlobalStyles'
-import FastImage from 'react-native-fast-image'
+import style from './Styles/EditGuardianScreenStyle';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import RadioForm from 'react-native-simple-radio-button';
+import colorsVariables from '../Themes/Variables';
+import DropdownAlert from 'react-native-dropdownalert';
+import globalStyles from '../Themes/GlobalStyles';
+import FastImage from 'react-native-fast-image';
 
-import { Button } from 'react-native-elements'
-import CheckBox from '../Components/CheckBox'
-import Toast from 'react-native-easy-toast'
-import { Images } from '../Themes'
-import PhotoUpload from '../Components/PhotoUpload'
+import {Button} from 'react-native-elements';
+import CheckBox from '../Components/CheckBox';
+import Toast from 'react-native-easy-toast';
+import {Images} from '../Themes';
+import PhotoUpload from '../Components/PhotoUpload';
 // import { sendEmail } from '../../helpers/email'
 // import BackButton from '../components/BackButton';
 
 class EditGuardianScreen extends Component {
   static navigationOptions = {
-    headerTitle: () => <Image source={Images.launch} style={{ width: 40, height: 40 }}
-    />,
-    headerBackTitleVisible: false
-  }
+    headerTitle: () => (
+      <Image source={Images.launch} style={{width: 40, height: 40}} />
+    ),
+    headerBackTitleVisible: false,
+  };
   constructor(props) {
-    super()
+    super();
 
     const {
       uid,
@@ -50,14 +51,29 @@ class EditGuardianScreen extends Component {
       sponsored,
       specialties,
       languages_spoken,
-      latlong
+      latlong,
     } = props.guardian;
     let newSpecialties;
-    let _specialties = ['running', 'dance', 'cooking', 'coding', 'music', 'Gardening', 'Guitar', 'Piano', 'Geography', 'Knitting', 'Painting', 'Science', 'Engineering', 'Wood work']
+    let _specialties = [
+      'running',
+      'dance',
+      'cooking',
+      'coding',
+      'music',
+      'Gardening',
+      'Guitar',
+      'Piano',
+      'Geography',
+      'Knitting',
+      'Painting',
+      'Science',
+      'Engineering',
+      'Wood work',
+    ];
     if (specialties) {
-      newSpecialties = _.uniq([...specialties, ..._specialties])
+      newSpecialties = _.uniq([...specialties, ..._specialties]);
     } else {
-      newSpecialties = _specialties
+      newSpecialties = _specialties;
     }
     this.state = {
       uid,
@@ -79,17 +95,30 @@ class EditGuardianScreen extends Component {
       showAddSpecialties: false,
       formData: {
         specialties: newSpecialties,
-        languages_spoken: ['english', 'spanish', 'chinese', 'arabic', 'portuguese', 'french', 'hindi', 'malay', 'russian', 'urdu', 'other', 'bengali']
+        languages_spoken: [
+          'english',
+          'spanish',
+          'chinese',
+          'arabic',
+          'portuguese',
+          'french',
+          'hindi',
+          'malay',
+          'russian',
+          'urdu',
+          'other',
+          'bengali',
+        ],
       },
       newSpeciality: '',
-    }
+    };
 
-    this.radioButtonChange = this.radioButtonChange.bind(this)
-    this.checkboxChange = this.checkboxChange.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.submitForm = this.submitForm.bind(this)
-    this.capitalizeWord = this.capitalizeWord.bind(this)
-    this.showAlert = this.showAlert.bind(this)
+    this.radioButtonChange = this.radioButtonChange.bind(this);
+    this.checkboxChange = this.checkboxChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.capitalizeWord = this.capitalizeWord.bind(this);
+    this.showAlert = this.showAlert.bind(this);
   }
 
   /**
@@ -98,18 +127,20 @@ class EditGuardianScreen extends Component {
    */
 
   handleChange(value, fieldName) {
-    let inputObj = {}
-    inputObj[fieldName] = value
-    this.setState(inputObj)
+    let inputObj = {};
+    inputObj[fieldName] = value;
+    this.setState(inputObj);
   }
 
   capitalizeWord(str) {
-    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
+    return str.replace(/\w\S*/g, function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
   }
 
   showAlert(type, title, message) {
-    this.dropdown.alertWithType(type, title, message)
-  };
+    this.dropdown.alertWithType(type, title, message);
+  }
 
   checkboxChange(checkbox, checkboxOptions, checked) {
     // current array of options
@@ -123,29 +154,33 @@ class EditGuardianScreen extends Component {
       const index = options.indexOf(checkbox);
       options.splice(index, 1);
     }
+    let y = options.sort(function(a, b) {
+      return a.split('-')[0] - b.split('-')[0];
+    });
+
     // options = _.uniq(options);
-    this.setState({ [checkboxOptions]: options });
+    this.setState({[checkboxOptions]: options});
   }
 
-  showAddSpecialties = () => this.setState({ showAddSpecialties: true });
+  showAddSpecialties = () => this.setState({showAddSpecialties: true});
 
   radioButtonChange(value, group) {
     // current array of options
-    let radioButtonGroup = group
-    let radio = value
+    let radioButtonGroup = group;
+    let radio = value;
 
-    const newState = {}
-    newState[radioButtonGroup] = radio
+    const newState = {};
+    newState[radioButtonGroup] = radio;
 
     // update the state with the new array of options
-    this.setState(newState)
+    this.setState(newState);
   }
 
   confirmAddress() {
     if (this.state.latlong) {
-      this.submitForm()
+      this.submitForm();
     } else {
-      this.showAlert('error', 'Error', 'A valid Address is required!')
+      this.showAlert('error', 'Error', 'A valid Address is required!');
     }
   }
 
@@ -154,29 +189,37 @@ class EditGuardianScreen extends Component {
    * @param e
    */
   submitForm() {
-    const guardianData = { ...this.state };
+    const guardianData = {...this.state};
     delete guardianData['showAddSpecialties'];
     delete guardianData['formData'];
     delete guardianData['newSpeciality'];
-    this.props.attemptEditGuardian(guardianData, this.showAlert, this.props.navigation)
+    this.props.attemptEditGuardian(
+      guardianData,
+      this.showAlert,
+      this.props.navigation,
+    );
     // Send welcome email
     // this.sendWelcomeMail(data)
   }
 
   getEmailBody(data) {
-    return 'Hi ' + data.displayName +
+    return (
+      'Hi ' +
+      data.displayName +
       '\n Welcome to My Community Classroom!' +
       '\n Thank you for taking the time to register to be a part of a new growing educational community.' +
       'We are excited to have you on board as we build a platform that is dedicated to empowering families ' +
       'and children by blowing open the doors to education as we strive to nurture our future citizens of the world!' +
       '\n PLEASE FLAG & SAVE THIS EMAIL – as it is a reminder of your login credentials should you ever need to reference it again.' +
-      '\n \n Login : ' + data.email +
+      '\n \n Login : ' +
+      data.email +
       '\n \n Please feel free to contact us at info@mycommunityclassroom.com with any questions or feedback you may have for us.' +
       '\n \n - The MC2 Founding Team'
+    );
   }
 
   handleAddSpecilities = async () => {
-    const { specialties, newSpeciality, formData } = this.state;
+    const {specialties, newSpeciality, formData} = this.state;
     if (!newSpeciality) {
       this.showAlert('error', 'Error', 'Please Enter Speciality!');
       return null;
@@ -191,7 +234,7 @@ class EditGuardianScreen extends Component {
         specialties: _.uniq([...formData.specialties, ...newSpecialties]),
       },
     });
-  }
+  };
 
   /* sendWelcomeMail (data) {
      let emailBody = this.getEmailBody(data)
@@ -204,88 +247,101 @@ class EditGuardianScreen extends Component {
    * @returns {XML}
    */
   render() {
-    const { formData, showAddSpecialties, newSpeciality } = this.state;
+    const {formData, showAddSpecialties, newSpeciality} = this.state;
 
     const outputCheckboxes = () => {
-      let checkboxOutput = []
+      let checkboxOutput = [];
       for (let category in formData) {
         checkboxOutput.push(
           <View key={category}>
-            <View style={[globalStyles.checkboxContainer, style.checkboxContainer]}>
-              <Text style={globalStyles.checkboxSubTitle}>{this.capitalizeWord(category)}</Text>
+            <View
+              style={[globalStyles.checkboxContainer, style.checkboxContainer]}>
+              <Text style={globalStyles.checkboxSubTitle}>
+                {this.capitalizeWord(category)}
+              </Text>
               {formData[category].map(item => {
-                let checkbox = ''
+                let checkbox = '';
                 // pre-check any items that were selected and saved
                 if (this.state.specialties.indexOf(item) > -1) {
-                  checkbox =
+                  checkbox = (
                     <CheckBox
                       label={item}
                       checked
                       key={item}
-                      onChange={(checked) => this.checkboxChange(item, 'specialties', checked)}
+                      onChange={checked =>
+                        this.checkboxChange(item, 'specialties', checked)
+                      }
                     />
+                  );
                 } else {
-                  checkbox =
+                  checkbox = (
                     <CheckBox
                       checked={item === 'Other'}
                       label={item}
                       key={item}
-                      onChange={(checked) => this.checkboxChange(item, 'specialties', checked)}
+                      onChange={checked =>
+                        this.checkboxChange(item, 'specialties', checked)
+                      }
                     />
+                  );
                 }
 
-                return checkbox
+                return checkbox;
               })}
             </View>
-            {
-              category === 'specialties' && (
-                <Button
-                  onPress={this.showAddSpecialties}
-                  type='solid'
-                  title='Other'
-                />
-              )
-            }
+            {category === 'specialties' && (
+              <Button
+                onPress={this.showAddSpecialties}
+                type="solid"
+                title="Other"
+              />
+            )}
             {showAddSpecialties && category === 'specialties' && (
               <View style={style.addSpecialtiesCon}>
                 <TextInput
-                  style={[globalStyles.textInput, { flex: 1, height: 30, marginRight: 10 }]}
+                  style={[
+                    globalStyles.textInput,
+                    {flex: 1, height: 30, marginRight: 10},
+                  ]}
                   placeholder="Enter Speciality*"
                   value={newSpeciality}
-                  onChangeText={(text) => this.setState({ newSpeciality: text })}
+                  onChangeText={text => this.setState({newSpeciality: text})}
                 />
                 <Button
                   onPress={this.handleAddSpecilities}
-                  type='solid'
-                  title='Add'
+                  type="solid"
+                  title="Add"
                 />
               </View>
             )}
-          </View>
-        )
+          </View>,
+        );
       }
-      return checkboxOutput
-    }
+      return checkboxOutput;
+    };
 
     // set the data structure for the radio buttons
     const radio_props = [
-      { label: 'Male', value: 'male' },
-      { label: 'Female', value: 'female' }
-    ]
-    let userGender = this.state.gender
+      {label: 'Male', value: 'male'},
+      {label: 'Female', value: 'female'},
+    ];
+    let userGender = this.state.gender;
     // <BackButton path="/welcome-search" />
 
     return (
-      <KeyboardAwareScrollView extraScrollHeight={10} contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
-          <View className='image-uploader'>
+      <KeyboardAwareScrollView
+        extraScrollHeight={10}
+        contentContainerStyle={{flexGrow: 1}}>
+        <View
+          style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
+          <View className="image-uploader">
             <View style={globalStyles.formImageContainer}>
               <PhotoUpload
                 width={100}
                 height={100}
                 onPhotoSelect={avatar => {
                   if (avatar) {
-                    this.setState({ profileImage: avatar })
+                    this.setState({profileImage: avatar});
                   }
                 }}>
                 <Image
@@ -293,32 +349,36 @@ class EditGuardianScreen extends Component {
                     paddingVertical: 10,
                     width: 100,
                     height: 100,
-                    borderRadius: 50
+                    borderRadius: 50,
                   }}
-                  resizeMode='cover'
-                  source={require('../Images/blank-profile-pic.png')} />
+                  resizeMode="cover"
+                  source={require('../Images/blank-profile-pic.png')}
+                />
               </PhotoUpload>
             </View>
           </View>
         </View>
-        <Text style={[globalStyles.formTitle]}> Help us get to know you... </Text>
+        <Text style={[globalStyles.formTitle]}>
+          {' '}
+          Help us get to know you...{' '}
+        </Text>
         <View style={style.formContainer}>
           <TextInput
             style={globalStyles.textInput}
-            placeholderTextColor='rgba(0, 0, 0, 0.5)'
-            placeholder='Your Name'
+            placeholderTextColor="rgba(0, 0, 0, 0.5)"
+            placeholder="Your Name"
             defaultValue={this.state.displayName}
-            onChangeText={(value) => this.handleChange(value, 'displayName')}
+            onChangeText={value => this.handleChange(value, 'displayName')}
           />
 
           <TextInput
-            style={[globalStyles.textInput, { height: 90 }]}
+            style={[globalStyles.textInput, {height: 90}]}
             multiline
             numberOfLines={6}
-            placeholderTextColor='rgba(0, 0, 0, 0.5)'
-            placeholder='Write a summary about yourself here'
+            placeholderTextColor="rgba(0, 0, 0, 0.5)"
+            placeholder="Write a summary about yourself here"
             defaultValue={this.state.greeting}
-            onChangeText={(value) => this.handleChange(value, 'greeting')}
+            onChangeText={value => this.handleChange(value, 'greeting')}
           />
 
           {/* <View>
@@ -335,36 +395,44 @@ class EditGuardianScreen extends Component {
           <View>
             {/* <Text style={globalStyles.formSubTitle}>Address</Text> */}
             <GooglePlacesAutocomplete
-              placeholder='Start typing your address here'
+              placeholder="Start typing your address here"
               minLength={2} // minimum length of text to search
               // autoFocus
               returnKeyType={'default'}
-              listViewDisplayed='auto'    // true/false/undefined
+              listViewDisplayed="auto" // true/false/undefined
               fetchDetails
-              onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+              onPress={(data, details = null) => {
+                // 'details' is provided when fetchDetails = true
                 let componentForm = {
                   street_number: 'short_name',
                   route: 'long_name',
                   locality: 'long_name',
                   administrative_area_level_1: 'short_name',
                   country: 'short_name',
-                  postal_code: 'short_name'
-                }
+                  postal_code: 'short_name',
+                };
 
                 for (let i = 0; i < details.address_components.length; i++) {
-                  let addressType = details.address_components[i].types[0]
+                  let addressType = details.address_components[i].types[0];
                   if (componentForm[addressType]) {
-                    let val = details.address_components[i][componentForm[addressType]]
-                    componentForm[addressType] = val
+                    let val =
+                      details.address_components[i][componentForm[addressType]];
+                    componentForm[addressType] = val;
                   }
                 }
-                this.handleChange(componentForm.postal_code, 'zipCode')
-                this.handleChange(componentForm.street_number + ' ' + componentForm.route, 'street')
-                this.handleChange(componentForm.administrative_area_level_1, 'state')
-                this.handleChange(componentForm.locality, 'city')
-                this.handleChange(details.geometry.location, 'latlong')
+                this.handleChange(componentForm.postal_code, 'zipCode');
+                this.handleChange(
+                  componentForm.street_number + ' ' + componentForm.route,
+                  'street',
+                );
+                this.handleChange(
+                  componentForm.administrative_area_level_1,
+                  'state',
+                );
+                this.handleChange(componentForm.locality, 'city');
+                this.handleChange(details.geometry.location, 'latlong');
               }}
-              placeholderTextColor='white'
+              placeholderTextColor="white"
               getDefaultValue={() => ''}
               enablePoweredByContainer={false}
               styles={{
@@ -376,70 +444,77 @@ class EditGuardianScreen extends Component {
                   marginTop: 4,
                   marginBottom: 4,
                   color: 'white',
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)'
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
                 },
                 textInputContainer: {
                   backgroundColor: 'rgba(0,0,0,0)',
                   borderTopWidth: 0,
-                  borderBottomWidth: 0
+                  borderBottomWidth: 0,
                 },
                 row: {
                   padding: 10,
                   height: 36,
                   flexDirection: 'row',
-                  backgroundColor: 'white'
+                  backgroundColor: 'white',
                 },
                 description: {
-                  fontSize: 12
-                }
+                  fontSize: 12,
+                },
               }}
-
               query={{
                 key: 'AIzaSyAif6TTNUxjjj4Zt-6tNT7orijVUT2mHXE',
                 language: 'en', // language of the results
-                types: 'address' // default: 'geocode'
+                types: 'address', // default: 'geocode'
               }}
-
-              nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+              nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
               GooglePlacesSearchQuery={{
                 rankby: 'distance',
-                types: 'food'
+                types: 'food',
               }}
               debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
             />
             <TextInput
               style={globalStyles.textInput}
-              placeholderTextColor='white'
-              placeholder='Street Address'
+              placeholderTextColor="white"
+              placeholder="Street Address"
               value={this.state.street}
-              onChangeText={(value) => this.handleChange(value, 'street')} />
+              onChangeText={value => this.handleChange(value, 'street')}
+            />
             <View style={globalStyles.formAddress2ndRow}>
               <View style={globalStyles.formAddressItem}>
                 <TextInput
                   style={globalStyles.textInputDisabled}
-                  placeholderTextColor='white'
-                  placeholder='City'
+                  placeholderTextColor="white"
+                  placeholder="City"
                   value={this.state.city}
                   editable={false}
-                  onChangeText={(value) => this.handleChange(value, 'city')} />
+                  onChangeText={value => this.handleChange(value, 'city')}
+                />
               </View>
-              <View style={[globalStyles.formAddressItem, globalStyles.formAddressCenterPiece]}>
+              <View
+                style={[
+                  globalStyles.formAddressItem,
+                  globalStyles.formAddressCenterPiece,
+                ]}>
                 <TextInput
                   style={globalStyles.textInputDisabled}
-                  placeholderTextColor='white'
-                  placeholder='State'
+                  placeholderTextColor="white"
+                  placeholder="State"
                   value={this.state.state}
                   editable={false}
-                  onChangeText={(value) => this.handleChange(value, 'state')} />
+                  onChangeText={value => this.handleChange(value, 'state')}
+                />
               </View>
               <View style={globalStyles.formAddressItem}>
-                <TextInput name='zipCode'
+                <TextInput
+                  name="zipCode"
                   style={globalStyles.textInputDisabled}
-                  placeholderTextColor='white'
+                  placeholderTextColor="white"
                   value={this.state.zipCode}
                   editable={false}
-                  placeholder='Zipcode'
-                  onChangeText={(value) => this.handleChange(value, 'zipCode')} />
+                  placeholder="Zipcode"
+                  onChangeText={value => this.handleChange(value, 'zipCode')}
+                />
               </View>
             </View>
           </View>
@@ -450,35 +525,41 @@ class EditGuardianScreen extends Component {
           {/* title={'Default Event Privacy'}/> */}
 
           <Button
-            onPress={() => { this.confirmAddress() }}
-            type='solid'
-            title='Update'
+            onPress={() => {
+              this.confirmAddress();
+            }}
+            type="solid"
+            title="Update"
             loading={this.props.fetching}
           />
         </View>
         <DropdownAlert
-          ref={(ref) => this.dropdown = ref}
+          ref={ref => (this.dropdown = ref)}
           showCancel
           translucent
           errorColor={'rgba(250,50,50,1)'}
           closeInterval={6000}
         />
       </KeyboardAwareScrollView>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     guardian: state.login.payload,
-    fetching: state.editguardian.fetching
-  }
-}
+    fetching: state.editguardian.fetching,
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    attemptEditGuardian: (gdata, alertfunc, nav) => dispatch(EditGuardianActions.editGuardianRequest(gdata, alertfunc, nav))
-  }
-}
+    attemptEditGuardian: (gdata, alertfunc, nav) =>
+      dispatch(EditGuardianActions.editGuardianRequest(gdata, alertfunc, nav)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditGuardianScreen)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EditGuardianScreen);
