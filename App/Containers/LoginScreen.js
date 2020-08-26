@@ -9,15 +9,8 @@ import {
 import {
   GoogleSigninButton,
   GoogleSignin,
-  statusCodes,
 } from '@react-native-community/google-signin';
-import {
-  LoginButton,
-  LoginManager,
-  AccessToken,
-  GraphRequest,
-  GraphRequestManager,
-} from 'react-native-fbsdk';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -257,14 +250,6 @@ class LoginScreen extends Component {
               />
             </View>
             <View>
-              {/* <Button
-                onPress={() => {
-                  this.handlePressGoogleLogin();
-                }}
-                type="solid"
-                title="Login with Google"
-                loading={this.props.googleFetching}
-              /> */}
               <GoogleSigninButton
                 style={styles.socialLoginbutton}
                 size={GoogleSigninButton.Size.Wide}
@@ -281,16 +266,6 @@ class LoginScreen extends Component {
                 <Icon name="logo-facebook" size={30} color="white" />
                 <Text style={styles.facebookText}>Sign in with Facebook</Text>
               </TouchableOpacity>
-
-              {/* <Button
-                style={{marginTop: 10}}
-                onPress={() => {
-                  this.handlePressFacebookLogin();
-                }}
-                type="solid"
-                title="Login with Facebook"
-                loading={this.props.facebookFetching}
-              /> */}
             </View>
           </View>
         </View>
