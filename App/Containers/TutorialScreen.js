@@ -35,15 +35,15 @@ class TutorialScreen extends Component {
   }
 
   render() {
-    const imageDimensions = { width: Metrics.screenWidth, height: 500 }
+    const imageDimensions = { width: Metrics.screenWidth, height: Metrics.screenHeight/1.5 }
 
     return (
-      <View style={{ height: '100%', backgroundColor: 'white', paddingTop: 50, paddingBottom: 20 }}>
+      <View style={{ flex:1, backgroundColor: 'white',  }}>
         <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center' }}>
           <Image source={Images.launch} style={style.logo} />
         </View>
         <IndicatorViewPager
-          style={{ flex: 0.8 }}
+          style={{ flex: 0.7 }}
           indicator={this._renderDotIndicator()}
         >
           <View><Image source={Images.tut0} resizeMode='contain' style={imageDimensions} /></View>
@@ -51,7 +51,7 @@ class TutorialScreen extends Component {
           <View><Image source={Images.tut2} resizeMode='contain' style={imageDimensions} /></View>
           <View><Image source={Images.tut3} resizeMode='contain' style={imageDimensions} /></View>
           <View><Image source={Images.tut4} resizeMode='contain' style={imageDimensions} />
-            <View style={{ margin: 20 }}><Button title='Get Started' onPress={() => {
+            <View style={{paddingVertical:30}}><Button title='Get Started' onPress={() => {
                 this.props.navigation.reset([NavigationActions.navigate({ routeName: 'DashboardScreen' })], 0)
               }}
             />

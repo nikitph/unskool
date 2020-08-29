@@ -1,7 +1,6 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {ApplicationStyles} from '../../Themes/';
 import {Metrics, Colors} from '../../Themes';
-const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -90,21 +89,5 @@ export default StyleSheet.create({
     width: Metrics.images.logo,
     resizeMode: 'contain',
     opacity: 0.5,
-  },
-  socialLoginbutton: {
-    width: width - 40,
-    height: 40,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-    borderWidth: 0.2,
-    marginTop: 5,
-  },
-  facebookText: {
-    textAlign: 'center',
-    width: width - 100,
-    fontWeight: '700',
-    color: 'white',
   },
 });

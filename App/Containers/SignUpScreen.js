@@ -4,11 +4,9 @@ import {
   Text,
   TextInput,
   AsyncStorage,
-  TouchableOpacity,
 } from 'react-native';
 import {
-  GoogleSigninButton,
-  GoogleSignin,
+  GoogleSignin
 } from '@react-native-community/google-signin';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import {connect} from 'react-redux';
@@ -18,10 +16,13 @@ import * as Animatable from 'react-native-animatable';
 import DropdownAlert from 'react-native-dropdownalert';
 import {Button} from 'react-native-elements';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { SocialButton } from '../Components/SocialButton';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import SignUpActions from '../Redux/SignUpRedux';
+import LoginActions from '../Redux/LoginRedux';
 // Styles
 import styles from './Styles/SignUpScreenStyle';
+import { fbLogin, googleLogin } from '../Services/SocialAuthentication';
 
 class SignUpScreen extends Component {
   static navigationOptions = {
@@ -65,10 +66,11 @@ class SignUpScreen extends Component {
   handlePressGoogleLogin = async () => {
     // const authProvider = new firebase.auth.GoogleAuthProvider()
 
-    await GoogleSignin.hasPlayServices();
-    const userInfo = await GoogleSignin.signIn();
-    const provider = firebase.auth.GoogleAuthProvider;
-    const credential = provider.credential(userInfo.idToken);
+    // await GoogleSignin.hasPlayServices();
+    // const userInfo = await GoogleSignin.signIn();
+    // const provider = firebase.auth.GoogleAuthProvider;
+    // const credential = provider.credential(userInfo.idToken);
+    const credential = await googleLogin();
     this.props.attemptSocialLogin(
       credential,
       this.showAlert,
@@ -76,32 +78,33 @@ class SignUpScreen extends Component {
     );
   };
 
-  facebookLogin = () => {
-    return LoginManager.logInWithPermissions(['public_profile']).then(
-      result => {
-        if (result.isCancelled) {
-          alert('Login was cancelled');
-          return null;
-        } else {
-          return AccessToken.getCurrentAccessToken().then(data => {
-            const provider = firebase.auth.FacebookAuthProvider;
-            const credential = provider.credential(data.accessToken);
-            return credential;
-          });
-        }
-      },
-      error => {
-        alert('Login failed with error: ' + error);
-        return null;
-      },
-    );
-  };
+  // facebookLogin = () => {
+  //   return LoginManager.logInWithPermissions(['public_profile']).then(
+  //     result => {
+  //       if (result.isCancelled) {
+  //         alert('Login was cancelled');
+  //         return null;
+  //       } else {
+  //         return AccessToken.getCurrentAccessToken().then(data => {
+  //           const provider = firebase.auth.FacebookAuthProvider;
+  //           const credential = provider.credential(data.accessToken);
+  //           return credential;
+  //         });
+  //       }
+  //     },
+  //     error => {
+  //       alert('Login failed with error: ' + error);
+  //       return null;
+  //     },
+  //   );
+  // };
 
   handlePressFacebookLogin = async () => {
     // if(Platform.OS=='android'){
     //   LoginManager.setLoginBehavior('WEB_ONLY');
     // }
-    let credential = await this.facebookLogin();
+    // let credential = await this.facebookLogin();
+    let credential = await fbLogin();
     this.props.attemptSocialLogin(
       credential,
       this.showAlert,
@@ -289,22 +292,20 @@ class SignUpScreen extends Component {
               />
             </View>
             <View>
-              <GoogleSigninButton
-                style={styles.socialLoginbutton}
-                size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Light}
-                onPress={() => {
-                  this.handlePressGoogleLogin();
-                }}
+              <SocialButton
+                textStyle={{ color: 'black' }}
+                iconColor={'#DB4437'}
+                onPress={() => this.handlePressGoogleLogin()}
+                icon={'logo-google'}
+                text={'Sign in with Google'}
               />
-              <TouchableOpacity
-                style={[styles.socialLoginbutton, {backgroundColor: '#3B5998'}]}
-                onPress={() => {
-                  this.handlePressFacebookLogin();
-                }}>
-                <Icon name="logo-facebook" size={30} color="white" />
-                <Text style={styles.facebookText}>Sign in with Facebook</Text>
-              </TouchableOpacity>
+              <SocialButton
+                containerStyle={{ backgroundColor: '#3B5998' }}
+                onPress={() => this.handlePressFacebookLogin()}
+                iconColor='white'
+                icon={'logo-facebook'}
+                text={'Sign in with Facebook'}
+              />
             </View>
           </View>
         </View>
@@ -337,6 +338,8 @@ const mapDispatchToProps = dispatch => {
   return {
     attemptSignUp: (email, password, alertfunc, nav) =>
       dispatch(SignUpActions.signUpRequest(email, password, alertfunc, nav)),
+    attemptSocialLogin: (token, alertfunc, nav) =>
+      dispatch(LoginActions.socialLoginRequest(token, alertfunc, nav))
   };
 };
 
