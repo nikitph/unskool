@@ -75,7 +75,7 @@ class Summary extends Component {
       )
     }
 
-    let avatars = dataToAvatar(userData.children, 'childs', this.props.nav, this.props.bVisible)
+    //let avatars = dataToAvatar(userData.children, 'childs', this.props.nav, this.props.bVisible)
 
     function dataToTag(items, cat) {
       return (
