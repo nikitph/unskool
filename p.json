@@ -1,0 +1,92 @@
+[
+        {
+            "id": "100ba3fe-5463-4972-bfbe-e8cdb68bf51d",
+            "title": "Pride Month",
+            "summary": "Celebrating Pride Month ",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/The+Trevor+Project+/P-1.jpg",
+            "url": "www.makua.com/current-events/celebrating-pride-month",
+            "priority": 1,
+            "posted_at": "2023-06-03"
+        },
+        {
+            "id": "1a020c68-c4d0-4dea-a914-1bb3cb4ef413",
+            "title": "Earth Day",
+            "summary": "Celebrate Earth Day",
+            "primary_display_image_url": "https://makuauncompressed.s3.amazonaws.com/EarthJustice/P-11.jpeg",
+            "url": "www.makua.com/current-events/earth-day-2023",
+            "priority": 2,
+            "posted_at": "2023-04-22"
+        },
+        {
+            "id": "5c48af67-9111-42da-8e1b-b285c9f6fbe0",
+            "title": "Tornado",
+            "summary": "Tornado Rips Through The South",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/Save+The+Children+/Screen+Shot+2023-03-30+at+1.21.58+PM",
+            "url": "www.makua.com/current-events/devastating-tornado-rips-through-mississippi",
+            "priority": 3,
+            "posted_at": "2023-03-27"
+        },
+        {
+            "id": "f4000704-b118-480c-aa40-eac723c73913",
+            "title": "Wildlife",
+            "summary": "World Wildlife Day ",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/World+Wide+Fund+for+Nature/P-1.jpg",
+            "url": "www.makua.com/current-events/world-wildlife-day",
+            "priority": 3,
+            "posted_at": "2023-03-03"
+        },
+        {
+            "id": "87a39f6f-93bf-4b95-8d38-ba70e0305af0",
+            "title": "Earthquakes",
+            "summary": "Earthquakes in Turkey and Syria",
+            "primary_display_image_url": "https://makuauncompressed.s3.amazonaws.com/CARE/Earthquake.jpg",
+            "url": "www.makua.com/current-events/massive-earthquakes-devastate-turkey-and-syria",
+            "priority": 3,
+            "posted_at": "2023-02-07"
+        },
+        {
+            "id": "04ead91a-258e-468b-8a76-883621841f2b",
+            "title": "Women's rights",
+            "summary": "Women's Rights In Iran",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/Center+For+Human+Rights+In+Iran/P-1.jpeg",
+            "url": "www.makua.com/current-events/iran",
+            "priority": 3,
+            "posted_at": "2022-11-04"
+        },
+        {
+            "id": "a0e72066-681f-4cc3-90b1-9246e57ff2a4",
+            "title": "US Storm",
+            "summary": "Freezing Conditions Continue",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/Operation+USA+/Blizzard.jpg",
+            "url": "www.makua.com/current-events/a-christmas-catastrophe-blazes-through-the-u-s-during-holiday-season",
+            "priority": 5,
+            "posted_at": "2022-12-31"
+        },
+        {
+            "id": "06bc982b-62b8-498e-88f8-09a8efedc8d3",
+            "title": "Ukraine",
+            "summary": "War In Ukraine Continues",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/Razom+for+Ukraine/P1.jpg",
+            "url": "www.makua.com/current-events/ukraine",
+            "priority": 5,
+            "posted_at": "2022-11-22"
+        },
+        {
+            "id": "7417dd42-e4b1-4386-840b-528e140555be",
+            "title": "Democracy",
+            "summary": "Why Voting Matters",
+            "primary_display_image_url": "https://makuacompressed.s3.us-west-1.amazonaws.com/Project+on+Government+Oversight/P3.jpg",
+            "url": "www.makua.com/current-events/voting",
+            "priority": 5,
+            "posted_at": "2022-11-17"
+        },
+        {
+            "id": "7a806910-85f7-43f0-bd32-33cc24817c52",
+            "title": "Volcano",
+            "summary": "Villagers Evacuate as Volcano Erupts",
+            "primary_display_image_url": "https://makuauncompressed.s3.amazonaws.com/Mercy+Corps/Screen+Shot+2022-12-20+at+9.50.02+AM.png",
+            "url": "www.makua.com/current-events/villagers-evacuate-as-volcano-erupts-in-indonesia",
+            "priority": 6,
+            "posted_at": "2022-12-15"
+        }
+    ]
